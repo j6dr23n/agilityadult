@@ -26,6 +26,11 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets/vendor/select2/dist/css/select2.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/theme.css') }}">
+
+    <!-- toastr css -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+        
     <!-- font awesome kit code -->
     <script src="https://kit.fontawesome.com/4835d1ece4.js" crossorigin="anonymous"></script>
     @yield('extra-css')
@@ -90,6 +95,7 @@
     <script src="{{ asset('frontend/assets/js/hs.fancybox.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/hs.select2.js') }}"></script>
 
+    @include('backend.partials._toastr-script')
     <script>
         $(document).on('ready', function () {
             // initialization of header

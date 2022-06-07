@@ -13,7 +13,6 @@
             <ul class="pagination custom-pagination-dark justify-content-start mb-0 overflow-auto flex-nowrap">
                 {{-- Previous Page Link --}}
                 @if ($paginator->onFirstPage())
-
                 @else
                     <li class="page-item flex-shrink-0">
                         <a class="page-link" href="{{ $paginator->previousPageUrl() }}"><i
@@ -56,4 +55,9 @@
             </ul>
         </nav>
     </div>
+    @if ($paginator->onLastPage())
+        <p class="font-bold text-white text-center mt-3">This is not the last page,we're limit to view video lists on free user.</p>
+        <h3 class="font-bold text-white text-center mt-5 py-2" style="border:1px solid white"><a href="" data-toggle="modal"
+            data-target="#loginModal">Sign In</a> to view more videos.</h3>
+    @endif
 @endif

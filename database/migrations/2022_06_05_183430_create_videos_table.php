@@ -17,10 +17,13 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug');
-            $table->string('poster');
+            $table->text('poster');
             $table->text('embed_link')->nullable();
             $table->text('drive_id')->nullable();
+            $table->text('link')->nullable();
+            $table->text('download_link')->nullable();
             $table->text('tags');
+            $table->string('status')->default('draft');
             $table->bigInteger('views')->default(0);
             $table->timestamps();
         });

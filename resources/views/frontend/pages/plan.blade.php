@@ -24,18 +24,17 @@
                             <thead>
                                 <tr class="text-white font-weight">
                                     <th scope="col"></th>
-                                    <th scope="col">BASIC</th>
-                                    <th scope="col">STANDARD</th>
-                                    <th scope="col">PREMIUM</th>
+                                    <th scope="col">1 Month</th>
+                                    <th scope="col">3 Months</th>
+                                    <th scope="col">6 Months</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th scope="row" class="font-weight-normal text-left">Monthly price after free
-                                        month ends on 15/9/18</th>
-                                    <td>Rs. 500</td>
-                                    <td>Rs. 650</td>
-                                    <td>Rs. 800</td>
+                                    <th scope="row" class="font-weight-normal text-left">Pirce</th>
+                                    <td>{{ number_format(4000) }} mmk</td>
+                                    <td>{{ number_format(11000) }} mmk</td>
+                                    <td>{{ number_format(22000) }} mmk</td>
                                 </tr>
                                 <tr>
                                     <th scope="row" class="font-weight-normal text-left">HD available</th>
@@ -44,48 +43,62 @@
                                     <td><i class="fas fa-check"></i></td>
                                 </tr>
                                 <tr>
-                                    <th scope="row" class="font-weight-normal text-left">Screens you can watch on at
-                                        the same time</th>
-                                    <td>1</td>
-                                    <td>2</td>
-                                    <td>4</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" class="font-weight-normal text-left">Watch on your laptop, TV,
-                                        phone and tablet</th>
+                                    <th scope="row" class="font-weight-normal text-left">Only fan Leaks</th>
                                     <td><i class="fas fa-check"></i></td>
-                                    <td><i class="fas fa-times"></i></td>
+                                    <td><i class="fas fa-check"></i></td>
                                     <td><i class="fas fa-check"></i></td>
                                 </tr>
                                 <tr>
-                                    <th scope="row" class="font-weight-normal text-left">Unlimited films and TV
-                                        programmes</th>
-                                    <td><i class="fas fa-times"></i></td>
+                                    <th scope="row" class="font-weight-normal text-left">Exantria Leaks</th>
                                     <td><i class="fas fa-check"></i></td>
-                                    <td><i class="fas fa-times"></i></td>
+                                    <td><i class="fas fa-check"></i></td>
+                                    <td><i class="fas fa-check"></i></td>
                                 </tr>
                                 <tr>
-                                    <th scope="row" class="font-weight-normal text-left">Cancel at any time</th>
-                                    <td><i class="fas fa-check"></i></td>
-                                    <td><i class="fas fa-check"></i></td>
+                                    <th scope="row" class="font-weight-normal text-left">Pornhub Premium Content</th>
                                     <td><i class="fas fa-times"></i></td>
+                                    <td><i class="fas fa-check"></i></td>
+                                    <td><i class="fas fa-check"></i></td>
                                 </tr>
                                 <tr>
-                                    <th scope="row" class="font-weight-normal text-left">First month free</th>
-                                    <td><i class="fas fa-check"></i></td>
+                                    <th scope="row" class="font-weight-normal text-left">Webcam Girls</th>
                                     <td><i class="fas fa-times"></i></td>
+                                    <td><i class="fas fa-check"></i></td>
+                                    <td><i class="fas fa-check"></i></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="font-weight-normal text-left">Asian 18+ movies</th>
+                                    <td><i class="fas fa-check"></i></td>
+                                    <td><i class="fas fa-check"></i></td>
+                                    <td><i class="fas fa-check"></i></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="font-weight-normal text-left">Hentai with mmsub</th>
+                                    <td><i class="fas fa-check"></i></td>
+                                    <td><i class="fas fa-check"></i></td>
+                                    <td><i class="fas fa-check"></i></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="font-weight-normal text-left">Manga with mmsub</th>
+                                    <td><i class="fas fa-times"></i></td>
+                                    <td><i class="fas fa-check"></i></td>
                                     <td><i class="fas fa-check"></i></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                    <div class="text-center space-2">
+                    <div class="text-center space-1">
                         <a href=""
-                            class="btn btn-primary btn-pill text-lh-1dot25 py-3d font-secondary font-weight-medium font-size-18-r px-md-7d px-6">Start
-                            Contact Agility Adult-</a>
+                            class="btn btn-primary btn-pill text-lh-1dot25 py-3d font-secondary font-weight-medium font-size-18-r px-md-7d px-6">
+                            အကောင့်ဝယ်ယူရန်
+
+                        </a>
+                    </div>
+                    <div class="text-center">
                         <a href="javascript:;" data-toggle="modal" data-target="#loginModal"
-                            class="btn btn-primary ml-6 btn-pill text-lh-1dot25 py-3d font-secondary font-weight-medium font-size-18-r px-md-7d px-6">
-                            Click here to Sign In Account</a>
+                            class="btn btn-secondary btn-pill text-lh-1dot25 py-3d font-secondary font-weight-medium font-size-18-r px-md-7d px-2">
+                            အကောင့်သို့ဝင်ရန်
+                        </a>
                     </div>
                 </div>
 

@@ -30,23 +30,23 @@
                     <div
                         class="nav justify-content-xl-center align-items-center font-size-1 flex-nowrap flex-xl-wrap overflow-auto">
                         <div class="nav-item flex-shrink-0">
-                            <a class="nav-link text-gray-1300 pr-4" href="../static/contact.html">FAQ</a>
+                            <a class="nav-link text-gray-1300 pr-4" href="#">FAQ</a>
                         </div>
                         <span class="text-gray-1300">|</span>
                         <div class="nav-item flex-shrink-0">
-                            <a class="nav-link text-gray-1300 px-5" href="../static/contact.html">Privacy Policy</a>
+                            <a class="nav-link text-gray-1300 px-5" href="#">Privacy Policy</a>
                         </div>
                         <span class="text-gray-1300">|</span>
                         <div class="nav-item flex-shrink-0">
-                            <a class="nav-link text-gray-1300 px-5" href="../static/contact.html">Contact</a>
+                            <a class="nav-link text-gray-1300 px-5" href="#">Contact</a>
                         </div>
                         <span class="text-gray-1300">|</span>
                         <div class="nav-item flex-shrink-0">
-                            <a class="nav-link text-gray-1300 px-5" href="../static/contact.html">Cookies</a>
+                            <a class="nav-link text-gray-1300 px-5" href="#">Cookies</a>
                         </div>
                         <span class="text-gray-1300">|</span>
                         <div class="nav-item flex-shrink-0">
-                            <a class="nav-link text-gray-1300 pl-4" href="../static/contact.html">Term of
+                            <a class="nav-link text-gray-1300 pl-4" href="#">Term of
                                 Service</a>
                         </div>
                     </div>
@@ -87,7 +87,7 @@
                 </div>
             </div>
             <div class="d-flex pb-5">
-                <p class="font-size-13 text-gray-6810 mx-auto mb-0">Copyright © 2020, Vodi. All Rights Reserved</p>
+                <p class="font-size-13 text-gray-6810 mx-auto mb-0">Copyright © 2020, Agility Adult. All Rights Reserved.</p>
             </div>
         </div>
     </div>

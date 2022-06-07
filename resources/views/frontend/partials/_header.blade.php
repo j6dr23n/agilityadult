@@ -24,7 +24,7 @@
                     </span>
                 </button>
 
-                <a class="navbar-brand w-auto mr-xl-5 mr-wd-8" href="{{ route('videos.index') }}" aria-label="Vodi">
+                <a class="navbar-brand w-auto mr-xl-5 mr-wd-8" href="{{ route('pages.index') }}" aria-label="Vodi">
                     <svg version="1.1" width="103" height="40px" style="fill: #fff;">
                         <g>
                             <path class="vodi-svg0"
@@ -54,7 +54,7 @@
                             <li class="hs-has-mega-menu navbar-nav-item">
                                 <a id="homeMegaMenu"
                                     class="hs-mega-menu-invoker py-xl-3d line-height-lg nav-link font-secondary"
-                                    href="{{ route('videos.index') }}" aria-haspopup="true"
+                                    href="{{ route('pages.index') }}" aria-haspopup="true"
                                     aria-expanded="false">Home</a>
 
                                 <div class="hs-mega-menu w-100" aria-labelledby="homeMegaMenu">
@@ -73,12 +73,22 @@
                                     </div>
 
                                 </li>
+                                <li class="hs-has-mega-menu navbar-nav-item">
+                                    <a id="homeMegaMenu"
+                                        class="hs-mega-menu-invoker py-xl-3d line-height-lg nav-link font-primary"
+                                        data-toggle="modal" data-target="#loginModal">Login</a>
+
+                                    <div class="hs-mega-menu w-100" aria-labelledby="homeMegaMenu">
+                                    </div>
+
+                                </li>
                             @endif
 
                             <li class="hs-has-mega-menu navbar-nav-item">
                                 <a id="homeMegaMenu"
                                     class="hs-mega-menu-invoker py-xl-3d line-height-lg nav-link font-secondary"
-                                    href="{{ route('pages.search','myanmar') }}" aria-haspopup="true" aria-expanded="false">Myanmar</a>
+                                    href="{{ route('pages.search', 'myanmar') }}" aria-haspopup="true"
+                                    aria-expanded="false">Myanmar</a>
 
                                 <div class="hs-mega-menu w-100" aria-labelledby="homeMegaMenu">
                                 </div>
@@ -88,7 +98,8 @@
                             <li class="hs-has-mega-menu navbar-nav-item">
                                 <a id="homeMegaMenu"
                                     class="hs-mega-menu-invoker py-xl-3d line-height-lg nav-link font-secondary"
-                                    href="{{ route('pages.search','exantria') }}" aria-haspopup="true" aria-expanded="false">Exantria Leak</a>
+                                    href="{{ route('pages.search', 'exantria') }}" aria-haspopup="true"
+                                    aria-expanded="false">Exantria</a>
 
                                 <div class="hs-mega-menu w-100" aria-labelledby="homeMegaMenu">
                                 </div>
@@ -98,7 +109,8 @@
                             <li class="hs-has-mega-menu navbar-nav-item">
                                 <a id="homeMegaMenu"
                                     class="hs-mega-menu-invoker py-xl-3d line-height-lg nav-link font-secondary"
-                                    href="{{ route('pages.search','onlyfan') }}" aria-haspopup="true" aria-expanded="false">Onlyfan Leak</a>
+                                    href="{{ route('pages.search', 'onlyfan') }}" aria-haspopup="true"
+                                    aria-expanded="false">Onlyfan</a>
 
                                 <div class="hs-mega-menu w-100" aria-labelledby="homeMegaMenu">
                                 </div>
@@ -108,7 +120,8 @@
                             <li class="hs-has-mega-menu navbar-nav-item">
                                 <a id="homeMegaMenu"
                                     class="hs-mega-menu-invoker py-xl-3d line-height-lg nav-link font-secondary"
-                                    href="{{ route('pages.search','hentai') }}" aria-haspopup="true" aria-expanded="false">Hentai</a>
+                                    href="{{ route('pages.search', 'hentai') }}" aria-haspopup="true"
+                                    aria-expanded="false">Hentai</a>
 
                                 <div class="hs-mega-menu w-100" aria-labelledby="homeMegaMenu">
                                 </div>
@@ -118,7 +131,8 @@
                             <li class="hs-has-mega-menu navbar-nav-item">
                                 <a id="homeMegaMenu"
                                     class="hs-mega-menu-invoker py-xl-3d line-height-lg nav-link font-secondary"
-                                    href="{{ route('pages.search','manga') }}" aria-haspopup="true" aria-expanded="false">Manga</a>
+                                    href="{{ route('pages.search', 'manga') }}" aria-haspopup="true"
+                                    aria-expanded="false">Manga</a>
 
                                 <div class="hs-mega-menu w-100" aria-labelledby="homeMegaMenu">
                                 </div>
@@ -129,12 +143,13 @@
                 </div>
 
                 <div class="d-flex align-items-center ml-auto">
-                    <form class="d-none d-xl-block">
+                    <form class="d-none d-xl-block" action="{{ route('pages.searchInput') }}" method="POST">
+                        @csrf
                         <label class="sr-only">Search</label>
                         <div class="input-group">
-                            <input type="email"
+                            <input type="text"
                                 class="search-form-control form-control py-2 pl-4 rounded-pill bg-transparent border-gray-5400"
-                                name="email" id="searchproduct-item" placeholder="Search..." aria-label="Search..."
+                                name="search" id="searchproduct-item" placeholder="Search..." aria-label="Search..."
                                 aria-describedby="searchProduct1" required="">
                             <div class="input-group-append position-absolute top-0 bottom-0 right-0  z-index-4">
                                 <button class="d-flex py-2 px-3 border-0 bg-transparent align-items-center"
@@ -169,11 +184,12 @@
                                     </a>
                                     <div id="searchClassic"
                                         class="hs-unfold-content dropdown-menu w-100 border-0 rounded-0 px-3 mt-0 right-0 left-0 mt-n2">
-                                        <form class="input-group input-group-sm input-group-merge">
-                                            <input type="text" class="form-control search-form-control rounded-pill"
+                                        <form action="{{ route('pages.searchInput') }}" class="input-group input-group-sm input-group-merge" method="POST">
+                                            @csrf
+                                            <input type="text" name="search" class="form-control search-form-control rounded-pill"
                                                 placeholder="Search..." aria-label="Search...">
                                             <div class="input-group-append">
-                                                <button type="button" class="btn">
+                                                <button type="button" class="btn" type="submit">
                                                     <i class="fas fa-search"></i>
                                                 </button>
                                             </div>

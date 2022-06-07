@@ -1,11 +1,9 @@
 @extends('frontend.layouts.app')
 
-
 @section('extra-css')
-    <link href="https://vjs.zencdn.net/7.19.2/video-js.css" rel="stylesheet" />
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-ads/6.9.0/videojs-contrib-ads.min.css">
+    <link href="https://vjs.zencdn.net/7.19.2/video-js.css" rel="stylesheet" />>
 @endsection
+
 @section('content')
     <main id="content">
         <div class="bg-gray-4500 dark">
@@ -27,7 +25,7 @@
                             @endif
                             @if ($video->drive_id !== null)
                                 <video id="my-video" class="video-js" controls preload="auto"
-                                    poster="{{ $video->poster }}" data-setup="{}">
+                                    poster="{{ '/storage/videos/images/' . $video->poster[0] }}" data-setup="{}">
                                     <source
                                         src="https://drive.google.com/u/0/uc?id={{ $video->drive_id }}&export=download"
                                         type="video/mp4" />
@@ -49,7 +47,7 @@
                                 <span class="d-inline-flex text-gray-1300 align-items-center mr-3">Published on
                                     {{ \Carbon\Carbon::parse($video->created_at)->diffForHumans() }}</span>
                                 <span class="d-inline-flex text-gray-1300 align-items-center mr-3"><i
-                                        class="far fa-eye mr-1d"></i> {{ $video->views }} views</span>
+                                        class="far fa-eye mr-1d"></i> {{ $totalViews }} views</span>
                             </div>
                             <hr>
                             <div class="font-size-12 mb-4">
@@ -59,10 +57,18 @@
                                     $tags = explode(',', $video->tags);
                                 @endphp
                                 @foreach ($tags as $key => $value)
-                                <a href="{{ route('pages.search', $value) }}" style="border:1px solid white; border-radius: 15px;"
+                                    <a href="{{ route('pages.search', $value) }}"
+                                        style="border:1px solid white; border-radius: 15px;"
                                         class="d-inline-flex text-gray-600 px-2 py-2 align-items-center mr-3 font-size-14 text-info">{{ $value }}</a>
                                 @endforeach
                             </div>
+                            <hr>
+                            <a class="btn btn-info btn-block" href="{{ $video->link }}">
+                                <span class="btn-label">
+                                    <i class="fa-solid fa-download"></i>
+                                </span>
+                                Folder Link
+                            </a>
                             <nav class="js-scroll-nav">
                                 <div class="space-1 position-relative d-flex">
                                     <a class="nav-link mx-auto px-6 py-2d font-size-14 h-w-primary z-index-2 border border-gray-3900 rounded-pill bg-gray-4500"
@@ -80,10 +86,13 @@
                         <div class="mb-4">
                             <h5 class="text-white font-size-18 font-weight-medium">Up Next</h5>
                             @foreach ($videos as $item)
+                            @php
+                                $image = json_decode($item->poster)
+                            @endphp
                                 <div class="row d-block d-xl-flex align-items-center no-gutters mb-2d">
                                     <div class="col product-image mb-2d mb-xl-0">
                                         <a href="single-video-v3.html" class="d-block  stretched-link">
-                                            <img class="img-fluid" src="{{ $item->poster }}" alt="Image-Description">
+                                            <img class="img-fluid poster-image" src="{{ '/storage/videos/images/' . $image[0] }}" alt="Image-Description" >
                                         </a>
                                     </div>
                                     <div class="col">

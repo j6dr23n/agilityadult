@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Auth;
 
+use Carbon\Carbon;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
@@ -47,13 +48,21 @@ class LoginRequest extends FormRequest
 
         if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
+            
+            return redirect()->back()->with('error','Your creditionals does not match our records!!!');
+        }
 
-            throw ValidationException::withMessages([
-                'email' => trans('auth.failed'),
-            ]);
+        if(auth()->user()->expiry_date <= Carbon::today()){
+            Auth::guard('web')->logout();
+
+            Auth::logout();
+
+            return redirect()->back()->with('error','Your account is expired,Buy more plan!!!'); 
         }
 
         RateLimiter::clear($this->throttleKey());
+        
+        return redirect()->back()->with('success','Successfully Login');
     }
 
     /**

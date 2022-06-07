@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\VideoRequest;
 use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class VideoController extends Controller
 {
@@ -15,14 +17,9 @@ class VideoController extends Controller
      */
     public function index(Request $request)
     {
-        $title = null;
-        $videos = DB::table('videos')->inRandomOrder()->paginate(12);
+        $videos = DB::table('videos')->latest()->paginate(12);
 
-        if($request->filled('search')){
-            $videos = DB::table('videos')->where('title',$request->search)->orWhere('tags',$request->search)->get();
-        } 
-
-        return view('frontend.index',compact('videos','title'));
+        return view('backend.videos.index',compact('videos'));
     }
 
     /**
@@ -32,7 +29,7 @@ class VideoController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.videos.create');
     }
 
     /**
@@ -43,7 +40,19 @@ class VideoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        if($request->hasFile('poster')){
+            foreach($request->file('poster') as $item){
+                $fileName = time().'-'.$item->getClientOriginalName();
+                $path = $item->storeAs('/videos/images/', $fileName, 'public');
+                $images[] = $fileName;
+            }
+            $data['poster'] = $images;
+        }
+
+        $video = Video::create($data);
+
+        return redirect()->route('videos.index')->with('success','Video Created!!!');
     }
 
     /**
@@ -54,9 +63,12 @@ class VideoController extends Controller
      */
     public function show(Video $video)
     {
-        $videos = DB::table('videos')->inRandomOrder()->take(4)->get();
+        views($video)->cooldown($minutes = 3)->record();
 
-        return view('frontend.pages.details',compact('video','videos'));
+        $videos = DB::table('videos')->latest()->take(4)->get();
+        $totalViews = views($video)->count();
+
+        return view('frontend.pages.details',compact('video','videos','totalViews'));
     }
 
     /**
@@ -65,9 +77,9 @@ class VideoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Video $video)
     {
-        //
+        return view('backend.videos.edit',compact('video'));
     }
 
     /**
@@ -77,9 +89,27 @@ class VideoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request , Video $video)
     {
-        //
+        $data = $request->all();
+        if($request->hasFile('poster')){
+            if(is_array($video->poster)){
+                foreach($video->poster as $image){
+                    Storage::disk('public')->delete('/videos/images/'.$image);
+                }
+            }
+
+            foreach($request->file('poster') as $item){
+                $fileName = time().'-'.$item->getClientOriginalName();
+                $path = $item->storeAs('/videos/images/', $fileName, 'public');
+                $images[] = $fileName;
+            }
+            $data['poster'] = $images;
+        }
+
+        $video->fill($data)->save();
+
+        return redirect()->route('videos.index')->with('success','Video Updated!!!');
     }
 
     /**
@@ -88,8 +118,10 @@ class VideoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Video $video)
     {
-        //
+        $video->delete();
+
+        return redirect()->route('videos.index')->with('success','Videos Deleted!!!');
     }
 }
