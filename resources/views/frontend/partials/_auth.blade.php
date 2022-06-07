@@ -15,7 +15,6 @@
                     @csrf
 
                     <div id="login">
-                        <img src="{{ asset('logo/agadult_login.png') }}" class="img-fluid" alt="" >
                         <div class="text-center mb-7">
                             <h3 class="mb-0">Sign In to Agility Adult-</h3>
                             <p>Login to watch all videos and leaks.</p>

@@ -33,21 +33,21 @@
                                     </p>
                                 </video> @endif
     @if (is_array($video->poster)) <!-- Swiper -->
-                                                                <h4 class="text-center text-white font-bold">Images</h4>
-                                                                <div class="swiper mySwiper">
-                                                                    <div class="swiper-wrapper">
-                                                                        @foreach ($video->poster as $image)
-                                                                            <div class="swiper-slide">
-                                                                                <img
-                                                                                    src="{{ '/storage/videos/images/' . $image }}" class="img-fluid poster-image"/>
-                                                                            </div>
-                                                                        @endforeach
-                                                                    </div>
-                                                                    <div class="swiper-button-next"></div>
-                                                                    <div class="swiper-button-prev"></div>
-                                                                    <div class="swiper-pagination"></div>
-                                                                </div> 
-                                                                @endif
+                                <h4 class="text-center text-white font-bold">Images</h4>
+                                <div class="swiper mySwiper">
+                                    <div class="swiper-wrapper">
+                                        @foreach ($video->poster as $image)
+                                            <div class="swiper-slide">
+                                                <div class="swiper-zoom-container">
+                                                  <img src="{{ '/storage/videos/images/' . $image }}" class="img-fluid" style="max-height: 500px !important;"/>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    <div class="swiper-button-next"></div>
+                                    <div class="swiper-button-prev"></div>
+                                    <div class="swiper-pagination"></div>
+                                </div> @endif
     </div>
 <div class="mr-xl-3">
     <div class="mb-2">
@@ -149,10 +149,13 @@
 <!-- Initialize Swiper -->
 <script>
     var swiper = new Swiper(".mySwiper", {
+        zoom: true,
         autoHeight: true,
+        cssMode: true,
         pagination: {
             el: ".swiper-pagination",
             type: "progressbar",
+            clickable: true,
         },
         navigation: {
             nextEl: ".swiper-button-next",

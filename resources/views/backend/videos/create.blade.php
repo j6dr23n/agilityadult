@@ -39,57 +39,187 @@
             <!-- row -->
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-md-12">
-                    <form action="{{ route('videos.store') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="card ">
-                            <div class="card-body">
-                                @foreach ($errors->all() as $message)
-                                    <p style="color:red;">{{ $message }}</p>
-                                @endforeach
-                                <div class="form-group">
-                                    <label class="form-label text-dark">Video Title</label>
-                                    <input type="text" name="title" class="form-control" placeholder="Video Title">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label text-dark">Video Tags</label>
-                                    <textarea class="form-control" name="tags" placeholder="Myanmar,Onlyfan,Exantria,Chaung Yite,Thai"
-                                        rows="3"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label text-dark">Embed Url</label>
-                                    <input type="text" name="embed_link" class="form-control"
-                                        placeholder="Embed url from google drive">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label text-dark">Drive ID</label>
-                                    <input type="number" name="drive_id" class="form-control"
-                                        placeholder="google drive file id">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label text-dark">Link</label>
-                                    <input type="url" name="link" class="form-control" placeholder="Leak folder link">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label text-dark">Poster</label>
-                                    <input type="file" name="poster[]" class="form-control" id="formFile" multiple />
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Status</label>
-                                    <select name="status" class="form-control form-select select2" data-bs-placeholder="Select Country">
-                                        <option value="draft">Draft</option>
-                                        <option value="published">Published</option>
-                                    </select>
-                                </div>
+                    <div class="card" id="basic-alert">
+                        <div class="card-body">
+                            <div>
+                                <h6 class="card-title mb-1">Create Post</h6>
                             </div>
-                            <div class="card-footer ">
-                                <button type="submit" class="btn btn-primary float-end">Publish Now</button>
+                            <div class="text-wrap">
+                                <div class="example">
+                                    <div class="panel panel-primary tabs-style-1">
+                                        <div class=" tab-menu-heading">
+                                            <div class="tabs-menu1">
+                                                <p class="text-muted card-sub-title">Select yout post type...</p>
+                                                <!-- Tabs -->
+                                                <ul class="nav panel-tabs main-nav-line">
+                                                    <li class="nav-item"><a href="#tab1" class="nav-link active"
+                                                            data-bs-toggle="tab"><i class="fas fa-arrow-right"></i> Videos</a></li>
+                                                    <li class="nav-item"><a href="#tab2" class="nav-link"
+                                                            data-bs-toggle="tab"><i class="fas fa-arrow-right"></i> Photos</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="panel-body tabs-menu-body main-content-body-right border-top-0 border">
+                                            <div class="tab-content">
+                                                <div class="tab-pane active" id="tab1">
+                                                    <form action="{{ route('videos.store') }}" method="POST"
+                                                        enctype="multipart/form-data">
+                                                        @csrf
+                                                        <div class="card ">
+                                                            <div class="card-body">
+                                                                @foreach ($errors->all() as $message)
+                                                                    <p style="color:red;">{{ $message }}</p>
+                                                                @endforeach
+                                                                <div class="form-group">
+                                                                    <label class="form-label text-dark">Video Title</label>
+                                                                    <input type="text" name="title" class="form-control"
+                                                                        placeholder="Video Title">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="form-label text-dark">Video Tags</label>
+                                                                    <textarea class="form-control" name="tags" placeholder="Myanmar,Onlyfan,Exantria,Chaung Yite,Thai" rows="3"></textarea>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="form-label text-dark">Embed Url</label>
+                                                                    <input type="text" name="embed_link"
+                                                                        class="form-control"
+                                                                        placeholder="Embed url from google drive">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="form-label text-dark">Drive ID</label>
+                                                                    <input type="text" name="drive_id"
+                                                                        class="form-control"
+                                                                        placeholder="google drive file id">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="form-label text-dark">Link</label>
+                                                                    <input type="url" name="link" class="form-control"
+                                                                        placeholder="Download link">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="form-label text-dark">Poster</label>
+                                                                    <input type="file" name="poster[]"
+                                                                        class="form-control" id="formFile" multiple />
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="form-label">Status</label>
+                                                                    <select name="status"
+                                                                        class="form-control form-select select2"
+                                                                        data-bs-placeholder="Select Country">
+                                                                        <option value="draft">Draft</option>
+                                                                        <option value="published">Published</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="card-footer ">
+                                                                <button type="submit"
+                                                                    class="btn btn-primary float-end">Publish Now</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="tab-pane" id="tab2">
+                                                    <form action="{{ route('videos.store') }}" method="POST"
+                                                        enctype="multipart/form-data">
+                                                        @csrf
+                                                        <div class="card ">
+                                                            <div class="card-body">
+                                                                @foreach ($errors->all() as $message)
+                                                                    <p style="color:red;">{{ $message }}</p>
+                                                                @endforeach
+                                                                <div class="form-group">
+                                                                    <label class="form-label text-dark">Title</label>
+                                                                    <input type="text" name="title" class="form-control"
+                                                                        placeholder="Video Title">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="form-label text-dark">Tags</label>
+                                                                    <textarea class="form-control" name="tags" placeholder="Myanmar,Onlyfan,Exantria,Chaung Yite,Thai" rows="3"></textarea>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="form-label text-dark">Link</label>
+                                                                    <input type="url" name="link" class="form-control"
+                                                                        placeholder="Leak folder link">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="form-label text-dark">Poster</label>
+                                                                    <input type="file" name="poster[]"
+                                                                        class="form-control" id="formFile" multiple />
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="form-label">Status</label>
+                                                                    <select name="status"
+                                                                        class="form-control form-select select2"
+                                                                        data-bs-placeholder="Select Country">
+                                                                        <option value="draft">Draft</option>
+                                                                        <option value="published">Published</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="card-footer ">
+                                                                <button type="submit"
+                                                                    class="btn btn-primary float-end">Publish Now</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
             <!-- /row -->
 
+            {{-- <form action="{{ route('videos.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="card ">
+                    <div class="card-body">
+                        @foreach ($errors->all() as $message)
+                            <p style="color:red;">{{ $message }}</p>
+                        @endforeach
+                        <div class="form-group">
+                            <label class="form-label text-dark">Video Title</label>
+                            <input type="text" name="title" class="form-control" placeholder="Video Title">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label text-dark">Video Tags</label>
+                            <textarea class="form-control" name="tags" placeholder="Myanmar,Onlyfan,Exantria,Chaung Yite,Thai" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label text-dark">Embed Url</label>
+                            <input type="text" name="embed_link" class="form-control"
+                                placeholder="Embed url from google drive">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label text-dark">Drive ID</label>
+                            <input type="text" name="drive_id" class="form-control" placeholder="google drive file id">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label text-dark">Link</label>
+                            <input type="url" name="link" class="form-control" placeholder="Leak folder link">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label text-dark">Poster</label>
+                            <input type="file" name="poster[]" class="form-control" id="formFile" multiple />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Status</label>
+                            <select name="status" class="form-control form-select select2"
+                                data-bs-placeholder="Select Country">
+                                <option value="draft">Draft</option>
+                                <option value="published">Published</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-footer ">
+                        <button type="submit" class="btn btn-primary float-end">Publish Now</button>
+                    </div>
+                </div>
+            </form> --}}
 
         </div>
         <!-- Container closed -->

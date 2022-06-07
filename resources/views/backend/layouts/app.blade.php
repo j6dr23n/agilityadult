@@ -16,7 +16,7 @@
         content="admin dashboard, admin dashboard laravel, admin panel template, blade template, blade template laravel, bootstrap template, dashboard laravel, laravel admin, laravel admin dashboard, laravel admin panel, laravel admin template, laravel bootstrap admin template, laravel bootstrap template, laravel template" />
 
     <!-- Title -->
-    <title> Nowa – Laravel Bootstrap 5 Admin & Dashboard Template </title>
+    <title>Agility Adult- Dashboard</title>
 
     <!-- FAVICON -->
     <link rel="icon" href="{{ asset('backend/assets/img/brand/favicon.png') }}" type="image/x-icon" />

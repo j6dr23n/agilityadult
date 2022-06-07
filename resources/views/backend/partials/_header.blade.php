@@ -4,8 +4,8 @@
         <div class="main-header-left ">
             <div class="responsive-logo">
                 <a href="index.html" class="header-logo">
-                    <img src="assets/img/brand/logo.png" class="mobile-logo logo-1" alt="logo">
-                    <img src="assets/img/brand/logo-white.png" class="mobile-logo dark-logo-1" alt="logo">
+                <img src="{{ asset('backend/assets/img/brand/agadult.png') }}" class="mobile-logo logo-1" alt="logo" height="30px">
+                    <img src="{{ asset('backend/assets/img/brand/agadult.png') }}" class="mobile-logo dark-logo-1" alt="logo">
                 </a>
             </div>
             <div class="app-sidebar__toggle" data-bs-toggle="sidebar">
@@ -14,8 +14,8 @@
             </div>
             <div class="logo-horizontal">
                 <a href="index.html" class="header-logo">
-                    <img src="assets/img/brand/logo.png" class="mobile-logo logo-1" alt="logo">
-                    <img src="assets/img/brand/logo-white.png" class="mobile-logo dark-logo-1" alt="logo">
+                    <img src="{{ asset('backend/assets/img/brand/agadult.png') }}" class="mobile-logo logo-1" alt="logo">
+                    <img src="{{ asset('backend/assets/img/brand/agadult.png') }}" class="mobile-logo dark-logo-1" alt="logo">
                 </a>
             </div>
             <div class="main-header-center ms-4 d-sm-none d-md-none d-lg-block form-group">
@@ -177,29 +177,18 @@
                         </li>
                         <li class="dropdown main-profile-menu nav nav-item nav-link ps-lg-2">
                             <a class="new nav-link profile-user d-flex" href="#" data-bs-toggle="dropdown"><img alt=""
-                                    src="assets/img/faces/2.jpg" class=""></a>
+                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv9pNGckkhtfLaW1IQD_3pbSUB43mB5_SmyQ&usqp=CAU" class=""></a>
                             <div class="dropdown-menu">
                                 <div class="menu-header-content p-3 border-bottom">
                                     <div class="d-flex wd-100p">
-                                        <div class="main-img-user"><img alt="" src="assets/img/faces/2.jpg"
+                                        <div class="main-img-user"><img alt="" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv9pNGckkhtfLaW1IQD_3pbSUB43mB5_SmyQ&usqp=CAU"
                                                 class=""></div>
                                         <div class="ms-3 my-auto">
-                                            <h6 class="tx-15 font-weight-semibold mb-0">Teri Dactyl</h6>
-                                            <span class="dropdown-title-text subtext op-6  tx-12">Premium
-                                                Member</span>
+                                            <h6 class="tx-15 font-weight-semibold mb-0">{{ auth()->user()->name }}</h6>
+                                            <span class="dropdown-title-text subtext op-6  tx-12">Admin</span>
                                         </div>
                                     </div>
                                 </div>
-                                <a class="dropdown-item" href="profile.html"><i
-                                        class="far fa-user-circle"></i>Profile</a>
-                                <a class="dropdown-item" href="chat.html"><i class="far fa-smile"></i>
-                                    chat</a>
-                                <a class="dropdown-item" href="mail-read.html"><i
-                                        class="far fa-envelope "></i>Inbox</a>
-                                <a class="dropdown-item" href="mail.html"><i
-                                        class="far fa-comment-dots"></i>Messages</a>
-                                <a class="dropdown-item" href="mail-settings.html"><i class="far fa-sun"></i>
-                                    Settings</a>
                                 <form action="{{ route('logout') }}" method="POST">
                                     @csrf
                                     <button class="dropdown-item" type="submit"><i
