@@ -80,9 +80,9 @@
                                                                     <textarea class="form-control" name="tags" placeholder="Myanmar,Onlyfan,Exantria,Chaung Yite,Thai" rows="3"></textarea>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label class="form-label text-dark">Video</label>
-                                                                    <input type="file" name="video"
-                                                                        class="form-control" id="formFile" accept="" accept="video/*"/>
+                                                                    <label class="form-label text-dark">Embed_link</label>
+                                                                    <input type="url" name="embed_link" class="form-control"
+                                                                        placeholder="Link From Backblaze-(Friendly URL)">
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="form-label text-dark">Link</label>

@@ -29,8 +29,6 @@ class VideoController extends Controller
      */
     public function create()
     {
-        Storage::disk('s3')->put('test.txt', 'test');
-
         return view('backend.videos.create');
     }
 
@@ -43,12 +41,12 @@ class VideoController extends Controller
     public function store(Request $request)
     {
 
-        $data = $request->except('video');
-        if($request->video !== null){
-            $token = $this->getTokenB2();
-            $video = $this->uploadVideoB2($request,$token);
-            $data['embed_link'] = 'https://f003.backblazeb2.com/file/agadult-/'.$video['fileName'];
-        }
+        $data = $request->all();
+        // if($request->video !== null){
+        //     $token = $this->getTokenB2();
+        //     $video = $this->uploadVideoB2($request,$token);
+        //     $data['embed_link'] = 'https://f003.backblazeb2.com/file/agadult-/'.$video['fileName'];
+        // }
         if ($request->hasFile('poster')) {
             foreach ($request->file('poster') as $item) {
                 $fileName = time().'-'.$item->getClientOriginalName();
@@ -57,7 +55,7 @@ class VideoController extends Controller
             }
             $data['poster'] = $images;
         }
-        $video = Video::create($data);
+        Video::create($data);
 
         return redirect()->route('videos.index')->with('success', 'Video Created!!!');
     }

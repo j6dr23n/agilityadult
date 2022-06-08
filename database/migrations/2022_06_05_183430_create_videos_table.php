@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('slug');
             $table->text('poster');
             $table->text('embed_link')->nullable();
-            $table->text('drive_id')->nullable();
             $table->text('link')->nullable();
             $table->text('download_link')->nullable();
             $table->text('tags');

@@ -200,9 +200,6 @@
                                         @foreach ($videos->take(12) as $item)
                                             @php
                                                 $image = json_decode($item->poster);
-                                                if (is_array($image) === false) {
-                                                    return abort('500');
-                                                }
                                             @endphp
                                             <tr>
                                                 <td class="text-center">

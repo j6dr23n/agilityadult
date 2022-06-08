@@ -56,12 +56,9 @@
                                                     @if (is_array(json_decode($item->poster)))
                                                         @php
                                                             $image = json_decode($item->poster);
-                                                            if(is_array($image) === false){
-                                                                return abort('500');
-                                                            }
                                                         @endphp
-                                                            <img src="{{ asset('storage/videos/images/' . $image[0]) }}"
-                                                                alt="" width="100px" height="60px">
+                                                        <img src="{{ asset('storage/videos/images/' . $image[0]) }}"
+                                                            alt="" width="100px" height="60px">
                                                     @else
                                                         <img src="{{ $item->poster }}" alt="" width="100px" height="60px">
                                                     @endif
@@ -89,13 +86,15 @@
                                                             </svg>
                                                         </i>
                                                     </a>
-                                                    <form action="{{ route('videos.destroy',$item->id) }}" method="POST" style="display: inline">
+                                                    <form action="{{ route('videos.destroy', $item->id) }}" method="POST"
+                                                        style="display: inline">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button class="btn btn-danger btn-sm br-5" type="submit">
                                                             <i>
-                                                                <svg class="table-delete" xmlns="http://www.w3.org/2000/svg"
-                                                                    height="20" viewBox="0 0 24 24" width="16">
+                                                                <svg class="table-delete"
+                                                                    xmlns="http://www.w3.org/2000/svg" height="20"
+                                                                    viewBox="0 0 24 24" width="16">
                                                                     <path d="M0 0h24v24H0V0z" fill="none"></path>
                                                                     <path
                                                                         d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5l-1-1h-5l-1 1H5v2h14V4h-3.5z">
@@ -124,8 +123,8 @@
                                                                     <div class="swiper-wrapper">
                                                                         @foreach (json_decode($item->poster) as $image)
                                                                             <div class="swiper-slide">
-                                                                                <img
-                                                                                    src="{{ '/storage/videos/images/' . $image }}" class="img-fluid poster-image"/>
+                                                                                <img src="{{ '/storage/videos/images/' . $image }}"
+                                                                                    class="img-fluid poster-image" />
                                                                             </div>
                                                                         @endforeach
                                                                     </div>
@@ -136,16 +135,13 @@
                                                             @endif
                                                             <hr>
                                                             @if ($item->embed_link !== null)
-                                                                <p align="center">
-                                                                    {!! $item->embed_link !!}
-                                                                </p>
-                                                            @endif
-                                                            @if ($item->drive_id !== null)
-                                                                <video id="my-video" class="video-js" controls
-                                                                    preload="auto" poster="{{ $item->poster }}"
-                                                                    data-setup="{}">
-                                                                    <source
-                                                                        src="https://drive.google.com/u/0/uc?id={{ $item->drive_id }}&export=download"
+                                                                <h5 class="text-center">Videos</h5>
+                                                                <video id="my-video"
+                                                                    class="video-js vjs-16-9 vjs-big-play-centered" controls
+                                                                    preload="auto"
+                                                                    poster="{{ '/storage/videos/images/' . $image }}"
+                                                                    data-setup='{"fluid": true}'>
+                                                                    <source src="{{ $item->embed_link }}"
                                                                         type="video/mp4" />
                                                                     <p class="vjs-no-js">
                                                                         To view this video please enable JavaScript, and
@@ -211,7 +207,7 @@
     <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
 
     @include('backend.partials._toastr-script')
-    
+
     <!-- Initialize Swiper -->
     <script>
         var swiper = new Swiper(".mySwiper", {

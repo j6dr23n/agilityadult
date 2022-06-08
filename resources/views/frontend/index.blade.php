@@ -20,9 +20,6 @@
                                                 @foreach ($videos as $item)
                                                     @php
                                                         $image = json_decode($item->poster);
-                                                        if (is_array($image) === false) {
-                                                            return abort('500');
-                                                        }
                                                     @endphp
                                                     <div class="col-md-3 px-2">
                                                         <div class="product mb-4">
