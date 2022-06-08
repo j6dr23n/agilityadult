@@ -40,8 +40,7 @@
                                 @endif
                             @endif
                             @if ($video->embed_link !== null)
-                                <video id="my-video" class="video-js" controls preload="auto" width="640" height="264"
-                                    poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
+                                <video id="my-video" class="video-js vjs-16-9 vjs-big-play-centered" controls preload="auto" poster="{{ '/storage/videos/images/' . $video->poster[0] }}" data-setup='{"fluid": true}'>
                                     <source src="{{ $video->embed_link }}" type="video/mp4" />
                                     <p class="vjs-no-js">
                                         To view this video please enable JavaScript, and consider upgrading to a
@@ -52,81 +51,83 @@
                                 </video>
                             @endif
                         </div>
-                    </div>
-                </div>
-                <div class="mr-xl-3">
-                    <div class="mb-2">
-                        <h5 class="font-size-21 font-weight-medium text-white">{{ $video->title }}
-                        </h5>
-                    </div>
-                    <div class="font-size-12 mb-4">
-                        <span class="d-inline-flex text-gray-1300 align-items-center mr-3">Published on
-                            {{ \Carbon\Carbon::parse($video->created_at)->diffForHumans() }}</span>
-                        <span class="d-inline-flex text-gray-1300 align-items-center mr-3"><i class="far fa-eye mr-1d"></i>
-                            {{ $totalViews }} views</span>
-                    </div>
-                    <hr>
-                    <div class="font-size-12 mb-4">
-                        <h5 class="font-size-19 font-weight-medium text-white text-center mb-3">Tags
-                        </h5>
-                        @php
-                            $tags = explode(',', $video->tags);
-                        @endphp
-                        @foreach ($tags as $key => $value)
-                            <a href="{{ route('pages.search', $value) }}"
-                                style="border:1px solid white; border-radius: 15px;"
-                                class="d-inline-flex text-gray-600 px-2 py-2 align-items-center mr-3 font-size-14 text-info">{{ $value }}</a>
-                        @endforeach
-                    </div>
-                    <hr>
-                    <a class="btn btn-info btn-block" href="{{ $video->link }}">
-                        <span class="btn-label">
-                            <i class="fa-solid fa-download"></i>
-                        </span>
-                        Folder Link
-                    </a>
-                    <nav class="js-scroll-nav">
-                        <div class="space-1 position-relative d-flex">
-                            <a class="nav-link mx-auto px-6 py-2d font-size-14 h-w-primary z-index-2 border border-gray-3900 rounded-pill bg-gray-4500"
-                                href="#leave-comment"><i class="far fa-comment mr-2"></i> Leave a comment</a>
-                            <div class="border-top content-centered w-100 border-gray-3900"></div>
-                        </div>
-                    </nav>
-                </div>
-            </div>
-            <div class="col-md-4 col-xl-3">
-                <div class="mb-4">
-                    <h5 class="text-white font-size-18 font-weight-medium">Up Next</h5>
-                    @foreach ($videos as $item)
-                        @php
-                            $image = json_decode($item->poster);
-                        @endphp
-                        <div class="row d-block d-xl-flex align-items-center no-gutters mb-2d">
-                            <div class="col product-image mb-2d mb-xl-0">
-                                <a href="{{ route('videos.show', $item->slug) }}" class="d-block  stretched-link">
-                                    <img class="img-fluid poster-image" src="{{ '/storage/videos/images/' . $image[0] }}"
-                                        alt="Image-Description">
-                                </a>
+                        <div class="mr-xl-3">
+                            <div class="mb-2">
+                                <h5 class="font-size-21 font-weight-medium text-white">{{ $video->title }}
+                                </h5>
                             </div>
-                            <div class="col">
-                                <div class="mx-xl-2d">
-                                    <div class="product-title font-size-13 font-weight-semi-bold mb-1d">
-                                        <a href="single-video-v3.html" class="">{{ $item->title }}</a>
+                            <div class="font-size-12 mb-4">
+                                <span class="d-inline-flex text-gray-1300 align-items-center mr-3">Published on
+                                    {{ \Carbon\Carbon::parse($video->created_at)->diffForHumans() }}</span>
+                                <span class="d-inline-flex text-gray-1300 align-items-center mr-3"><i
+                                        class="far fa-eye mr-1d"></i>
+                                    {{ $totalViews }} views</span>
+                            </div>
+                            <hr>
+                            <div class="font-size-12 mb-4">
+                                <h5 class="font-size-19 font-weight-medium text-white text-center mb-3">Tags
+                                </h5>
+                                @php
+                                    $tags = explode(',', $video->tags);
+                                @endphp
+                                @foreach ($tags as $key => $value)
+                                    <a href="{{ route('pages.search', $value) }}"
+                                        style="border:1px solid white; border-radius: 15px;"
+                                        class="d-inline-flex text-gray-600 px-2 py-2 align-items-center mr-3 font-size-14 text-info">{{ $value }}</a>
+                                @endforeach
+                            </div>
+                            <hr>
+                            <a class="btn btn-info btn-block" href="{{ $video->link }}">
+                                <span class="btn-label">
+                                    <i class="fa-solid fa-download"></i>
+                                </span>
+                                Folder Link
+                            </a>
+                            <nav class="js-scroll-nav">
+                                <div class="space-1 position-relative d-flex">
+                                    <a class="nav-link mx-auto px-6 py-2d font-size-14 h-w-primary z-index-2 border border-gray-3900 rounded-pill bg-gray-4500"
+                                        href="#leave-comment"><i class="far fa-comment mr-2"></i> Leave a comment</a>
+                                    <div class="border-top content-centered w-100 border-gray-3900"></div>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xl-3">
+                        <div class="mb-4">
+                            <h5 class="text-white font-size-18 font-weight-medium">Up Next</h5>
+                            @foreach ($videos as $item)
+                                @php
+                                    $image = json_decode($item->poster);
+                                @endphp
+                                <div class="row d-block d-xl-flex align-items-center no-gutters mb-2d">
+                                    <div class="col product-image mb-2d mb-xl-0">
+                                        <a href="{{ route('videos.show', $item->slug) }}"
+                                            class="d-block  stretched-link">
+                                            <img class="img-fluid poster-image"
+                                                src="{{ '/storage/videos/images/' . $image[0] }}"
+                                                alt="Image-Description">
+                                        </a>
                                     </div>
-                                    <div class="product-meta dot font-size-12 mb-1">
-                                        <span class="d-inline-flex text-gray-1300">{{ $item->views }}
-                                            views</span>
-                                        <span
-                                            class="d-inline-flex text-gray-1300">{{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</span>
+                                    <div class="col">
+                                        <div class="mx-xl-2d">
+                                            <div class="product-title font-size-13 font-weight-semi-bold mb-1d">
+                                                <a href="single-video-v3.html"
+                                                    class="">{{ $item->title }}</a>
+                                            </div>
+                                            <div class="product-meta dot font-size-12 mb-1">
+                                                <span class="d-inline-flex text-gray-1300">{{ $item->views }}
+                                                    views</span>
+                                                <span
+                                                    class="d-inline-flex text-gray-1300">{{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endforeach
                         </div>
-                    @endforeach
+                    </div>
                 </div>
             </div>
-        </div>
-        </div>
         </div>
         <div class="container px-md-5" id="leave-comment">
             <div class="space-1">
@@ -141,7 +142,7 @@
 
     <script>
         const player = videojs('my-video', {
-            responsive: true,
+            responsive : true,
             fluid: true,
         });
     </script>
@@ -176,7 +177,7 @@
         (function() { // DON'T EDIT BELOW THIS LINE
             var d = document,
                 s = d.createElement('script');
-            s.src = 'https://agadult.disqus.com/embed.js';
+            s.src = 'https://j6dr23n.disqus.com/embed.js';
             s.setAttribute('data-timestamp', +new Date());
             (d.head || d.body).appendChild(s);
         })();

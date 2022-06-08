@@ -55,7 +55,7 @@
                                                 <td class="text-center">
                                                     @if (is_array(json_decode($item->poster)))
                                                         @php
-                                                            $image = json_decode($item->poster)
+                                                            $image = json_decode($item->poster);
                                                             if(is_array($image) === false){
                                                                 return abort('500');
                                                             }
