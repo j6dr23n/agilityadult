@@ -56,6 +56,9 @@
                                                     @if (is_array(json_decode($item->poster)))
                                                         @php
                                                             $image = json_decode($item->poster)
+                                                            if(is_array($image) === false){
+                                                                return abort('500');
+                                                            }
                                                         @endphp
                                                             <img src="{{ asset('storage/videos/images/' . $image[0]) }}"
                                                                 alt="" width="100px" height="60px">

@@ -200,11 +200,15 @@
                                         @foreach ($videos->take(12) as $item)
                                             @php
                                                 $image = json_decode($item->poster);
+                                                if (is_array($image) === false) {
+                                                    return abort('500');
+                                                }
                                             @endphp
                                             <tr>
                                                 <td class="text-center">
                                                     {{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</td>
-                                                <td><img src="{{ '/storage/videos/images/' . $image[0] }}" alt="" width="100%" height="70px"></td>
+                                                <td><img src="{{ '/storage/videos/images/' . $image[0] }}" alt=""
+                                                        width="100%" height="70px"></td>
                                                 <td>{{ $item->title }}</td>
                                                 <td>{{ Str::limit($item->tags, 40) }}</td>
                                                 <td>{{ Str::limit($item->embed_link, 40) }}</td>
