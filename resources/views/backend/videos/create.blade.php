@@ -80,16 +80,9 @@
                                                                     <textarea class="form-control" name="tags" placeholder="Myanmar,Onlyfan,Exantria,Chaung Yite,Thai" rows="3"></textarea>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label class="form-label text-dark">Embed Url</label>
-                                                                    <input type="text" name="embed_link"
-                                                                        class="form-control"
-                                                                        placeholder="Embed url from google drive">
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="form-label text-dark">Drive ID</label>
-                                                                    <input type="text" name="drive_id"
-                                                                        class="form-control"
-                                                                        placeholder="google drive file id">
+                                                                    <label class="form-label text-dark">Video</label>
+                                                                    <input type="file" name="video"
+                                                                        class="form-control" id="formFile" accept="" accept="video/*"/>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="form-label text-dark">Link</label>
@@ -99,7 +92,7 @@
                                                                 <div class="form-group">
                                                                     <label class="form-label text-dark">Poster</label>
                                                                     <input type="file" name="poster[]"
-                                                                        class="form-control" id="formFile" multiple />
+                                                                        class="form-control" id="formFile" multiple accept="image/*"/>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="form-label">Status</label>
@@ -144,7 +137,7 @@
                                                                 <div class="form-group">
                                                                     <label class="form-label text-dark">Poster</label>
                                                                     <input type="file" name="poster[]"
-                                                                        class="form-control" id="formFile" multiple />
+                                                                        class="form-control" id="formFile" multiple accept="image/*"/>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="form-label">Status</label>
