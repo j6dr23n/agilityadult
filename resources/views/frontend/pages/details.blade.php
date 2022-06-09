@@ -73,7 +73,7 @@
                                 @foreach ($tags as $key => $value)
                                     <a href="{{ route('pages.search', $value) }}"
                                         style="border:1px solid white; border-radius: 15px;"
-                                        class="d-inline-flex text-gray-600 px-2 py-2 align-items-center mr-3 font-size-14 text-info">{{ $value }}</a>
+                                        class="d-inline-flex text-gray-600 px-2 py-2 align-items-center mr-3 font-size-14 text-info mt-2">{{ $value }}</a>
                                 @endforeach
                             </div>
                             <hr>

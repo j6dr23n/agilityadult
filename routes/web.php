@@ -28,7 +28,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
     
-    Route::prefix('agadult')->middleware(['admin'])->group(function (){
+    Route::prefix('agadult')->middleware(['admin','optimizeImages'])->group(function (){
         Route::get('dashboard',[AdminPageController::class,'index'])->name('admin.index');
         Route::resource('videos',VideoController::class)->except('show');
         Route::resource('users',UserController::class);
