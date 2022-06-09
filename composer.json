@@ -13,6 +13,7 @@
         "laravel/tinker": "^2.7",
         "league/flysystem-aws-s3-v3": "^3.0",
         "pawlox/video-thumbnail": "^4.0",
+        "spatie/image-optimizer": "^1.6",
         "spatie/laravel-image-optimizer": "^1.7"
     },
     "require-dev": {

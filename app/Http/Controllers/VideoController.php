@@ -47,14 +47,13 @@ class VideoController extends Controller
         //     $video = $this->uploadVideoB2($request,$token);
         //     $data['embed_link'] = 'https://f003.backblazeb2.com/file/agadult-/'.$video['fileName'];
         // }
-        if ($request->hasFile('poster')) {
+        if ($request->has('poster')) {
             foreach ($request->file('poster') as $item) {
                 $fileName = time().'-'.$item->getClientOriginalName();
                 $path = $item->storeAs('/videos/images', $fileName, 'public');
                 $images[] = $fileName;
             }
             $data['poster'] = $images;
-            
         }
         Video::create($data);
 
