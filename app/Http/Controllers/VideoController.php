@@ -50,10 +50,11 @@ class VideoController extends Controller
         if ($request->hasFile('poster')) {
             foreach ($request->file('poster') as $item) {
                 $fileName = time().'-'.$item->getClientOriginalName();
-                $path = $item->storeAs('/videos/images/', $fileName, 'public');
+                $path = $item->storeAs('/videos/images', $fileName, 'public');
                 $images[] = $fileName;
             }
             $data['poster'] = $images;
+            
         }
         Video::create($data);
 
@@ -125,6 +126,11 @@ class VideoController extends Controller
      */
     public function destroy(Video $video)
     {
+        if (is_array($video->poster)) {
+            foreach ($video->poster as $image) {
+                Storage::disk('public')->delete('/videos/images/'.$image);
+            }
+        }
         $video->delete();
 
         return redirect()->route('videos.index')->with('success', 'Videos Deleted!!!');
