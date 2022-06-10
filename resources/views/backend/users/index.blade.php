@@ -42,6 +42,7 @@
                                             <th>Info</th>
                                             <th>Joined Date</th>
                                             <th>Expiry Date</th>
+                                            <th>Type</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -62,6 +63,9 @@
                                                 </td>
                                                 <td>
                                                     <span class="badge bg-light text-muted tx-13">{{ \Carbon\Carbon::parse($item->expiry_date)->diffForHumans() }}</span>
+                                                </td>
+                                                <td>
+                                                    <span class="badge badge-{{ $item->isAdmin === 0 ? 'info' : 'danger' }}-transparent">{{ $item->isAdmin === 0 ? 'member' : 'Admin' }}</span>
                                                 </td>
                                                 <td><a href="{{ route('users.edit',$item->id) }}"
                                                         class="btn btn-icon btn-primary-light me-2" data-bs-toggle="tooltip"

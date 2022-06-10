@@ -48,7 +48,7 @@ class PageController extends Controller
     public function search($name)
     {
         $title = $name;
-        $videos = DB::table('videos')->where('title', 'like', '%'.$name.'%')
+        $videos = Video::where('title', 'like', '%'.$name.'%')
         ->orWhere('tags', 'like', '%'.$name.'%')
         ->latest()->paginate(20);
 
@@ -67,7 +67,7 @@ class PageController extends Controller
         $data = $request->all();
 
         $title = $data['search'];
-        $videos = DB::table('videos')->where('title', 'like', '%'.$data['search'].'%')
+        $videos = Video::where('title', 'like', '%'.$data['search'].'%')
         ->orWhere('tags', 'like', '%'.$data['search'].'%')
         ->latest()->paginate(20);
 

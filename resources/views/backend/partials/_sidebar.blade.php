@@ -73,7 +73,7 @@
                         </svg><span class="side-menu__label">Users</span><i class="angle fe fe-chevron-right"></i></a>
                     <ul class="slide-menu">
                         <li class="side-menu__label1"><a href="javascript:void(0);">Users</a></li>
-                        <li><a class="slide-item" href="{{ route('users.index') }}">View User</a></li>
+                        <li><a class="slide-item" href="{{ route('users.index') }}">View All</a></li>
                         <li><a class="slide-item" href="{{ route('users.create') }}">Create User</a></li>
                     </ul>
                 </li>

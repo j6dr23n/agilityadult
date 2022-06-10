@@ -5,7 +5,7 @@
             <div class="responsive-logo">
                 <a href="index.html" class="header-logo">
                 <img src="{{ asset('backend/assets/img/brand/agadult.png') }}" class="mobile-logo logo-1" alt="logo" height="30px">
-                    <img src="{{ asset('backend/assets/img/brand/agadult.png') }}" class="mobile-logo dark-logo-1" alt="logo">
+                    <img src="{{ asset('backend/assets/img/brand/agadult.png') }}" class="mobile-logo dark-logo-1" alt="logo" height="30px">
                 </a>
             </div>
             <div class="app-sidebar__toggle" data-bs-toggle="sidebar">

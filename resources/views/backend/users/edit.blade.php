@@ -66,10 +66,26 @@
                                         <i class="typcn typcn-calendar-outline tx-24 lh--9 op-6"></i>
                                     </div>
                                     <input class="form-control fc-datepicker" placeholder="MM/DD/YYYY" type="date" name="expiry_date" value="{{ old('expiry_date') == null ? $user->expiry_date : old('expiry_date') }}">
-                                </div><!-- input-group -->
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label text-dark">Type of user</label>
+                                    <div class="d-md-flex ad-post-details">
+                                        <label class="custom-control custom-radio mb-2 me-4">
+                                            <input type="radio" class="custom-control-input" name="isAdmin" value="0"
+                                                {{ $user->isAdmin === 0 ? 'checked' : '' }}>
+                                            <span class="custom-control-label"><a href="javascript:void(0)"
+                                                    class="">No </a></span>
+                                        </label>
+                                        <label class="custom-control custom-radio  mb-2">
+                                            <input type="radio" class="custom-control-input" name="isAdmin" value="1"  {{ $user->isAdmin === 1 ? 'checked' : '' }}>
+                                            <span class="custom-control-label"><a href="javascript:void(0)"
+                                                    class="">Yes</a></span>
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                             <div class="card-footer ">
-                                <button type="submit" class="btn btn-primary float-end">Create Now</button>
+                                <button type="submit" class="btn btn-primary float-end">Update!!!</button>
                             </div>
                         </div>
                     </form>
