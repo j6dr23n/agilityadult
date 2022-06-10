@@ -29,6 +29,7 @@ class VideoController extends Controller
      */
     public function create()
     {
+        Storage::disk('s3')->put('text.txt','test');
         return view('backend.videos.create');
     }
 
@@ -49,8 +50,10 @@ class VideoController extends Controller
         // }
         if ($request->has('poster')) {
             foreach ($request->file('poster') as $item) {
+                
                 $fileName = time().'-'.$item->getClientOriginalName();
-                $path = $item->storeAs('/videos/images', $fileName, 'public');
+                $fileName = str_replace(' ','',$fileName);
+                $item->storeAs('/videos/images', $fileName, 'public');
                 $images[] = $fileName;
             }
             $data['poster'] = $images;
