@@ -96,7 +96,7 @@
                     </div>
                     <div class="text-center">
                         <a href="javascript:;" data-toggle="modal" data-target="#loginModal"
-                            class="btn btn-secondary btn-pill text-lh-1dot25 py-3d font-secondary font-weight-medium font-size-18-r px-md-7d px-2">
+                            class="btn btn-secondary btn-pill text-lh-1dot25 py-3d font-secondary font-weight-medium font-size-18-r px-md-7d px-6">
                             အကောင့်သို့ဝင်ရန်
                         </a>
                     </div>

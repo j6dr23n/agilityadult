@@ -40,7 +40,9 @@
                                 @endif
                             @endif
                             @if ($video->embed_link !== null)
-                                <video id="my-video" class="video-js vjs-16-9 vjs-big-play-centered" controls preload="auto" poster="{{ '/storage/videos/images/' . $video->poster[0] }}" data-setup='{"fluid": true}'>
+                                <video id="my-video" class="video-js vjs-16-9 vjs-big-play-centered" controls preload="auto"
+                                    poster="{{ '/storage/videos/images/' . $video->poster[0] }}"
+                                    data-setup='{"fluid": true}'>
                                     <source src="{{ $video->embed_link }}" type="video/mp4" />
                                     <p class="vjs-no-js">
                                         To view this video please enable JavaScript, and consider upgrading to a
@@ -77,12 +79,21 @@
                                 @endforeach
                             </div>
                             <hr>
-                            <a class="btn btn-info btn-block" href="{{ $video->link }}">
-                                <span class="btn-label">
-                                    <i class="fa-solid fa-download"></i>
-                                </span>
-                                Folder Link
-                            </a>
+                            @if ($video->embed_link !== null)
+                                <a class="btn btn-info btn-block" href="{{ $video->link }}">
+                                    <span class="btn-label">
+                                        <i class="fa-solid fa-download"></i>
+                                    </span>
+                                    Download Link
+                                </a>
+                            @else
+                                <a class="btn btn-info btn-block" href="{{ $video->link }}">
+                                    <span class="btn-label">
+                                        <i class="fa-solid fa-folder-open"></i>
+                                    </span>
+                                    Folder Link
+                                </a>
+                            @endif
                             <nav class="js-scroll-nav">
                                 <div class="space-1 position-relative d-flex">
                                     <a class="nav-link mx-auto px-6 py-2d font-size-14 h-w-primary z-index-2 border border-gray-3900 rounded-pill bg-gray-4500"
@@ -142,7 +153,7 @@
 
     <script>
         const player = videojs('my-video', {
-            responsive : true,
+            responsive: true,
             fluid: true,
         });
     </script>
@@ -168,20 +179,23 @@
     <script>
         /**
          *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+         */
         var disqus_config = function() {
-            this.page.url = 'http://localhost/movie/'; // Replace PAGE_URL with your page's canonical URL variable
-            this.page.identifier = 1; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            this.page.url = '{{ Request::url() }}'; // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier =
+            {{ $video->id }}; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
-
         (function() { // DON'T EDIT BELOW THIS LINE
             var d = document,
                 s = d.createElement('script');
-            s.src = 'https://j6dr23n.disqus.com/embed.js';
+
+            s.src = 'https://agility-adult.disqus.com/embed.js';
+
             s.setAttribute('data-timestamp', +new Date());
             (d.head || d.body).appendChild(s);
         })();
     </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
-            Disqus.</a></noscript>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+            powered by Disqus.</a></noscript>
 @endsection

@@ -3,11 +3,11 @@
     <aside class="app-sidebar">
         <div class="main-sidebar-header active">
             <a class="header-logo active" href="{{ route('admin.index') }}">
-                <img src="{{ asset('backend/assets/img/brand/agadult.png') }}"" class=" main-logo  desktop-logo"
+                <img src="{{ asset('backend/assets/img/brand/agadult.png') }}"" class="    main-logo  desktop-logo"
                     alt="logo">
-                <img src="{{ asset('backend/assets/img/brand/agadult.png') }}"" class=" main-logo  desktop-dark"
+                <img src="{{ asset('backend/assets/img/brand/agadult.png') }}"" class="    main-logo  desktop-dark"
                     alt="logo">
-                <img src="{{ asset('backend/assets/img/brand/favicon.png') }}"" class=" main-logo  mobile-logo"
+                <img src="{{ asset('backend/assets/img/brand/favicon.png') }}"" class="    main-logo  mobile-logo"
                     alt="logo">
                 <img src="assets/img/brand/favicon-white.png" class="main-logo  mobile-dark" alt="logo">
             </a>
@@ -27,11 +27,20 @@
                                 d="M3 13h1v7c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-7h1a1 1 0 0 0 .707-1.707l-9-9a.999.999 0 0 0-1.414 0l-9 9A1 1 0 0 0 3 13zm7 7v-5h4v5h-4zm2-15.586 6 6V15l.001 5H16v-5c0-1.103-.897-2-2-2h-4c-1.103 0-2 .897-2 2v5H6v-9.586l6-6z" />
                         </svg><span class="side-menu__label">Dashboards</span></a>
                 </li>
+                <li class="slide">
+                    <a class="side-menu__item" data-bs-toggle="slide" href="{{ backpack_url('backup') }}"><svg
+                            xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" height="24px" viewBox="0 0 24 24" width="24px"
+                            fill="#000000">
+                            <path d="M0 0h24v24H0V0z" fill="none" />
+                            <path
+                                d="M14 12c0-1.1-.9-2-2-2s-2 .9-2 2 .9 2 2 2 2-.9 2-2zm-2-9c-4.97 0-9 4.03-9 9H0l4 4 4-4H5c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.51 0-2.91-.49-4.06-1.3l-1.42 1.44C8.04 20.3 9.94 21 12 21c4.97 0 9-4.03 9-9s-4.03-9-9-9z" />
+                        </svg><span class="side-menu__label">Backup</span></a>
+                </li>
                 <li class="side-item side-item-category">Post</li>
                 <li class="slide">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><svg
-                            xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" enable-background="new 0 0 24 24" height="24px"
-                            viewBox="0 0 24 24" width="24px" fill="#000000">
+                            xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" enable-background="new 0 0 24 24"
+                            height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
                             <g>
                                 <rect fill="none" height="24" width="24" />
                             </g>

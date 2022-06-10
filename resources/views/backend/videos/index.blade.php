@@ -43,21 +43,22 @@
                                             <th class="text-center">Poster</th>
                                             <th>Title</th>
                                             <th>Tags</th>
+                                            <th>Views</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($videos as $item)
+                                        @php
+                                            $item->views_count = views($item)->count();
+                                        @endphp
                                             <tr>
                                                 <td class="text-center">
                                                     {{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</td>
                                                 <td class="text-center">
-                                                    @if (is_array(json_decode($item->poster)))
-                                                        @php
-                                                            $image = json_decode($item->poster);
-                                                        @endphp
-                                                        <img src="{{ asset('storage/videos/images/' . $image[0]) }}"
+                                                    @if (is_array($item->poster))
+                                                        <img src="{{ asset('storage/videos/images/' . $item->poster[0]) }}"
                                                             alt="" width="100px" height="60px">
                                                     @else
                                                         <img src="{{ $item->poster }}" alt="" width="100px" height="60px">
@@ -65,6 +66,7 @@
                                                 </td>
                                                 <td>{{ Str::limit($item->title, 100) }}</td>
                                                 <td>{{ Str::limit($item->tags, 50) }}</td>
+                                                <td>{{ $item->views_count }} views</td>
                                                 <td><span
                                                         class="badge badge-{{ $item->status == 'draft' ? 'danger' : 'success' }}-transparent">{{ $item->status }}</span>
                                                 </td>
@@ -116,12 +118,12 @@
                                                                     aria-hidden="true">&times;</span></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            @if (is_array(json_decode($item->poster)))
+                                                            @if (is_array($item->poster))
                                                                 <!-- Swiper -->
                                                                 <h5 class="text-center">Poster</h5>
                                                                 <div class="swiper mySwiper">
                                                                     <div class="swiper-wrapper">
-                                                                        @foreach (json_decode($item->poster) as $image)
+                                                                        @foreach ($item->poster as $image)
                                                                             <div class="swiper-slide">
                                                                                 <img src="{{ '/storage/videos/images/' . $image }}"
                                                                                     class="img-fluid poster-image" />

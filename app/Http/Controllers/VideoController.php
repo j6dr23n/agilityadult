@@ -17,7 +17,7 @@ class VideoController extends Controller
      */
     public function index(Request $request)
     {
-        $videos = DB::table('videos')->latest()->paginate(12);
+        $videos = Video::latest()->paginate(12);
 
         return view('backend.videos.index', compact('videos'));
     }
@@ -55,6 +55,9 @@ class VideoController extends Controller
                 $fileName = str_replace(' ','',$fileName);
                 $item->storeAs('/videos/images', $fileName, 'public');
                 $images[] = $fileName;
+            }
+            if($request->embed_link !== null){
+                $data['embed_link'] = str_replace('f003.backblazeb2.com','videos.agilityadult.com',$request->embed_link);
             }
             $data['poster'] = $images;
         }

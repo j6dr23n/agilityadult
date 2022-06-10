@@ -11,23 +11,23 @@
                                 <div class="home-section mb-3 pb-1">
                                     <header
                                         class="d-md-flex align-items-center justify-content-center mb-3 mb-lg-1 pb-2 w-100 border-bottom border-gray-3800">
-                                        <h6 class="font-size-24 font-weight-medium m-0 text-white">
+                                        <h6 class="font-size-24 font-weight-medium m-0 text-white text-center">
                                             {{ $title === null ? 'All Video' : ucfirst($title) }}</h6>
                                     </header>
                                     <div class="mt-4" aria-labelledby="pills-two-example1-tab">
                                         <div class="border-bottom border-gray-3800 mb-3 pb-5">
                                             <div class="row mx-n2">
                                                 @foreach ($videos as $item)
-                                                    @php
-                                                        $image = json_decode($item->poster);
-                                                    @endphp
+                                                @php
+                                                    $item->views_count = views($item)->count();
+                                                @endphp
                                                     <div class="col-md-3 px-2">
                                                         <div class="product mb-4">
                                                             <div class="product-image mb-2" style="height: 270px;">
                                                                 <a class="d-block position-relative stretched-link"
                                                                     href="{{ route('videos.show', $item->slug) }}">
                                                                     <img class="img-fluid poster-image"
-                                                                        src="{{ '/storage/videos/images/' . $image[0] }}"
+                                                                        src="{{ '/storage/videos/images/' . $item->poster[0] }}"
                                                                         alt="Image-Description">
                                                                 </a>
                                                             </div>
@@ -37,7 +37,7 @@
                                                                     class="text-white">{{ Str::limit($item->title, 120) }}</a>
                                                             </h6>
                                                             <div class="font-size-12 text-gray-1300">
-                                                                <span>{{ $item->views }} views</span>
+                                                                <span> {{ $item->views_count }} views</span>
                                                                 <span class="product-comment">Published on
                                                                     {{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</span>
                                                             </div>

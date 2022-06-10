@@ -166,9 +166,11 @@
                                     </a>
                                     <div id="searchClassic"
                                         class="hs-unfold-content dropdown-menu w-100 border-0 rounded-0 px-3 mt-0 right-0 left-0 mt-n2">
-                                        <form action="{{ route('pages.searchInput') }}" class="input-group input-group-sm input-group-merge" method="POST">
+                                        <form action="{{ route('pages.searchInput') }}"
+                                            class="input-group input-group-sm input-group-merge" method="POST">
                                             @csrf
-                                            <input type="text" name="search" class="form-control search-form-control rounded-pill"
+                                            <input type="text" name="search"
+                                                class="form-control search-form-control rounded-pill"
                                                 placeholder="Search..." aria-label="Search...">
                                             <div class="input-group-append">
                                                 <button type="button" class="btn" type="submit">
@@ -199,6 +201,9 @@
                                         class="hs-unfold-content dropdown-menu my-account-dropdown">
 
                                         @if (Auth::check())
+                                            <span class="dropdown-item text-danger font-extrabold">{{ str_replace('from now','left',\Carbon\Carbon::parse(auth()->user()->expiry_date)->diffForHumans()) }}</span>
+                                            <a class="dropdown-item" href="{{ route('pages.profile') }}">Profile
+                                            </a>
                                             <form action="{{ route('logout') }}" method="POST">
                                                 @csrf
                                                 <button class="dropdown-item" type="submit">Logout</button>

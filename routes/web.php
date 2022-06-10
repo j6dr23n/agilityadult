@@ -25,6 +25,8 @@ Route::post('/results',[PageController::class,'searchInput'])->name('pages.searc
 Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('login');
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/profile',[PageController::class,'profile'])->name('pages.profile');
+    Route::post('/profile/{id}',[PageController::class,'profile_update'])->name('pages.profile_update');
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
     
