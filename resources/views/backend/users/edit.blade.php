@@ -33,7 +33,7 @@
             <!-- row -->
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-md-12">
-                    <form action="{{ route('users.update',$user->id) }}" method="POST">
+                    <form action="{{ route('users.update', $user->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="card ">
@@ -43,7 +43,8 @@
                                 @endforeach
                                 <div class="form-group">
                                     <label class="form-label text-dark">Name</label>
-                                    <input type="text" name="name" class="form-control" placeholder="Enter user name" value="{{ old('name') == null ? $user->name : old('name') }}">
+                                    <input type="text" name="name" class="form-control" placeholder="Enter user name"
+                                        value="{{ old('name') == null ? $user->name : old('name') }}">
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label text-dark">Email</label>
@@ -57,32 +58,34 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label text-dark">User information</label>
-                                    <textarea class="form-control" name="info" placeholder="Fb account link or ph number or telegram"
-                                        rows="3">{{ old('info') == null ? $user->info : old('info')  }}</textarea>
+                                    <textarea class="form-control" name="info" placeholder="Fb account link or ph number or telegram" rows="3">{{ old('info') == null ? $user->info : old('info') }}</textarea>
                                 </div>
                                 <label class="form-label text-dark">Expiry Date</label>
                                 <div class="input-group">
                                     <div class="input-group-text">
                                         <i class="typcn typcn-calendar-outline tx-24 lh--9 op-6"></i>
                                     </div>
-                                    <input class="form-control fc-datepicker" placeholder="MM/DD/YYYY" type="date" name="expiry_date" value="{{ old('expiry_date') == null ? $user->expiry_date : old('expiry_date') }}">
+                                    <input class="form-control fc-datepicker" placeholder="MM/DD/YYYY" type="date"
+                                        name="expiry_date"
+                                        value="{{ old('expiry_date') == null ? $user->expiry_date : old('expiry_date') }}">
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label text-dark">Type of user</label>
                                     <div class="d-md-flex ad-post-details">
                                         <label class="custom-control custom-radio mb-2 me-4">
                                             <input type="radio" class="custom-control-input" name="isAdmin" value="0"
-                                                {{ $user->isAdmin === 0 ? 'checked' : '' }}>
+                                                checked="">
                                             <span class="custom-control-label"><a href="javascript:void(0)"
                                                     class="">No </a></span>
                                         </label>
                                         <label class="custom-control custom-radio  mb-2">
-                                            <input type="radio" class="custom-control-input" name="isAdmin" value="1"  {{ $user->isAdmin === 1 ? 'checked' : '' }}>
+                                            <input type="radio" class="custom-control-input" name="isAdmin" value="1">
                                             <span class="custom-control-label"><a href="javascript:void(0)"
                                                     class="">Yes</a></span>
                                         </label>
                                     </div>
                                 </div>
+                                <!-- input-group -->
                             </div>
                             <div class="card-footer ">
                                 <button type="submit" class="btn btn-primary float-end">Update!!!</button>
@@ -105,7 +108,7 @@
     <script src="{{ asset('backend/assets/plugins/jquery-ui/ui/widgets/datepicker.js') }}"></script>
 
     <!--Internal  jquery.maskedinput js -->
-    <script src="{{ asset('backend/assets/plugins/jquery.maskedinput/jquery.maskedinput.js') }}"></script> 
+    <script src="{{ asset('backend/assets/plugins/jquery.maskedinput/jquery.maskedinput.js') }}"></script>
 
     <!--Internal  spectrum-colorpicker js -->
     <script src="{{ asset('backend/assets/plugins/spectrum-colorpicker/spectrum.js') }}"></script>
