@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\SubCategory;
 use App\Models\User;
 use App\Models\Video;
 use Illuminate\Database\Seeder;
@@ -16,6 +17,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        SubCategory::factory(20)->create();
+        SubCategory::factory(['category_id' => 1])->Count(50)->create();
         Video::factory(60)->create();
         User::factory(10)->create();
     }

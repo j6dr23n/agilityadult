@@ -105,7 +105,7 @@
                                                         </div>
                                                         <div class="card-footer ">
                                                             <button type="submit"
-                                                                class="btn btn-primary float-end">Publish Now</button>
+                                                                class="btn btn-primary float-end">Submit</button>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -150,7 +150,7 @@
                                                         </div>
                                                         <div class="card-footer ">
                                                             <button type="submit"
-                                                                class="btn btn-primary float-end">Publish Now</button>
+                                                                class="btn btn-primary float-end">Submit</button>
                                                         </div>
                                                     </div>
                                                 </form>

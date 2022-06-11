@@ -41,7 +41,15 @@
 
                                 <div class="hs-mega-menu w-100" aria-labelledby="homeMegaMenu">
                                 </div>
+                            </li>
+                            <li class="hs-has-mega-menu navbar-nav-item">
+                                <a id="homeMegaMenu"
+                                    class="hs-mega-menu-invoker py-xl-3d line-height-lg nav-link font-secondary"
+                                    href="{{ route('pages.categories') }}" aria-haspopup="true"
+                                    aria-expanded="false">Categories</a>
 
+                                <div class="hs-mega-menu w-100" aria-labelledby="homeMegaMenu">
+                                </div>
                             </li>
 
                             @if (Auth::check() !== true)
@@ -53,8 +61,8 @@
 
                                     <div class="hs-mega-menu w-100" aria-labelledby="homeMegaMenu">
                                     </div>
-
                                 </li>
+
                                 <li class="hs-has-mega-menu navbar-nav-item">
                                     <a id="homeMegaMenu"
                                         class="hs-mega-menu-invoker py-xl-3d line-height-lg nav-link font-primary"
@@ -62,7 +70,6 @@
 
                                     <div class="hs-mega-menu w-100" aria-labelledby="homeMegaMenu">
                                     </div>
-
                                 </li>
                             @endif
 
@@ -74,7 +81,6 @@
 
                                 <div class="hs-mega-menu w-100" aria-labelledby="homeMegaMenu">
                                 </div>
-
                             </li>
 
                             <li class="hs-has-mega-menu navbar-nav-item">

@@ -21,7 +21,6 @@ class VideoFactory extends Factory
             'slug' => $this->faker->slug(),
             'poster' => $this->faker->imageUrl(480,270),
             'embed_link' => $this->faker->url(),
-            'drive_id' => $this->faker->randomDigit(),
             'link' => $this->faker->url(),
             'download_link' => $this->faker->url(),
             'tags' => $this->faker->word(6),

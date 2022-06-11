@@ -209,7 +209,6 @@
                                                 <td>{{ $item->title }}</td>
                                                 <td>{{ Str::limit($item->tags, 40) }}</td>
                                                 <td>{{ Str::limit($item->embed_link, 40) }}</td>
-                                                <td>{{ Str::limit($item->drive_id, 40) }}</td>
                                                 <td>{{ Str::limit($item->link, 40) }}</td>
                                                 <td><span
                                                         class="badge badge-{{ $item->status == 'draft' ? 'warning' : 'success' }}-transparent">{{ $item->status }}</span>

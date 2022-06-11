@@ -13,13 +13,13 @@ class PageController extends Controller
     public function index(Request $request)
     {
         $title = null;
-        if(Auth::check()){
-            $videos = Video::where('status','published')->latest()->paginate(20);
-        }else{
-            $videos = Video::where('status','published')->latest()->limit(50)->paginate(20);
+        if (Auth::check()) {
+            $videos = Video::where('status', 'published')->latest()->paginate(20);
+        } else {
+            $videos = Video::where('status', 'published')->latest()->limit(50)->paginate(20);
         }
 
-        return view('frontend.index',compact('videos','title'));
+        return view('frontend.index', compact('videos', 'title'));
     }
 
     public function plan()
@@ -32,8 +32,8 @@ class PageController extends Controller
         return view('frontend.pages.profile');
     }
 
-    public function profile_update(Request $request,$id)
-    {   
+    public function profile_update(Request $request, $id)
+    {
         $user = User::find($id)->firstOrFail();
         $data = $request->all();
         $data['password'] = bcrypt($request->password);
@@ -41,8 +41,19 @@ class PageController extends Controller
 
         $user->fill($data)->save();
 
-        return back()->with('success','Your Profile Information Updated!!!');
+        return back()->with('success', 'Your Profile Information Updated!!!');
+    }
 
+    public function categories(Request $request)
+    {
+        $categories = DB::table('categories')->oldest()->limit(8)->get();
+        $sub_cat = DB::table('sub_categories')->latest()->paginate(20);
+        if ($request->filled('c')) {
+            $sub_cat = DB::table('sub_categories')->where('category_id', $request->c)->paginate(20);
+            $sub_cat->appends(request()->query());
+        }
+        
+        return view('frontend.pages.categories', compact('categories', 'sub_cat'));
     }
 
     public function search($name)
@@ -52,13 +63,13 @@ class PageController extends Controller
         ->orWhere('tags', 'like', '%'.$name.'%')
         ->latest()->paginate(20);
 
-        return view('frontend.index',compact('videos','title'));
+        return view('frontend.index', compact('videos', 'title'));
     }
 
     public function searchInput(Request $request)
     {
-        if(!Auth::check()){
-            return back()->with('error','Login to search...');
+        if (!Auth::check()) {
+            return back()->with('error', 'Login to search...');
         }
         $request->validate([
             'search' => 'string|required'
@@ -71,6 +82,6 @@ class PageController extends Controller
         ->orWhere('tags', 'like', '%'.$data['search'].'%')
         ->latest()->paginate(20);
 
-        return view('frontend.index',compact('videos','title'));
+        return view('frontend.index', compact('videos', 'title'));
     }
 }
