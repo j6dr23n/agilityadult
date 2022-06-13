@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\PageController as AdminPageController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VideoController;
@@ -35,6 +36,7 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['checkExpired'])->group(function() {
         Route::get('/view/{video:slug}',[VideoController::class,'show'])->name('videos.show');
     });
+    Route::resource('reports',ReportController::class);
 
     Route::prefix('agadult')->middleware(['admin','optimizeImages'])->group(function (){
         Route::get('dashboard',[AdminPageController::class,'index'])->name('admin.index');

@@ -13,16 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('videos', function (Blueprint $table) {
+        Schema::create('reports', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('slug');
-            $table->text('poster');
-            $table->text('embed_link')->nullable();
-            $table->text('link')->nullable();
-            $table->text('tags');
-            $table->string('status')->default('draft');
-            $table->bigInteger('views')->default(0);
+            $table->foreignId('video_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->string('name');
+            $table->string('email');
+            $table->bigInteger('ph_number');
+            $table->text('info');
             $table->timestamps();
         });
     }
@@ -34,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('videos');
+        Schema::dropIfExists('reports');
     }
 };

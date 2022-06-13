@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
 
-class VideoRequest extends FormRequest
+class ReportRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +25,11 @@ class VideoRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'string|required|max:255',
-            'tags' => 'string|required|min:10',
-            'poster' => 'array|required',
-            'embed_link' => 'url|nullable',
-            'link' => 'url|nullable',
-            'status' => 'required'
+            'video_id' => 'int|required',
+            'name' => 'string|required|max:255',
+            'email' => 'email|required|max:255',
+            'ph_number' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'info' => 'string|required|max:455',
         ];
     }
 }

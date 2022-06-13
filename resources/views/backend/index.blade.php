@@ -33,7 +33,7 @@
                                         <div class="col-3 d-flex align-items-center justify-content-center">
                                             <div
                                                 class="circle-icon bg-primary text-center align-self-center overflow-hidden shadow">
-                                                <i class="fe fe-shopping-bag tx-15 text-white"></i>
+                                                <i class="fe fe-video tx-15 text-white"></i>
                                             </div>
                                         </div>
                                         <div class="col-9 py-0">
@@ -54,11 +54,35 @@
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xxl-6">
+                                    <div class="row border-end bd-xs-e-0  p-3">
+                                        <div class="col-3 d-flex align-items-center justify-content-center">
+                                            <div
+                                                class="circle-icon bg-secondary text-center align-self-center overflow-hidden shadow">
+                                                <i class="fas fa-images tx-15 text-white"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-9">
+                                            <div class="pt-4 pb-3">
+                                                <div class="d-flex">
+                                                    <h6 class="mb-2 tx-12">Total Photos</h6>
+                                                    <span
+                                                        class="badge bg-success-transparent text-success font-weight-semibold ms-auto rounded-pill lh-maincard px-2 my-auto"></span>
+                                                </div>
+                                                <div class="pb-0 mt-0">
+                                                    <div class="d-flex">
+                                                        <h4 class="tx-18 font-weight-semibold mb-0">{{ $photos->count() }}</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xxl-6">
                                     <div class="row border-end bd-md-e-0 bd-xs-e-0 bd-lg-e-0 bd-xl-e-0  p-3">
                                         <div class="col-3 d-flex align-items-center justify-content-center">
                                             <div
                                                 class="circle-icon bg-warning text-center align-self-center overflow-hidden shadow">
-                                                <i class="fe fe-dollar-sign tx-15 text-white"></i>
+                                                <i class="fas fa-users tx-15 text-white"></i>
                                             </div>
                                         </div>
                                         <div class="col-9">
@@ -83,7 +107,7 @@
                                         <div class="col-3 d-flex align-items-center justify-content-center">
                                             <div
                                                 class="circle-icon bg-info text-center align-self-center overflow-hidden shadow">
-                                                <i class="fe fe-credit-card tx-15 text-white"></i>
+                                                <i class="fas fa-dollar-sign tx-15 text-white"></i>
                                             </div>
                                         </div>
                                         <div class="col-9">
@@ -97,30 +121,6 @@
                                                     <div class="d-flex">
                                                         <h4 class="tx-18 font-weight-semibold mb-0">
                                                             {{ number_format($users->count() * 4000) }} mmk</h4>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xxl-6">
-                                    <div class="row border-end bd-xs-e-0  p-3">
-                                        <div class="col-3 d-flex align-items-center justify-content-center">
-                                            <div
-                                                class="circle-icon bg-secondary text-center align-self-center overflow-hidden shadow">
-                                                <i class="fe fe-external-link tx-15 text-white"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-9">
-                                            <div class="pt-4 pb-3">
-                                                <div class="d-flex">
-                                                    <h6 class="mb-2 tx-12">Profit Gain</h6>
-                                                    <span
-                                                        class="badge bg-success-transparent text-success font-weight-semibold ms-auto rounded-pill lh-maincard px-2 my-auto"></span>
-                                                </div>
-                                                <div class="pb-0 mt-0">
-                                                    <div class="d-flex">
-                                                        <h4 class="tx-18 font-weight-semibold mb-0">$8,943</h4>
                                                     </div>
                                                 </div>
                                             </div>
@@ -190,7 +190,6 @@
                                             <th>Title </th>
                                             <th>Tags</th>
                                             <th>Embed Link</th>
-                                            <th>Drive ID</th>
                                             <th>Link</th>
                                             <th>Status</th>
                                             <th>Action</th>

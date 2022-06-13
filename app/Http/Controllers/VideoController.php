@@ -39,10 +39,10 @@ class VideoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(VideoRequest $request)
     {
 
-        $data = $request->all();
+        $data = $request->validated();
         // if($request->video !== null){
         //     $token = $this->getTokenB2();
         //     $video = $this->uploadVideoB2($request,$token);
@@ -100,9 +100,9 @@ class VideoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Video $video)
+    public function update(VideoRequest $request, Video $video)
     {
-        $data = $request->all();
+        $data = $request->validated();
         if ($request->hasFile('poster')) {
             if (is_array($video->poster)) {
                 foreach ($video->poster as $image) {

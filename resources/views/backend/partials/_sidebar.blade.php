@@ -3,11 +3,11 @@
     <aside class="app-sidebar">
         <div class="main-sidebar-header active">
             <a class="header-logo active" href="{{ route('admin.index') }}">
-                <img src="{{ asset('backend/assets/img/brand/agadult.png') }}"" class="      main-logo  desktop-logo"
+                <img src="{{ asset('backend/assets/img/brand/agadult.png') }}"" class="       main-logo  desktop-logo"
                     alt="logo">
-                <img src="{{ asset('backend/assets/img/brand/agadult.png') }}"" class="      main-logo  desktop-dark"
+                <img src="{{ asset('backend/assets/img/brand/agadult.png') }}"" class="       main-logo  desktop-dark"
                     alt="logo">
-                <img src="{{ asset('backend/assets/img/brand/favicon.png') }}"" class="      main-logo  mobile-logo"
+                <img src="{{ asset('backend/assets/img/brand/favicon.png') }}"" class="       main-logo  mobile-logo"
                     alt="logo">
                 <img src="assets/img/brand/favicon-white.png" class="main-logo  mobile-dark" alt="logo">
             </a>
@@ -35,6 +35,15 @@
                             <path
                                 d="M14 12c0-1.1-.9-2-2-2s-2 .9-2 2 .9 2 2 2 2-.9 2-2zm-2-9c-4.97 0-9 4.03-9 9H0l4 4 4-4H5c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.51 0-2.91-.49-4.06-1.3l-1.42 1.44C8.04 20.3 9.94 21 12 21c4.97 0 9-4.03 9-9s-4.03-9-9-9z" />
                         </svg><span class="side-menu__label">Backup</span></a>
+                </li>
+                <li class="slide">
+                    <a class="side-menu__item" data-bs-toggle="slide" href="{{ route('reports.index') }}"><svg
+                            xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" height="24px" viewBox="0 0 24 24" width="24px"
+                            fill="#000000">
+                            <path d="M0 0h24v24H0V0z" fill="none" />
+                            <path
+                                d="M12 5.99L19.53 19H4.47L12 5.99M12 2L1 21h22L12 2zm1 14h-2v2h2v-2zm0-6h-2v4h2v-4z" />
+                        </svg><span class="side-menu__label">Reports</span></a>
                 </li>
                 <li class="side-item side-item-category">Post</li>
                 <li class="slide">

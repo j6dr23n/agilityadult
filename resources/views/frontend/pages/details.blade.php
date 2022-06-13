@@ -8,6 +8,7 @@
     <main>
         <div class="bg-gray-4500 dark">
             <div class="container px-md-5">
+
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb dark">
                         <li class="breadcrumb-item"><a href="{{ route('videos.index') }}">Home</a></li>
@@ -15,6 +16,9 @@
                         <li class="breadcrumb-item active" aria-current="page">{{ $video->title }}</li>
                     </ol>
                 </nav>
+                @foreach ($errors->all() as $error)
+                    <p class="text-red-700 text-danger text-bold text-center">{{ $error }}</p>
+                @endforeach
                 <div class="row mb-4">
                     <div class="col-md-8 col-xl-9 mb-4">
                         <div class="position-relative min-h-270rem mb-2d mr-xl-3">
@@ -67,7 +71,7 @@
                             </div>
                             <hr>
                             <div class="font-size-12 mb-4">
-                                <h5 class="font-size-19 font-weight-medium text-white text-center mb-3">Tags
+                                <h5 class="font-size-19 font-weight-medium text-white text-center mb-2">Tags
                                 </h5>
                                 @php
                                     $tags = explode(',', $video->tags);
@@ -94,6 +98,15 @@
                                     Folder Link
                                 </a>
                             @endif
+                            <hr>
+                            <h5 class="text-center text-white font-bold">Report For Content Remove</h5>
+                            <a class="btn btn-danger btn-block mt-2 text-white" data-toggle="modal"
+                                data-target="#reportForm">
+                                <span class="btn-label">
+                                    <i class="fa-solid fa-exclamation"></i>
+                                </span>
+                                Report
+                            </a>
                             <nav class="js-scroll-nav">
                                 <div class="space-1 position-relative d-flex">
                                     <a class="nav-link mx-auto px-6 py-2d font-size-14 h-w-primary z-index-2 border border-gray-3900 rounded-pill bg-gray-4500"
@@ -146,6 +159,7 @@
             </div>
         </div>
     </main>
+    @include('frontend.partials._report')
 @endsection
 @section('extra-js')
     <script src="https://vjs.zencdn.net/7.19.2/video.min.js"></script>
@@ -184,7 +198,7 @@
         var disqus_config = function() {
             this.page.url = '{{ Request::url() }}'; // Replace PAGE_URL with your page's canonical URL variable
             this.page.identifier =
-            {{ $video->id }}; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                {{ $video->id }}; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
         (function() { // DON'T EDIT BELOW THIS LINE
             var d = document,
