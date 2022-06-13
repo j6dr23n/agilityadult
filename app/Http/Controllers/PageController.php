@@ -13,11 +13,12 @@ class PageController extends Controller
     public function index(Request $request)
     {
         $title = null;
-        if (Auth::check()) {
-            $videos = Video::where('status', 'published')->latest()->paginate(20);
-        } else {
-            $videos = Video::where('status', 'published')->latest()->limit(50)->paginate(20);
+        if(Auth::check()) {
+            $videos = Video::where('status', 'published')->latest()->get();
+        }else{
+            $videos = Video::where('status', 'published')->latest()->limit(40)->get();
         }
+        $videos = $videos->paginate(20);
 
         return view('frontend.index', compact('videos', 'title'));
     }
