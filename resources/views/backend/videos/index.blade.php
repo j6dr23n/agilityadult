@@ -16,12 +16,12 @@
             <!-- breadcrumb -->
             <div class="breadcrumb-header justify-content-between">
                 <div class="left-content">
-                    <span class="main-content-title mg-b-0 mg-b-lg-1">View All Video</span>
+                    <span class="main-content-title mg-b-0 mg-b-lg-1">View All Post</span>
                 </div>
                 <div class="justify-content-center mt-2">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item tx-15"><a href="javascript:void(0);">Videos</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">View All Video</li>
+                        <li class="breadcrumb-item tx-15"><a href="javascript:void(0);">Posts</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">View All Post</li>
                     </ol>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                 <div class="col-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">All Video</h4>
+                            <h4 class="card-title">All Post</h4>
                         </div>
                         <div class="card-body pt-0">
                             <div class="table-responsive">
@@ -141,7 +141,7 @@
                                                                 <video id="my-video"
                                                                     class="video-js vjs-16-9 vjs-big-play-centered" controls
                                                                     preload="auto"
-                                                                    poster="{{ '/storage/videos/images/' . $image }}"
+                                                                    poster="{{ '/storage/videos/images/' . $item->poster[0] }}"
                                                                     data-setup='{"fluid": true}'>
                                                                     <source src="{{ $item->embed_link }}"
                                                                         type="video/mp4" />

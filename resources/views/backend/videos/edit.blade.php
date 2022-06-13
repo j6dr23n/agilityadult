@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label text-dark">Embed Url</label>
-                                    <input type="text" name="embed_link" class="form-control"
+                                    <input type="url" name="embed_link" class="form-control"
                                         placeholder="Embed url from google drive" value="{{ $video->embed_link }}">
                                 </div>
                                 <div class="form-group">
