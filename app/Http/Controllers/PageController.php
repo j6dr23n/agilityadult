@@ -46,18 +46,21 @@ class PageController extends Controller
 
     public function categories(Request $request)
     {
+        $cat_title = '';
         $categories = DB::table('categories')->oldest()->limit(8)->get();
         $sub_cat = DB::table('sub_categories')->latest()->paginate(20);
-        if ($request->filled('c')) {
+        if ($request->filled('c') && $request->filled('t')) {
+            $cat_title = $request->t;
             $sub_cat = DB::table('sub_categories')->where('category_id', $request->c)->paginate(20);
             $sub_cat->appends(request()->query());
         }
         
-        return view('frontend.pages.categories', compact('categories', 'sub_cat'));
+        return view('frontend.pages.categories', compact('categories', 'sub_cat','cat_title'));
     }
 
     public function search($name)
     {
+        $name = str_replace('International ','',$name);
         $title = $name;
         $videos = Video::where('title', 'like', '%'.$name.'%')
         ->orWhere('tags', 'like', '%'.$name.'%')

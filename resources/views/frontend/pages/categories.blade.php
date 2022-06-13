@@ -55,6 +55,10 @@
                                                                         action="{{ route('pages.categories') }}">
                                                                         <input type="hidden" name="c"
                                                                             value="{{ $item->id }}" />
+                                                                            <input
+                                                                                type="hidden"
+                                                                                name="t"
+                                                                                value="{{ $item->title }}" />
                                                                         <a onclick="this.parentNode.submit();"
                                                                             class="text-white">{{ $item->title }}</a>
                                                                     </form>
@@ -178,6 +182,10 @@
                                                                                                                             type="hidden"
                                                                                                                             name="c"
                                                                                                                             value="{{ $item->id }}" />
+                                                                                                                        <input
+                                                                                                                            type="hidden"
+                                                                                                                            name="t"
+                                                                                                                            value="{{ $item->title }}" />
                                                                                                                         <a onclick="this.parentNode.submit();"
                                                                                                                             class="text-white">{{ $item->title }}</a>
                                                                                                                     </form>
@@ -210,18 +218,17 @@
                                         <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 mx-n2">
                                             @foreach ($sub_cat as $item)
                                                 <div class="col px-2">
-                                                    <div class="product mb-4 pb-1">
-                                                        <form action="{{ route('pages.categories', $item->title) }}"
-                                                            method="GET">
+                                                    <div class="product mb-4 pb-1 text-center">
+                                                        <form>
                                                             <div class="product-image mb-2">
-                                                                <a class="d-block position-relative stretched-link" href="{{ route('pages.search',$item->title) }}">
-                                                                    <img class="img-fluid poster-image" src="{{ $item->poster }}"
+                                                                <a class="d-block position-relative stretched-link" href="{{ route('pages.search',$cat_title.' '.$item->title) }}">
+                                                                    <img class="img-fluid" style="max-height:110px;max-width:100%;display: block;margin-left: auto;margin-right: auto;" src="{{ $item->poster }}"
                                                                         alt="Image-Description" />
                                                                 </a>
                                                             </div>
                                                             <h6
                                                                 class="font-size-1 font-weight-bold mb-0 product-title d-inline-block">
-                                                                <a href="{{ route('pages.search',$item->title) }}" name="" type="submit">{{ $item->title }}</a>
+                                                                <a href="{{ route('pages.search',$cat_title.' '.$item->title) }}">{{ $item->title }}</a>
                                                             </h6>
                                                         </form>
                                                     </div>

@@ -59,11 +59,6 @@
                                         placeholder="Embed url from google drive" value="{{ $video->embed_link }}">
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label text-dark">Drive ID</label>
-                                    <input type="text" name="drive_id" class="form-control"
-                                        placeholder="google drive file id" value="{{ $video->drive_id }}">
-                                </div>
-                                <div class="form-group">
                                     <label class="form-label text-dark">Link</label>
                                     <input type="url" name="link" class="form-control" placeholder="Leak folder link"
                                         value="{{ $video->link }}">
