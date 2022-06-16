@@ -21,6 +21,6 @@ class CheckIfAdmin
             return $next($request);
         }
 
-        return redirect()->route('pages.index');
+        return redirect()->route('pages.index')->with('error','You can\'t access this page.');
     }
 }

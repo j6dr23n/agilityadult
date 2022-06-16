@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -48,7 +49,7 @@ class CategoryController extends Controller
         $category = DB::table('categories')->where('id',$id)->first();
         $sub_cat = DB::table('sub_categories')->where('category_id',$id)->latest()->paginate(15);
 
-        return view('backend.categories.show',compact('category','sub_cat'));
+        return view('backend.categories.sub_cat.show',compact('category','sub_cat'));
     }
 
     public function destroy(Category $category)

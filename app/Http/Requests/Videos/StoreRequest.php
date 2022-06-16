@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Videos;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class VideoRequest extends FormRequest
+class StoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,9 @@ class VideoRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'string|required|max:255',
+            'title' => 'string|required|max:255|unique:videos',
             'tags' => 'string|required|min:10',
-            'poster' => 'array|required',
+            'poster' => 'required',
             'embed_link' => 'url|nullable',
             'link' => 'url|nullable',
             'status' => 'required'

@@ -44,20 +44,24 @@
                         @method('PUT')
                         <div class="card ">
                             <div class="card-body">
+                                @foreach ($errors->all() as $message)
+                                    <p style="color:red;">{{ $message }}</p>
+                                @endforeach
                                 <div class="form-group">
                                     <label class="form-label text-dark">Video Title</label>
                                     <input type="text" class="form-control" name="title" value="{{ $video->title }}">
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label text-dark">Video Tags</label>
-                                    <textarea class="form-control" name="tags" placeholder="Myanmar,Onlyfan,Exantria,Chaung Yite,Thai"
-                                        rows="3">{{ $video->tags }}</textarea>
+                                    <textarea class="form-control" name="tags" placeholder="Myanmar,Onlyfan,Exantria,Chaung Yite,Thai" rows="3">{{ $video->tags }}</textarea>
                                 </div>
-                                <div class="form-group">
-                                    <label class="form-label text-dark">Embed Url</label>
-                                    <input type="url" name="embed_link" class="form-control"
-                                        placeholder="Embed url from google drive" value="{{ $video->embed_link }}">
-                                </div>
+                                @if ($video->embed_link !== null)
+                                    <div class="form-group">
+                                        <label class="form-label text-dark">Embed Url</label>
+                                        <input type="url" name="embed_link" class="form-control"
+                                            placeholder="Embed url from google drive" value="{{ $video->embed_link }}">
+                                    </div>
+                                @endif
                                 <div class="form-group">
                                     <label class="form-label text-dark">Link</label>
                                     <input type="url" name="link" class="form-control" placeholder="Leak folder link"

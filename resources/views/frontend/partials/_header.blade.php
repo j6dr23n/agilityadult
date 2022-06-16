@@ -119,7 +119,7 @@
                             <li class="hs-has-mega-menu navbar-nav-item">
                                 <a id="homeMegaMenu"
                                     class="hs-mega-menu-invoker py-xl-3d line-height-lg nav-link font-secondary"
-                                    href="{{ route('pages.search', 'manga') }}" aria-haspopup="true"
+                                    href="{{ route('pages.manga.index') }}" aria-haspopup="true"
                                     aria-expanded="false">Manga</a>
 
                                 <div class="hs-mega-menu w-100" aria-labelledby="homeMegaMenu">

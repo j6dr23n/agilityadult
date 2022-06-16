@@ -3,11 +3,11 @@
     <aside class="app-sidebar">
         <div class="main-sidebar-header active">
             <a class="header-logo active" href="{{ route('admin.index') }}">
-                <img src="{{ asset('backend/assets/img/brand/agadult.png') }}"" class="       main-logo  desktop-logo"
-                    alt="logo">
-                <img src="{{ asset('backend/assets/img/brand/agadult.png') }}"" class="       main-logo  desktop-dark"
-                    alt="logo">
-                <img src="{{ asset('backend/assets/img/brand/favicon.png') }}"" class="       main-logo  mobile-logo"
+                <img src="{{ asset('backend/assets/img/brand/agadult.png') }}"" class="
+                            main-logo  desktop-logo" alt="logo">
+                <img src="{{ asset('backend/assets/img/brand/agadult.png') }}"" class="
+                            main-logo  desktop-dark" alt="logo">
+                <img src="{{ asset('backend/assets/img/brand/favicon.png') }}"" class="         main-logo  mobile-logo"
                     alt="logo">
                 <img src="assets/img/brand/favicon-white.png" class="main-logo  mobile-dark" alt="logo">
             </a>
@@ -38,8 +38,8 @@
                 </li>
                 <li class="slide">
                     <a class="side-menu__item" data-bs-toggle="slide" href="{{ route('reports.index') }}"><svg
-                            xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" height="24px" viewBox="0 0 24 24" width="24px"
-                            fill="#000000">
+                            xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" height="24px" viewBox="0 0 24 24"
+                            width="24px" fill="#000000">
                             <path d="M0 0h24v24H0V0z" fill="none" />
                             <path
                                 d="M12 5.99L19.53 19H4.47L12 5.99M12 2L1 21h22L12 2zm1 14h-2v2h2v-2zm0-6h-2v4h2v-4z" />
@@ -84,6 +84,21 @@
                         <li class="side-menu__label1"><a href="javascript:void(0);">Users</a></li>
                         <li><a class="slide-item" href="{{ route('users.index') }}">View All</a></li>
                         <li><a class="slide-item" href="{{ route('users.create') }}">Create User</a></li>
+                    </ul>
+                </li>
+                <li class="side-item side-item-category">Manga</li>
+                <li class="slide">
+                    <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><svg
+                            xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" height="24px" viewBox="0 0 24 24" width="24px"
+                            fill="#000000">
+                            <path d="M0 0h24v24H0V0z" fill="none" />
+                            <path
+                                d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 4h2v5l-1-.75L9 9V4zm9 16H6V4h1v9l3-2.25L13 13V4h5v16z" />
+                        </svg> <span class="side-menu__label">Manga</span><i class="angle fe fe-chevron-right"></i></a>
+                    <ul class="slide-menu">
+                        <li class="side-menu__label1"><a href="javascript:void(0);">Manga</a></li>
+                        <li><a class="slide-item" href="{{ route('manga.index') }}">View All</a></li>
+                        <li><a class="slide-item" href="{{ route('manga.create') }}">Create Manga</a></li>
                     </ul>
                 </li>
                 <li class="side-item side-item-category">Categories</li>
