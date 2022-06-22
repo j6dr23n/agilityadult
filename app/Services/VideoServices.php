@@ -2,8 +2,10 @@
 
 namespace App\Services;
 
+use App\Jobs\CreateVideoThumbnailJob;
 use App\Models\Video;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class VideoServices
 {
@@ -14,16 +16,33 @@ class VideoServices
         //     $video = $this->uploadVideoB2($request,$token);
         //     $data['embed_link'] = 'https://f003.backblazeb2.com/file/agadult-/'.$video['fileName'];
         // }
-        if (array_key_exists('poster',$data)) {
+        if (array_key_exists('poster', $data)) {
             foreach ($data['poster'] as $item) {
                 $fileName = time().'-'.$item->getClientOriginalName();
                 $fileName = str_replace(' ', '', $fileName);
                 $item->storeAs('/videos/images', $fileName, 'public');
                 $images[] = $fileName;
             }
-            if (array_key_exists('embed_link',$data)) {
+            if (array_key_exists('embed_link', $data)) {
                 $data['embed_link'] = str_replace('f003.backblazeb2.com', 'videos.agilityadult.com', $data['embed_link']);
             }
+            $data['poster'] = $images;
+        } else {
+            $link = $data['embed_link'];
+            $ffprobe = \FFMpeg\FFProbe::create([
+                'ffmpeg.binaries'  => "/usr/bin/ffmpeg",
+                'ffprobe.binaries' => "/usr/bin/ffprobe"
+            ]);
+            $video_dimensions = $ffprobe
+                    ->streams($link)   // extracts streams informations
+                    ->videos()                      // filters video streams
+                    ->first()                       // returns the first video stream
+                    ->getDimensions();              // returns a FFMpeg\Coordinate\Dimension object
+            $width = $video_dimensions->getWidth();
+            $height = $video_dimensions->getHeight();
+            $title = str_replace('...','',str_replace(' ', '', Str::limit($data['title'], 10)));
+            dispatch(new CreateVideoThumbnailJob($width,$height,$link,$title));
+            $images[] = $title.'.jpg';
             $data['poster'] = $images;
         }
         $video = Video::create($data);
