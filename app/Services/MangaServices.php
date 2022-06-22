@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Manga;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -41,7 +42,9 @@ class MangaServices
 
     public function destroy($manga): bool
     {
+        $mangaName = str_replace(' ', '', $manga->title);
         Storage::disk('public')->delete('manga/'.$manga->poster);
+        File::deleteDirectory(public_path()."/storage/manga/".$mangaName);
 
         return $manga->delete();
     }

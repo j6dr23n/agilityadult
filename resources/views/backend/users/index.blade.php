@@ -40,9 +40,10 @@
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Info</th>
-                                            <th>Joined Date</th>
                                             <th>Expiry Date</th>
                                             <th>Type</th>
+                                            <th>Last Seen</th>
+                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -53,19 +54,26 @@
                                                     <p class="text-muted tx-13">{{ $item->name }}</p>
                                                 </td>
                                                 <td>
-                                                    <span class="tx-13 text-muted mb-0"">{{ $item->email }}</span>
+                                                    <span class="tx-13 text-muted mb-0"">{{ Str::limit($item->email,30) }}</span>
                                                 </td>
                                                 <td>
                                                     <span class="text-muted tx-13"">{{ Str::limit($item->info,60) }}</span>
-                                                </td>
-                                                <td>
-                                                    <span class="badge bg-light text-muted tx-13">{{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</span>
                                                 </td>
                                                 <td>
                                                     <span class="badge bg-light text-muted tx-13">{{ \Carbon\Carbon::parse($item->expiry_date)->diffForHumans() }}</span>
                                                 </td>
                                                 <td>
                                                     <span class="badge badge-{{ $item->isAdmin === 0 ? 'info' : 'danger' }}-transparent">{{ $item->isAdmin === 0 ? 'member' : 'Admin' }}</span>
+                                                </td>
+                                                <td>
+                                                    <span class="text-muted tx-13"">{{ \Carbon\Carbon::parse($item->last_seen)->diffForHumans() }}</span>
+                                                </td>
+                                                <td>
+                                                    @if (Cache::has('user-is-online-'.$item->id))
+                                                        <span class="badge badge-success">Online</span>
+                                                    @else
+                                                        <span class="badge badge-warning">Offline</span>
+                                                    @endif
                                                 </td>
                                                 <td><a href="{{ route('users.edit',$item->id) }}"
                                                         class="btn btn-icon btn-primary-light me-2" data-bs-toggle="tooltip"

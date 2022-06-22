@@ -65,7 +65,7 @@
                                     <div class="input-group-text">
                                         <i class="typcn typcn-calendar-outline tx-24 lh--9 op-6"></i>
                                     </div>
-                                    <input class="form-control fc-datepicker" placeholder="MM/DD/YYYY" type="date"
+                                    <input class="form-control" placeholder="MM/DD/YYYY" type="date"
                                         name="expiry_date"
                                         value="{{ old('expiry_date') == null ? $user->expiry_date : old('expiry_date') }}">
                                 </div>

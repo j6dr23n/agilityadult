@@ -121,14 +121,14 @@
                             <h5 class="text-white font-size-18 font-weight-medium">Up Next</h5>
                             @foreach ($videos as $item)
                                 @php
-                                    $image = json_decode($item->poster);
+                                    $item->views_count = views($item)->count();
                                 @endphp
                                 <div class="row d-block d-xl-flex align-items-center no-gutters mb-2d">
                                     <div class="col product-image mb-2d mb-xl-0">
                                         <a href="{{ route('videos.show', $item->slug) }}"
                                             class="d-block  stretched-link">
                                             <img class="img-fluid poster-image"
-                                                src="{{ '/storage/videos/images/' . $image[0] }}"
+                                                src="{{ '/storage/videos/images/' . $item->poster[0] }}"
                                                 alt="Image-Description">
                                         </a>
                                     </div>
@@ -139,7 +139,7 @@
                                                     class="">{{ $item->title }}</a>
                                             </div>
                                             <div class="product-meta dot font-size-12 mb-1">
-                                                <span class="d-inline-flex text-gray-1300">{{ $item->views }}
+                                                <span class="d-inline-flex text-gray-1300">{{ $item->views_count }}
                                                     views</span>
                                                 <span
                                                     class="d-inline-flex text-gray-1300">{{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</span>
