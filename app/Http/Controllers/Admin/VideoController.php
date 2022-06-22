@@ -8,7 +8,6 @@ use App\Http\Requests\Videos\UpdateRequest;
 use App\Models\Video;
 use App\Services\VideoServices;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class VideoController extends Controller
 {
@@ -17,9 +16,9 @@ class VideoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $videos = Video::latest()->paginate(12);
+        $videos = Video::latest()->get();
 
         return view('backend.videos.index', compact('videos'));
     }
@@ -59,7 +58,7 @@ class VideoController extends Controller
     {
         views($video)->cooldown($minutes = 3)->record();
 
-        $videos = DB::table('videos')->inRandomOrder()->take(4)->get();
+        $videos = Video::inRandomOrder()->take(4)->get();
         $totalViews = views($video)->count();
 
         return view('frontend.pages.details', compact('video', 'videos', 'totalViews'));

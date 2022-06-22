@@ -13,13 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('chapters', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('manga_id')->constrained()->cascadeOnDelete();
-            $table->bigInteger('chapter_no');
-            $table->string('path');
-            $table->string('pdfPath');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->timestamp('last_seen')->nullable()->after('updated_at');
         });
     }
 
@@ -30,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chapters');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('last_seen');
+        });
     }
 };
