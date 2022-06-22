@@ -79,7 +79,7 @@
                                                                 <textarea class="form-control" name="tags" placeholder="Myanmar,Onlyfan,Exantria,Chaung Yite,Thai" rows="3"></textarea>
                                                             </div>
                                                             <div class="form-group">
-                                                                <label class="form-label text-dark">Embed_link</label>
+                                                                <label class="form-label text-dark">Video URL</label>
                                                                 <input type="url" name="embed_link" class="form-control"
                                                                     placeholder="Link From Backblaze-(Friendly URL)">
                                                             </div>
@@ -90,6 +90,7 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <label class="form-label text-dark">Poster</label>
+                                                                <small class="text-warning font-bold">If u leave this,system will auto generate thumbnail for video.</small>
                                                                 <input type="file" name="poster[]"
                                                                     class="form-control" id="formFile" multiple accept="image/*"/>
                                                             </div>
