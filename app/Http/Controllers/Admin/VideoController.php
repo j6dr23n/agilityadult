@@ -7,6 +7,7 @@ use App\Http\Requests\Videos\StoreRequest;
 use App\Http\Requests\Videos\UpdateRequest;
 use App\Models\Video;
 use App\Services\VideoServices;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class VideoController extends Controller
@@ -16,8 +17,28 @@ class VideoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if($request->ajax()){
+            $videos = Video::orderByViews()->latest()->get();
+            $videos->each(function($videos){
+                $videos->created_diff = $videos->created_at->diffForHumans();
+            }); 
+            
+            return datatables()->of($videos)
+                ->addColumn('poster',function($data){
+                    $button = '<img src="'.asset('storage/videos/images/'.$data->poster[0]).'" width="100px" height="100px">';
+                    return $button;
+                })
+                ->addColumn('action',function ($data){
+                    $button = '<a title="View" href="/view/'.$data->slug.'" class="btn btn-info btn-sm br-5 me-2"><i class="fas fa-eye"></i></a>';
+                    $button .= '&nbsp;&nbsp;';
+                    $button .= '<a title="Edit" href="videos/'.$data->id.'/edit" class="btn btn-warning btn-sm br-5 me-2"><i class="fas fa-edit"></i></a>';
+                    $button .= '&nbsp;&nbsp;';
+                    $button .= '<a title="Delete" data-id="'.$data->id.'" class="delete-btn btn btn-danger btn-sm br-5 me-2"><i class="fas fa-trash-alt"></i></a>';
+                    return $button;
+                })->rawColumns(['action','poster'])->make(true);
+        }
         $videos = Video::latest()->get();
 
         return view('backend.videos.index', compact('videos'));
@@ -96,10 +117,20 @@ class VideoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Video $video,VideoServices $action)
+    public function destroy(Video $video,VideoServices $action): JsonResponse
     {
-        $action->destroy($video);
+        $delete = $action->destroy($video);
 
-        return redirect()->route('videos.index')->with('success', 'Videos Deleted!!!');
+        if ($delete) {
+            return response()->json([
+                'status' => 'success',
+            ]);
+        } else
+        {
+            return response()->json([
+                'status' => 'error',
+                'message' => __("Couldn't Delete. Please Try Again!")
+            ], 500);
+        }
     }
 }

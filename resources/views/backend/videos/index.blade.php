@@ -11,6 +11,9 @@
 
     <!-- INTERNAL Select2 css -->
     <link href="{{ asset('backend/assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet" />
+
+    <!--- Internal Sweet-Alert css-->
+    <link href="{{ asset('backend/assets/plugins/sweet-alert/sweetalert.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -37,7 +40,8 @@
                     <div class="card custom-card">
                         <div class="card-body">
                             <div class="table-responsive  deleted-table">
-                                <table id="user-datatable" class="table table-bordered text-nowrap border-bottom Userlist">
+                                <table id="videos-datatable"
+                                    class="table table-bordered text-nowrap border-bottom Userlist">
                                     <thead>
                                         <tr>
                                             <th>Poster</th>
@@ -50,7 +54,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($videos as $item)
+                                        {{-- @foreach ($videos as $item)
                                             @php
                                                 $item->views_count = views($item)->count();
                                             @endphp
@@ -64,7 +68,7 @@
                                                             height="60px">
                                                     @endif
                                                 </td>
-                                                
+
                                                 <td>{{ Str::limit($item->title, 100) }}</td>
                                                 <td>{{ Str::limit($item->tags, 50) }}</td>
                                                 <td>{{ $item->views_count }} views</td>
@@ -75,7 +79,8 @@
                                                     {{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}
                                                 </td>
                                                 <td class="actions">
-                                                    <a class="btn btn-warning btn-sm br-5 me-2" href="{{ config('APP_URL').'/view/'.$item->slug }}">
+                                                    <a class="btn btn-warning btn-sm br-5 me-2"
+                                                        href="{{ config('APP_URL') . '/view/' . $item->slug }}">
                                                         <i class="fas fa-eye"></i>
                                                     </a>
                                                     <a class="btn btn-success btn-sm br-5 me-2"
@@ -107,8 +112,8 @@
                                                         </button>
                                                     </form>
                                                 </td>
-                                            </tr>
-                                        @endforeach
+                                            </tr> 
+                                        @endforeach --}}
                                     </tbody>
                                 </table>
                             </div>
@@ -145,9 +150,7 @@
 
     <!-- INTERNAL Select2 js -->
     <script src="{{ asset('backend/assets/plugins/select2/js/select2.full.min.js') }}"></script>
-
-    <!--Internal  Userlist js -->
-    <script src="{{ asset('backend/assets/js/user-list.js') }}""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 
     <script src="https://vjs.zencdn.net/7.19.2/video.min.js"></script>
     <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
@@ -173,6 +176,106 @@
         const player = videojs('my-video', {
             responsive: true,
             fluid: true,
+        });
+    </script>
+    <script>
+        $(function(e) {
+            var s = $("#videos-datatable").DataTable({
+                language: {
+                    searchPlaceholder: "Search For Videos...",
+                    sSearch: ""
+                },
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('videos.index') }}",
+                columns: [{
+                        data: 'poster',
+                        name: 'poster',
+                        orderable: false
+                    },
+                    {
+                        data: 'title',
+                        name: 'title'
+                    },
+                    {
+                        data: 'tags',
+                        name: 'tags'
+                    },
+                    {
+                        data: 'views_count',
+                        name: 'views'
+                    },
+                    {
+                        data: 'status',
+                        name: 'status'
+                    },
+                    {
+                        data: 'created_diff',
+                        name: 'created_at'
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: false
+                    }
+                ]
+            });
+            $("#videos-datatable tbody").on("click", "tr", function() {
+                    $(this).hasClass("selected") ? $(this).removeClass("selected") : (s.$("tr.selected")
+                        .removeClass("selected"), $(this).addClass("selected"));
+                }),
+                $("#userlist-1").click(function() {
+                    s.row(".selected").remove().draw(!1);
+                }),
+                $(".select2").select2({
+                    minimumResultsForSearch: 1 / 0,
+                    width: "auto"
+                });
+        });
+    </script>
+    <script>
+        $(document).on('click', '.delete-btn', function(event) {
+            const id = $(event.currentTarget).data('id');
+            swal({
+                    title: 'Delete !',
+                    text: 'Are you sure you want to delete this Video" ?',
+                    type: 'warning',
+                    showCancelButton: true,
+                    closeOnConfirm: false,
+                    showLoaderOnConfirm: true,
+                    confirmButtonColor: '#5cb85c',
+                    cancelButtonColor: '#d33',
+                    cancelButtonText: 'No',
+                    confirmButtonText: 'Yes',
+                },
+                function() {
+                    $.ajax({
+                        url: 'videos/' + id,
+                        type: 'DELETE',
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            "id" : id
+                        },
+                        success: function(response) {
+                            swal({
+                                title: 'Deleted!',
+                                text: 'Video has been deleted.',
+                                type: 'success',
+                                timer: 2000,
+                            });
+                            $('#videos-datatable').DataTable().ajax.reload(null, false);
+                        },
+                        error: function(error) {
+                            swal({
+                                title: 'Error!',
+                                text: error.responseJSON.message,
+                                type: 'error',
+                                timer: 5000,
+                            });
+                            $('#videos-datatable').DataTable().ajax.reload(null, false);
+                        }
+                    });
+                });
         });
     </script>
 @endsection
