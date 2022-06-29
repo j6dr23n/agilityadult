@@ -9,6 +9,7 @@ use App\Models\Video;
 use App\Services\VideoServices;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class VideoController extends Controller
 {
@@ -20,14 +21,17 @@ class VideoController extends Controller
     public function index(Request $request)
     {
         if($request->ajax()){
-            $videos = Video::orderByViews()->latest()->get();
+            $videos = Video::latest()->get();
             $videos->each(function($videos){
+                $videos->title = Str::limit($videos->title,30);
+                $videos->tags = Str::limit($videos->tags,30);
                 $videos->created_diff = $videos->created_at->diffForHumans();
+                $videos->views_count = views($videos)->count();
             }); 
             
             return datatables()->of($videos)
                 ->addColumn('poster',function($data){
-                    $button = '<img src="'.asset('storage/videos/images/'.$data->poster[0]).'" width="100px" height="100px">';
+                    $button = '<img src="'.asset('storage/videos/images/'.$data->poster[0]).'" style="max-width:100%;height:100%;">';
                     return $button;
                 })
                 ->addColumn('action',function ($data){
