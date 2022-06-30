@@ -72,21 +72,21 @@
                                                             <div class="form-group">
                                                                 <label class="form-label text-dark">Video Title</label>
                                                                 <input type="text" name="title" class="form-control"
-                                                                    placeholder="Video Title">
+                                                                    placeholder="Video Title" value="{{ old('title') }}">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label class="form-label text-dark">Video Tags</label>
-                                                                <textarea class="form-control" name="tags" placeholder="Myanmar,Onlyfan,Exantria,Chaung Yite,Thai" rows="3"></textarea>
+                                                                <textarea class="form-control" name="tags" placeholder="Myanmar,Onlyfan,Exantria,Chaung Yite,Thai" rows="3">{{ old('tags') }}</textarea>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label class="form-label text-dark">Video URL</label>
                                                                 <input type="url" name="embed_link" class="form-control"
-                                                                    placeholder="Link From Backblaze-(Friendly URL)">
+                                                                    placeholder="Link From Backblaze-(Friendly URL)" value="{{ old('embed_link') }}">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label class="form-label text-dark">Link</label>
                                                                 <input type="url" name="link" class="form-control"
-                                                                    placeholder="Download link">
+                                                                    placeholder="Download link" value="{{ old('link') }}">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label class="form-label text-dark">Poster</label>
@@ -95,12 +95,23 @@
                                                                     class="form-control" id="formFile" multiple accept="image/*"/>
                                                             </div>
                                                             <div class="form-group">
+                                                                <label class="form-label">Type</label>
+                                                                <select name="type"
+                                                                    class="form-control form-select select2"
+                                                                    data-bs-placeholder="Select Country">
+                                                                    <option value="" selected>-Select Type--</option>
+                                                                    <option value="premuim" {{ old('type') === 'premium' ? 'selected' : '' }}>Premium</option>
+                                                                    <option value="free" {{ old('type') === 'free' ? 'selected' : '' }}>Free</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group">
                                                                 <label class="form-label">Status</label>
                                                                 <select name="status"
                                                                     class="form-control form-select select2"
                                                                     data-bs-placeholder="Select Country">
-                                                                    <option value="draft">Draft</option>
-                                                                    <option value="published">Published</option>
+                                                                    <option value="">--Select Status--</option>
+                                                                    <option value="draft" {{ old('status') === 'draft' ? 'selected' : '' }}>Draft</option>
+                                                                    <option value="published" {{ old('status') === 'published' ? 'selected' : '' }}>Published</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -123,16 +134,16 @@
                                                             <div class="form-group">
                                                                 <label class="form-label text-dark">Title</label>
                                                                 <input type="text" name="title" class="form-control"
-                                                                    placeholder="Video Title">
+                                                                    placeholder="Video Title" value="{{ old('title') }}">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label class="form-label text-dark">Tags</label>
-                                                                <textarea class="form-control" name="tags" placeholder="Myanmar,Onlyfan,Exantria,Chaung Yite,Thai" rows="3"></textarea>
+                                                                <textarea class="form-control" name="tags" placeholder="Myanmar,Onlyfan,Exantria,Chaung Yite,Thai" rows="3">{{ old('tags') }}</textarea>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label class="form-label text-dark">Link</label>
                                                                 <input type="url" name="link" class="form-control"
-                                                                    placeholder="Leak folder link">
+                                                                    placeholder="Leak folder link" value="{{ old('link') }}">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label class="form-label text-dark">Poster</label>
@@ -140,12 +151,22 @@
                                                                     class="form-control" id="formFile" multiple accept="image/*"/>
                                                             </div>
                                                             <div class="form-group">
+                                                                <label class="form-label">Type</label>
+                                                                <select name="type"
+                                                                    class="form-control form-select select2"
+                                                                    data-bs-placeholder="Select Country">
+                                                                    <option value="" selected>-Select Type--</option>
+                                                                    <option value="premium" {{ old('type') === 'premium' ? 'selected' : '' }}>Premium</option>
+                                                                    <option value="free" {{ old('type') === 'free' ? 'selected' : '' }}>Free</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group">
                                                                 <label class="form-label">Status</label>
                                                                 <select name="status"
                                                                     class="form-control form-select select2"
                                                                     data-bs-placeholder="Select Country">
-                                                                    <option value="draft">Draft</option>
-                                                                    <option value="published">Published</option>
+                                                                    <option value="draft" {{ old('status') === 'draft' ? 'selected' : '' }}>Draft</option>
+                                                                    <option value="published" {{ old('status') === 'published' ? 'selected' : '' }}>Published</option>
                                                                 </select>
                                                             </div>
                                                         </div>

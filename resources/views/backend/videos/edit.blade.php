@@ -95,6 +95,16 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label class="form-label">Type</label>
+                                    <select name="type"
+                                        class="form-control form-select select2"
+                                        data-bs-placeholder="Select Country">
+                                        <option value="" selected>-Select Type--</option>
+                                        <option value="premium" {{ $video->type == 'premium' ? 'selected' : '' }}>Premium</option>
+                                        <option value="free" {{ $video->type == 'free' ? 'selected' : '' }}>Free</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label class="form-label">Status</label>
                                     <select name="status" class="form-control form-select select2"
                                         data-bs-placeholder="Select Country">

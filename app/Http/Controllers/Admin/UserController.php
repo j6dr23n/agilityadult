@@ -94,8 +94,20 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $delete = $user->delete();
+        
+        if ($delete) {
+            return response()->json([
+                'status' => 'success',
+            ]);
+        } else
+        {
+            return response()->json([
+                'status' => 'error',
+                'message' => __("Couldn't Delete. Please Try Again!")
+            ], 500);
+        }
     }
 }

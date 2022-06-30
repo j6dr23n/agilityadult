@@ -29,6 +29,7 @@ Route::get('/plan',[PageController::class,'plan'])->name('pages.plan');
 Route::get('/lists/{name}',[PageController::class,'search'])->name('pages.search');
 Route::post('/results',[PageController::class,'searchInput'])->name('pages.searchInput');
 Route::get('/categories',[PageController::class,'categories'])->name('pages.categories');
+Route::get('/view/{video:slug}',[VideoController::class,'show'])->name('videos.show')->middleware('checkExpired');
 Route::resource('/manga',PagesMangaController::class)->names([
     'index' => 'pages.manga.index','show' => 'pages.manga.show'
 ])->scoped([
@@ -42,10 +43,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profile',[PageController::class,'profile'])->name('pages.profile');
     Route::post('/profile/{id}',[PageController::class,'profile_update'])->name('pages.profile_update');
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
-
-    Route::middleware(['checkExpired'])->group(function() {
-        Route::get('/view/{video:slug}',[VideoController::class,'show'])->name('videos.show');
-    });
     Route::resource('reports',ReportController::class);
 
     Route::prefix('agadult')->middleware(['admin','optimizeImages'])->group(function (){

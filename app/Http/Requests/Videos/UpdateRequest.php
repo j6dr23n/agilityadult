@@ -29,6 +29,7 @@ class UpdateRequest extends FormRequest
             'poster' => 'array|nullable',
             'embed_link' => 'url|nullable',
             'link' => 'url|nullable',
+            'type' => 'string|required',
             'status' => 'required'
         ];
     }

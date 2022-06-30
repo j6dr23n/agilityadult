@@ -48,6 +48,7 @@
                                             <th>Title</th>
                                             <th>Tags</th>
                                             <th>Views</th>
+                                            <th>Type</th>
                                             <th>Status</th>
                                             <th>Created Date</th>
                                             <th>Action</th>
@@ -204,6 +205,10 @@
                     {
                         data: 'views_count',
                         name: 'views'
+                    },
+                    {
+                        data: 'type',
+                        name: 'type'
                     },
                     {
                         data: 'status',

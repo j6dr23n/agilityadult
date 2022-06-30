@@ -29,6 +29,7 @@ class StoreRequest extends FormRequest
             'tags' => 'string|required|min:3',
             'info' => 'string|required',
             'poster' => 'image|required',
+            'type' => 'string|required',
             'status' => 'required'
         ];
     }

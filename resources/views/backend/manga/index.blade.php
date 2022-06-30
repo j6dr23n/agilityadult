@@ -39,6 +39,7 @@
                                             <th>Info</th>
                                             <th>Genres</th>
                                             <th>Tags</th>
+                                            <th>Type</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -52,6 +53,7 @@
                                                 <td>{{ Str::limit($item->info, 30) }}</td>
                                                 <td>{{ Str::limit($item->genres,20) }}</td>
                                                 <td>{{ Str::limit($item->tags,20) }}</td>
+                                                <td>{{ $item->type }}</td>
                                                 <td class="actions">
                                                     <a class="btn btn-info btn-sm br-5 me-2" href="{{ route('chapter.create',$item->id) }}">
                                                         <i class="fas fa-plus"></i>

@@ -8,6 +8,8 @@
 
     <!-- INTERNAL Select2 css -->
     <link href="{{ asset('backend/assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet" />
+    <!--- Internal Sweet-Alert css-->
+    <link href="{{ asset('backend/assets/plugins/sweet-alert/sweetalert.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -54,32 +56,41 @@
                                                     <p class="text-muted tx-13">{{ $item->name }}</p>
                                                 </td>
                                                 <td>
-                                                    <span class="tx-13 text-muted mb-0"">{{ Str::limit($item->email,30) }}</span>
+                                                    <span
+                                                        class="tx-13 text-muted mb-0"">{{ Str::limit($item->email, 30) }}</span>
                                                 </td>
                                                 <td>
-                                                    <span class="text-muted tx-13"">{{ Str::limit($item->info,60) }}</span>
+                                                    <span
+                                                        class="text-muted tx-13"">{{ Str::limit($item->info, 60) }}</span>
                                                 </td>
                                                 <td>
-                                                    <span class="badge bg-light text-muted tx-13">{{ \Carbon\Carbon::parse($item->expiry_date)->diffForHumans() }}</span>
+                                                    <span
+                                                        class="badge bg-light text-muted tx-13">{{ \Carbon\Carbon::parse($item->expiry_date)->diffForHumans() }}</span>
                                                 </td>
                                                 <td>
-                                                    <span class="badge badge-{{ $item->isAdmin === 0 ? 'info' : 'danger' }}-transparent">{{ $item->isAdmin === 0 ? 'member' : 'Admin' }}</span>
+                                                    <span
+                                                        class="badge badge-{{ $item->isAdmin === 0 ? 'info' : 'danger' }}-transparent">{{ $item->isAdmin === 0 ? 'member' : 'Admin' }}</span>
                                                 </td>
                                                 <td>
-                                                    <span class="text-muted tx-13"">{{ \Carbon\Carbon::parse($item->last_seen)->diffForHumans() }}</span>
+                                                    <span
+                                                        class="text-muted tx-13"">{{ \Carbon\Carbon::parse($item->last_seen)->diffForHumans() }}</span>
                                                 </td>
                                                 <td>
-                                                    @if (Cache::has('user-is-online-'.$item->id))
+                                                    @if (Cache::has('user-is-online-' . $item->id))
                                                         <span class="badge badge-success">Online</span>
                                                     @else
                                                         <span class="badge badge-warning">Offline</span>
                                                     @endif
                                                 </td>
-                                                <td><a href="{{ route('users.edit',$item->id) }}"
+                                                <td><a href="{{ route('users.edit', $item->id) }}"
                                                         class="btn btn-icon btn-primary-light me-2" data-bs-toggle="tooltip"
                                                         title="" data-bs-original-title="Edit">
                                                         <i class="las la-pen"></i>
                                                     </a>
+                                                    <a class="btn btn-icon btn-danger me-2 mt-1 delete-btn" data-bs-toggle="tooltip"
+                                                        title="" data-bs-original-title="Delete" data-id="{{ $item->id }}">
+                                                        <i class="las la-trash"></i>
+                                                    </a> 
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -100,7 +111,6 @@
 @endsection
 
 @section('extra-js')
-
     @include('backend.partials._toastr-script')
     <!-- Internal Select2 js-->
     <script src="{{ asset('backend/assets/plugins/select2/js/select2.min.js') }}"></script>
@@ -121,7 +131,54 @@
 
     <!-- INTERNAL Select2 js -->
     <script src="{{ asset('backend/assets/plugins/select2/js/select2.full.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 
     <!--Internal  Userlist js -->
     <script src="{{ asset('backend/assets/js/user-list.js') }}""></script>
+
+    <script>
+        $(document).on('click', '.delete-btn', function(event) {
+            const id = $(event.currentTarget).data('id');
+            swal({
+                    title: 'Delete !',
+                    text: 'Are you sure you want to delete this Video" ?',
+                    type: 'warning',
+                    showCancelButton: true,
+                    closeOnConfirm: false,
+                    showLoaderOnConfirm: true,
+                    confirmButtonColor: '#5cb85c',
+                    cancelButtonColor: '#d33',
+                    cancelButtonText: 'No',
+                    confirmButtonText: 'Yes',
+                },
+                function() {
+                    $.ajax({
+                        url: 'users/' + id,
+                        type: 'DELETE',
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            "id" : id
+                        },
+                        success: function(response) {
+                            swal({
+                                title: 'Deleted!',
+                                text: 'Video has been deleted.',
+                                type: 'success',
+                                timer: 2000,
+                            });
+                            setInterval('location.reload()', 3000);  
+                        },
+                        error: function(error) {
+                            swal({
+                                title: 'Error!',
+                                text: error.responseJSON.message,
+                                type: 'error',
+                                timer: 5000,
+                            });
+                            $('#videos-datatable').DataTable().ajax.reload(null, false);
+                        }
+                    });
+                });
+        });
+    </script>
 @endsection

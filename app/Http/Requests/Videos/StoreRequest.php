@@ -29,7 +29,8 @@ class StoreRequest extends FormRequest
             'poster' => 'array|nullable',
             'embed_link' => 'url|nullable',
             'link' => 'url|nullable',
-            'status' => 'required'
+            'type' => 'required|string',
+            'status' => 'required|string'
         ];
     }
 }

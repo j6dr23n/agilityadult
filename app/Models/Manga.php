@@ -14,7 +14,7 @@ class Manga extends Model implements Viewable
 
     protected $casts = ['created_at','updated_at'];
 
-    protected $fillable = ['title','slug','poster','genres','tags','info','status'];
+    protected $fillable = ['title','slug','poster','genres','tags','type','info','status'];
 
     public static function boot()
     {

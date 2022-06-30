@@ -18,16 +18,14 @@ class CheckIfExpired
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check() &&  Auth::user()->expiry_date >= Carbon::today()) {
-            return $next($request);
+        if (Auth::check() && Auth::user()->expiry_date <= Carbon::today()) {
+            Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+        
+            return redirect(route('pages.index'))->with('error', 'Your account is expired,Buy more plan!!!');
         }
 
-        Auth::logout();
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-        
-        return redirect(route('pages.index'))->with('error','Your account is expired,Buy more plan!!!');
+        return $next($request);
     }
 }

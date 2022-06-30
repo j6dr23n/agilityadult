@@ -64,12 +64,22 @@
                                                 <textarea class="form-control" name="tags" placeholder="Manga,Name,...,...,...," rows="3" required>{{ old('tags') !== null ? old('tags') : $manga->tags }}</textarea>
                                             </div>
                                             <div class="form-group">
+                                                <label class="form-label">Type</label>
+                                                <select name="type"
+                                                    class="form-control form-select select2"
+                                                    data-bs-placeholder="Select Country">
+                                                    <option value="" selected>-Select Type--</option>
+                                                    <option value="premium" {{ $manga->type === 'premium' ? 'selected' : '' }}>Premium</option>
+                                                    <option value="free" {{ $manga->type === 'free' ? 'selected' : '' }}>Free</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
                                                 <label class="form-label">Status</label>
                                                 <select name="status"
                                                     class="form-control form-select select2"
                                                     data-bs-placeholder="Select Country">
-                                                    <option value="Ongoing">Ongoing</option>
-                                                    <option value="Finished">Finished</option>
+                                                    <option value="draft" {{ $manga->status === 'draft' ? 'selected' : '' }}>Draft</option>
+                                                    <option value="published" {{ $manga->status === 'published' ? 'selected' : '' }}>Published</option>
                                                 </select>
                                             </div>
                                         </div>

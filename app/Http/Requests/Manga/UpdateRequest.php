@@ -29,6 +29,7 @@ class UpdateRequest extends FormRequest
             'tags' => 'string|required|min:3',
             'info' => 'string|required',
             'poster' => 'image',
+            'type' => 'string|required',
             'status' => 'required'
         ];
     }

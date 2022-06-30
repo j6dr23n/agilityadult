@@ -9,6 +9,7 @@ use App\Models\Video;
 use App\Services\VideoServices;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class VideoController extends Controller
@@ -82,6 +83,10 @@ class VideoController extends Controller
     public function show(Video $video)
     {
         views($video)->cooldown($minutes = 3)->record();
+        
+        if(Auth::check() === false && $video->type === 'premium'){
+            return redirect(route('pages.index'))->with('error', 'Premium user only!!!');
+        }
 
         $videos = Video::inRandomOrder()->take(4)->get();
         $totalViews = views($video)->count();
