@@ -40,7 +40,7 @@ class VideoServices
                     ->getDimensions();              // returns a FFMpeg\Coordinate\Dimension object
             $width = $video_dimensions->getWidth();
             $height = $video_dimensions->getHeight();
-            $title = str_replace('...','',str_replace(' ', '', Str::limit($data['title'], 10)));
+            $title = $data['title'];
             dispatch(new CreateVideoThumbnailJob($width,$height,$link,$title));
             $images[] = $title.'.jpg';
             $data['poster'] = $images;
