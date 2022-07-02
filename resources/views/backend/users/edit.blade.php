@@ -65,25 +65,20 @@
                                     <div class="input-group-text">
                                         <i class="typcn typcn-calendar-outline tx-24 lh--9 op-6"></i>
                                     </div>
-                                    <input class="form-control" placeholder="MM/DD/YYYY" type="date"
-                                        name="expiry_date"
+                                    <input class="form-control" placeholder="MM/DD/YYYY" type="date" name="expiry_date"
                                         value="{{ old('expiry_date') == null ? $user->expiry_date : old('expiry_date') }}">
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label text-dark">Type of user</label>
-                                    <div class="d-md-flex ad-post-details">
-                                        <label class="custom-control custom-radio mb-2 me-4">
-                                            <input type="radio" class="custom-control-input" name="isAdmin" value="0"
-                                                checked="">
-                                            <span class="custom-control-label"><a href="javascript:void(0)"
-                                                    class="">No </a></span>
-                                        </label>
-                                        <label class="custom-control custom-radio  mb-2">
-                                            <input type="radio" class="custom-control-input" name="isAdmin" value="1">
-                                            <span class="custom-control-label"><a href="javascript:void(0)"
-                                                    class="">Yes</a></span>
-                                        </label>
-                                    </div>
+                                    <label class="form-label">Role</label>
+                                    <select name="role" class="form-control form-select select2"
+                                        data-bs-placeholder="Select Country">
+                                        <option value="member" {{ $user->status == 'member' ? 'selected' : '' }}>Member
+                                        </option>
+                                        <option value="uploader" {{ $user->status == 'uploader' ? 'selected' : '' }}>
+                                            Uploader</option>
+                                        <option value="admin" {{ $user->status == 'admin' ? 'selected' : '' }}>
+                                            Admin</option>
+                                    </select>
                                 </div>
                                 <!-- input-group -->
                             </div>

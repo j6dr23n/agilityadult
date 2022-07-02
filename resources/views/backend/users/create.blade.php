@@ -66,6 +66,17 @@
                                     </div>
                                     <input class="form-control" placeholder="MM/DD/YYYY" type="date" name="expiry_date" value="{{ old('expiry_date') }}">
                                 </div><!-- input-group -->
+                                <div class="form-group">
+                                    <label class="form-label">Role</label>
+                                    <select name="role"
+                                        class="form-control form-select select2"
+                                        data-bs-placeholder="Select Role">
+                                        <option value="">--Select Role--</option>
+                                        <option value="member" {{ old('role') === 'member' ? 'selected' : '' }}>Member</option>
+                                        <option value="uploader" {{ old('role') === 'uploader' ? 'selected' : '' }}>Uploader</option>
+                                        <option value="admin" {{ old('role') === 'admin' ? 'selected' : '' }}>Admin</option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="card-footer ">
                                 <button type="submit" class="btn btn-primary float-end">Publish Now</button>
