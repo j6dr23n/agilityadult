@@ -53,7 +53,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    {{ $videos->onEachSIde(0)->links('frontend.partials._pagination') }}
+                                    {{ $videos->onEachSide(1)->links('frontend.partials._pagination') }}
                                 </div>
                             </section>
                         </div>

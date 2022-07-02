@@ -100,7 +100,7 @@
                                                                     class="form-control form-select select2"
                                                                     data-bs-placeholder="Select Country">
                                                                     <option value="" selected>-Select Type--</option>
-                                                                    <option value="premuim" {{ old('type') === 'premium' ? 'selected' : '' }}>Premium</option>
+                                                                    <option value="premium" {{ old('type') === 'premium' ? 'selected' : '' }}>Premium</option>
                                                                     <option value="free" {{ old('type') === 'free' ? 'selected' : '' }}>Free</option>
                                                                 </select>
                                                             </div>
