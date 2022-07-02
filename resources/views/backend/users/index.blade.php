@@ -69,7 +69,7 @@
                                                 </td>
                                                 <td>
                                                     <span
-                                                        class="badge badge-{{ $item->isAdmin === 0 ? 'info' : 'danger' }}-transparent">{{ $item->isAdmin === 0 ? 'member' : 'Admin' }}</span>
+                                                        class="badge badge-{{ $item->role !== 'member' ? 'success' : 'info' }}-transparent">{{ $item->role }}</span>
                                                 </td>
                                                 <td>
                                                     <span

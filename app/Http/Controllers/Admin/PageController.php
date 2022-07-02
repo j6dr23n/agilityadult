@@ -13,7 +13,8 @@ class PageController extends Controller
         $videos = DB::table('videos')->whereNotNull('embed_link')->latest()->get();
         $photos = DB::table('videos')->whereNull('embed_link')->latest()->get();
         $users = DB::table('users')->latest()->get();
+        $members = DB::table('users')->where('role','member')->get();
 
-        return view('backend.index',compact('videos','photos','users'));
+        return view('backend.index',compact('videos','photos','users','members'));
     }
 }

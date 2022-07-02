@@ -185,7 +185,7 @@
                                                 class=""></div>
                                         <div class="ms-3 my-auto">
                                             <h6 class="tx-15 font-weight-semibold mb-0">{{ auth()->user()->name }}</h6>
-                                            <span class="dropdown-title-text subtext op-6  tx-12">Admin</span>
+                                            <span class="dropdown-title-text subtext op-6  tx-12">{{ ucfirst(auth()->user()->role) }}</span>
                                         </div>
                                     </div>
                                 </div>

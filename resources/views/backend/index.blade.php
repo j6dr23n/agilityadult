@@ -120,7 +120,7 @@
                                                 <div class="pb-0 mt-0">
                                                     <div class="d-flex">
                                                         <h4 class="tx-18 font-weight-semibold mb-0">
-                                                            {{ number_format($users->count() * 4000) }} mmk</h4>
+                                                            {{ number_format($members->count() * 4000) }} mmk</h4>
                                                     </div>
                                                 </div>
                                             </div>
@@ -156,9 +156,9 @@
                                                         </div>
                                                         <span class="ms-auto wd-45p tx-14">
                                                             <span
-                                                                class="float-end badge bg-{{ $item->isAdmin == 1 ? 'success' : 'info' }}">
+                                                                class="float-end badge bg-{{ $item->role !== 'member' ? 'success' : 'info' }}">
                                                                 <span
-                                                                    class="font-weight-semibold">{{ $item->isAdmin == 1 ? 'admin' : 'member' }}</span>
+                                                                    class="font-weight-semibold">{{ $item->role }}</span>
                                                             </span>
                                                         </span>
                                                     </div>

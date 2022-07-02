@@ -56,6 +56,8 @@ class VideoController extends Controller
      */
     public function create()
     {
+        $this->authorize('create',Video::class);
+        
         return view('backend.videos.create');
     }
 
@@ -67,6 +69,7 @@ class VideoController extends Controller
      */
     public function store(StoreRequest $request,VideoServices $action)
     {
+        $this->authorize('create',Video::class);
 
         $data = $request->validated();
         $action->store($data);
@@ -102,6 +105,8 @@ class VideoController extends Controller
      */
     public function edit(Video $video)
     {
+        $this->authorize('update',$video);
+
         return view('backend.videos.edit', compact('video'));
     }
 
@@ -114,6 +119,8 @@ class VideoController extends Controller
      */
     public function update(UpdateRequest $request,Video $video, VideoServices $action)
     {
+        $this->authorize('update',$video);
+        
         $data = $request->validated();
         $action->update($data,$video);
 
@@ -128,6 +135,8 @@ class VideoController extends Controller
      */
     public function destroy(Video $video,VideoServices $action): JsonResponse
     {
+        $this->authorize('delete',$video);
+
         $delete = $action->destroy($video);
 
         if ($delete) {

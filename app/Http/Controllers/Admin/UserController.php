@@ -16,6 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny',User::class);
+        
         $users = DB::table('users')->latest()->get();
         
         return view('backend.users.index',compact('users'));
@@ -28,6 +30,8 @@ class UserController extends Controller
      */
     public function create()
     {
+        $this->authorize('create',User::class);
+
         return view('backend.users.create');
     }
 
@@ -39,23 +43,14 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create',User::class);
+
         $data = $request->all();
         $data['password'] = bcrypt($request->password);
 
         User::create($data);
 
         return redirect()->route('users.index')->with('success','User Created!!!');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -66,6 +61,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        $this->authorize('update',$user);
+
         return view('backend.users.edit',compact('user'));
     }
 
@@ -78,6 +75,8 @@ class UserController extends Controller
      */
     public function update(Request $request,User $user)
     {
+        $this->authorize('update',$user);
+
         $data = $request->all();
         if($request->has('password')){
             $data['password'] = bcrypt($request->password);
@@ -96,6 +95,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        $this->authorize('delete',$user);
+
         $delete = $user->delete();
         
         if ($delete) {

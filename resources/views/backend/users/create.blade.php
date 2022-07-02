@@ -19,12 +19,12 @@
             <!-- breadcrumb -->
             <div class="breadcrumb-header justify-content-between">
                 <div class="left-content">
-                    <span class="main-content-title mg-b-0 mg-b-lg-1">Create Video</span>
+                    <span class="main-content-title mg-b-0 mg-b-lg-1">Create User</span>
                 </div>
                 <div class="justify-content-center mt-2">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item tx-15"><a href="javascript:void(0);">Videos</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Create Video</li>
+                        <li class="breadcrumb-item tx-15"><a href="javascript:void(0);">Users</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Create User</li>
                     </ol>
                 </div>
             </div>

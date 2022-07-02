@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Jobs\CreateVideoThumbnailJob;
 use App\Models\Video;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
 class VideoServices
 {

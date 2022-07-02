@@ -24,7 +24,7 @@ class User extends Authenticatable
         'password',
         'info',
         'expiry_date',
-        'isAdmin'
+        'role'
     ];
 
     /**
@@ -58,6 +58,6 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-        return $this->isAdmin === 1 ? true : false;
+        return $this->role === 'admin' ? true : false;
     }
 }

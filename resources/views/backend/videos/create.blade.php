@@ -52,9 +52,9 @@
                                             <!-- Tabs -->
                                             <ul class="nav panel-tabs main-nav-line">
                                                 <li class="nav-item"><a href="#tab1" class="nav-link active"
-                                                        data-bs-toggle="tab"><i class="fas fa-arrow-right"></i> Videos</a></li>
+                                                        data-bs-toggle="tab"><i class="fas fa-arrow-right"></i> Video</a></li>
                                                 <li class="nav-item"><a href="#tab2" class="nav-link"
-                                                        data-bs-toggle="tab"><i class="fas fa-arrow-right"></i> Photos</a></li>
+                                                        data-bs-toggle="tab"><i class="fas fa-arrow-right"></i> Photo</a></li>
                                             </ul>
                                         </div>
                                     </div>
