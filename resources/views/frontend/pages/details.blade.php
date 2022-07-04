@@ -22,30 +22,28 @@
                 <div class="row mb-4">
                     <div class="col-md-8 col-xl-9 mb-4">
                         <div class="position-relative min-h-270rem mb-2d mr-xl-3">
-                            @if (is_array($video->poster))
-                                @if (count($video->poster) > 1)
-                                    <!-- Swiper -->
-                                    <h4 class="text-center text-white font-bold">Images</h4>
-                                    <div class="swiper mySwiper">
-                                        <div class="swiper-wrapper">
-                                            @foreach ($video->poster as $image)
-                                                <div class="swiper-slide">
-                                                    <div class="swiper-zoom-container">
-                                                        <img src="{{ '/storage/videos/images/' . $image }}"
-                                                            class="img-fluid" style="max-height: 500px !important;" />
-                                                    </div>
+                            @if (is_array($video->poster) && count($video->poster) > 1)
+                                <!-- Swiper -->
+                                <h4 class="text-center text-white font-bold">Images</h4>
+                                <div class="swiper mySwiper">
+                                    <div class="swiper-wrapper">
+                                        @foreach ($video->poster as $image)
+                                            <div class="swiper-slide">
+                                                <div class="swiper-zoom-container">
+                                                    <img src="{{ '/storage/videos/images/' . $image }}" class="img-fluid"
+                                                        style="max-height: 500px !important;" />
                                                 </div>
-                                            @endforeach
-                                        </div>
-                                        <div class="swiper-button-next"></div>
-                                        <div class="swiper-button-prev"></div>
-                                        <div class="swiper-pagination"></div>
+                                            </div>
+                                        @endforeach
                                     </div>
-                                @endif
+                                    <div class="swiper-button-next"></div>
+                                    <div class="swiper-button-prev"></div>
+                                    <div class="swiper-pagination"></div>
+                                </div>
                             @endif
                             @if ($video->embed_link !== null)
-                                <video id="my-video" class="video-js vjs-16-9 vjs-big-play-centered" controls preload="auto"
-                                    poster="{{ '/storage/videos/images/' . $video->poster[0] }}"
+                                <video id="my-video" class="video-js vjs-16-9 vjs-big-play-centered" controls
+                                    preload="auto" poster="{{ '/storage/videos/images/' . $video->poster[0] }}"
                                     data-setup='{"fluid": true}'>
                                     <source src="{{ $video->embed_link }}" type="video/mp4" />
                                     <p class="vjs-no-js">
@@ -60,6 +58,12 @@
                         <div class="mr-xl-3">
                             <div class="mb-2">
                                 <h5 class="font-size-21 font-weight-medium text-white">{{ $video->title }}
+                                    @if (auth()->user()->role !== 'member')
+                                        <a href="{{ route('videos.edit', $video->id) }}"
+                                            class="btn btn-xs btn-warning bt-pill btn-icon">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                    @endif
                                 </h5>
                             </div>
                             <div class="font-size-12 mb-4">
@@ -135,8 +139,7 @@
                                     <div class="col">
                                         <div class="mx-xl-2d">
                                             <div class="product-title font-size-13 font-weight-semi-bold mb-1d">
-                                                <a href="single-video-v3.html"
-                                                    class="">{{ $item->title }}</a>
+                                                <a href="single-video-v3.html" class="">{{ $item->title }}</a>
                                             </div>
                                             <div class="product-meta dot font-size-12 mb-1">
                                                 <span class="d-inline-flex text-gray-1300">{{ $item->views_count }}

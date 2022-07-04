@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Girl;
 use App\Models\User;
 use App\Models\Video;
 use Illuminate\Http\Request;
@@ -31,6 +32,13 @@ class PageController extends Controller
     public function profile()
     {
         return view('frontend.pages.profile');
+    }
+
+    public function girls()
+    {
+        $girls = Girl::latest()->paginate(12);
+
+        return view('frontend.girls.index',compact('girls'));
     }
 
     public function profile_update(Request $request, $id)

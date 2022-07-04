@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\Girl;
 use App\Models\Manga;
 use App\Models\SubCategory;
 use App\Models\User;
@@ -23,5 +24,6 @@ class DatabaseSeeder extends Seeder
         Video::factory(60)->create();
         User::factory(10)->create();
         Manga::factory(20)->create();
+        Girl::factory(20)->create();
     }
 }

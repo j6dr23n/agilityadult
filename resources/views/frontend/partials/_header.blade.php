@@ -51,6 +51,15 @@
                                 <div class="hs-mega-menu w-100" aria-labelledby="homeMegaMenu">
                                 </div>
                             </li>
+                            <li class="hs-has-mega-menu navbar-nav-item">
+                                <a id="homeMegaMenu"
+                                    class="hs-mega-menu-invoker py-xl-3d line-height-lg nav-link font-secondary"
+                                    href="{{ route('pages.girls') }}" aria-haspopup="true"
+                                    aria-expanded="false">Chat & Date Girls</a>
+
+                                <div class="hs-mega-menu w-100" aria-labelledby="homeMegaMenu">
+                                </div>
+                            </li>
 
                             @if (Auth::check() !== true)
                                 <li class="hs-has-mega-menu navbar-nav-item">
