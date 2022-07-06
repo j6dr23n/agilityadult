@@ -77,6 +77,13 @@ class VideoController extends Controller
         return redirect()->route('videos.index')->with('success', 'Video Created!!!');
     }
 
+    public function uploadLargeFiles(Request $request,VideoServices $action)
+    {
+        $action->uploadLargeFiles($request);
+
+        return back()->with('success','Uploaded!!!');
+    }
+
     /**
      * Display the specified resource.
      *

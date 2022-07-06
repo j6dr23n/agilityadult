@@ -52,9 +52,11 @@
                                             <!-- Tabs -->
                                             <ul class="nav panel-tabs main-nav-line">
                                                 <li class="nav-item"><a href="#tab1" class="nav-link active"
-                                                        data-bs-toggle="tab"><i class="fas fa-arrow-right"></i> Video</a></li>
+                                                        data-bs-toggle="tab"><i class="fas fa-arrow-right"></i> Video</a>
+                                                </li>
                                                 <li class="nav-item"><a href="#tab2" class="nav-link"
-                                                        data-bs-toggle="tab"><i class="fas fa-arrow-right"></i> Photo</a></li>
+                                                        data-bs-toggle="tab"><i class="fas fa-arrow-right"></i> Photo</a>
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
@@ -80,23 +82,36 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <label class="form-label text-dark">Video</label>
-                                                                <input type="file" name="video"
-                                                                    class="form-control" id="formFile" accept="video/*"/>
+                                                                <input type="file" class="form-control" id="browseFile" accept="video/*">
+                                                            </div>
+                                                            <div style="display: none" class="progress mt-3"
+                                                                style="height: 25px">
+                                                                <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                                                    role="progressbar" aria-valuenow="75" aria-valuemin="0"
+                                                                    aria-valuemax="100" style="width: 75%; height: 100%">75%
+                                                                </div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label class="form-label text-dark">Poster</label>
-                                                                <small class="text-warning font-bold">If u leave this,system will auto generate thumbnail for video.</small>
-                                                                <input type="file" name="poster[]"
-                                                                    class="form-control" id="formFile" multiple accept="image/*"/>
+                                                                <small class="text-warning font-bold">If u leave
+                                                                    this,system will auto generate thumbnail for
+                                                                    video.</small>
+                                                                <input type="file" name="poster[]" class="form-control"
+                                                                    id="formFile" multiple accept="image/*" />
                                                             </div>
                                                             <div class="form-group">
                                                                 <label class="form-label">Type</label>
                                                                 <select name="type"
                                                                     class="form-control form-select select2"
                                                                     data-bs-placeholder="Select Country">
-                                                                    <option value="" selected>-Select Type--</option>
-                                                                    <option value="premium" {{ old('type') === 'premium' ? 'selected' : '' }}>Premium</option>
-                                                                    <option value="free" {{ old('type') === 'free' ? 'selected' : '' }}>Free</option>
+                                                                    <option value="" selected>-Select Type--
+                                                                    </option>
+                                                                    <option value="premium"
+                                                                        {{ old('type') === 'premium' ? 'selected' : '' }}>
+                                                                        Premium</option>
+                                                                    <option value="free"
+                                                                        {{ old('type') === 'free' ? 'selected' : '' }}>
+                                                                        Free</option>
                                                                 </select>
                                                             </div>
                                                             <div class="form-group">
@@ -105,8 +120,12 @@
                                                                     class="form-control form-select select2"
                                                                     data-bs-placeholder="Select Country">
                                                                     <option value="">--Select Status--</option>
-                                                                    <option value="draft" {{ old('status') === 'draft' ? 'selected' : '' }}>Draft</option>
-                                                                    <option value="published" {{ old('status') === 'published' ? 'selected' : '' }}>Published</option>
+                                                                    <option value="draft"
+                                                                        {{ old('status') === 'draft' ? 'selected' : '' }}>
+                                                                        Draft</option>
+                                                                    <option value="published"
+                                                                        {{ old('status') === 'published' ? 'selected' : '' }}>
+                                                                        Published</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -129,21 +148,25 @@
                                                             <div class="form-group">
                                                                 <label class="form-label text-dark">Title</label>
                                                                 <input type="text" name="title" class="form-control"
-                                                                    placeholder="Video Title" value="{{ old('title') }}">
+                                                                    placeholder="Video Title"
+                                                                    value="{{ old('title') }}">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label class="form-label text-dark">Tags</label>
-                                                                <textarea class="form-control" name="tags" placeholder="Myanmar,Onlyfan,Exantria,Chaung Yite,Thai" rows="3">{{ old('tags') }}</textarea>
+                                                                <textarea class="form-control" name="tags" placeholder="Myanmar,Onlyfan,Exantria,Chaung Yite,Thai"
+                                                                    rows="3">{{ old('tags') }}</textarea>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label class="form-label text-dark">Link</label>
                                                                 <input type="url" name="link" class="form-control"
-                                                                    placeholder="Leak folder link" value="{{ old('link') }}">
+                                                                    placeholder="Leak folder link"
+                                                                    value="{{ old('link') }}">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label class="form-label text-dark">Poster</label>
                                                                 <input type="file" name="poster[]"
-                                                                    class="form-control" id="formFile" multiple accept="image/*"/>
+                                                                    class="form-control" id="formFile" multiple
+                                                                    accept="image/*" />
                                                             </div>
                                                             <div class="form-group">
                                                                 <label class="form-label">Type</label>
@@ -151,8 +174,12 @@
                                                                     class="form-control form-select select2"
                                                                     data-bs-placeholder="Select Country">
                                                                     <option value="" selected>-Select Type--</option>
-                                                                    <option value="premium" {{ old('type') === 'premium' ? 'selected' : '' }}>Premium</option>
-                                                                    <option value="free" {{ old('type') === 'free' ? 'selected' : '' }}>Free</option>
+                                                                    <option value="premium"
+                                                                        {{ old('type') === 'premium' ? 'selected' : '' }}>
+                                                                        Premium</option>
+                                                                    <option value="free"
+                                                                        {{ old('type') === 'free' ? 'selected' : '' }}>
+                                                                        Free</option>
                                                                 </select>
                                                             </div>
                                                             <div class="form-group">
@@ -160,8 +187,12 @@
                                                                 <select name="status"
                                                                     class="form-control form-select select2"
                                                                     data-bs-placeholder="Select Country">
-                                                                    <option value="draft" {{ old('status') === 'draft' ? 'selected' : '' }}>Draft</option>
-                                                                    <option value="published" {{ old('status') === 'published' ? 'selected' : '' }}>Published</option>
+                                                                    <option value="draft"
+                                                                        {{ old('status') === 'draft' ? 'selected' : '' }}>
+                                                                        Draft</option>
+                                                                    <option value="published"
+                                                                        {{ old('status') === 'published' ? 'selected' : '' }}>
+                                                                        Published</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -247,4 +278,63 @@
     <!-- Internal input tags -->
     <script src="{{ asset('backend/assets/plugins/inputtags/inputtags.js') }}"></script>
     <script src="{{ asset('assets/plugins/select2/js/select2.min.js') }}""></script>
+
+    <!-- Resumable js -->
+    <script src="https://cdn.jsdelivr.net/npm/resumablejs@1.1.0/resumable.min.js"></script>
+
+    <script type="text/javascript">
+        let browseFile = $('#browseFile');
+        let resumable = new Resumable({
+            target: '{{ route('files.upload.large') }}',
+            query: {
+                _token: '{{ csrf_token() }}'
+            }, // CSRF token
+            fileType: ['mp4'],
+            chunkSize: 10 * 1024 *
+            1024, // default is 1*1024*1024, this should be less than your maximum limit in php.ini
+            headers: {
+                'Accept': 'application/json'
+            },
+            testChunks: false,
+            throttleProgressCallbacks: 1,
+        });
+
+        resumable.assignBrowse(browseFile[0]);
+
+        resumable.on('fileAdded', function(file) { // trigger when file picked
+            showProgress();
+            resumable.upload() // to actually start uploading.
+        });
+
+        resumable.on('fileProgress', function(file) { // trigger when file progress update
+            updateProgress(Math.floor(file.progress() * 100));
+        });
+
+        resumable.on('fileSuccess', function(file, response) { // trigger when file upload complete
+            alert('video upload successed');
+        });
+
+        resumable.on('fileError', function(file, response) { // trigger when there is any error
+            console.log(response);
+        });
+
+
+        let progress = $('.progress');
+
+        function showProgress() {
+            progress.find('.progress-bar').css('width', '0%');
+            progress.find('.progress-bar').html('0%');
+            progress.find('.progress-bar').removeClass('bg-success');
+            progress.show();
+        }
+
+        function updateProgress(value) {
+            progress.find('.progress-bar').css('width', `${value}%`)
+            progress.find('.progress-bar').html(`${value}%`)
+        }
+
+        function hideProgress() {
+            progress.hide();
+        }
+    </script>
 @endsection
