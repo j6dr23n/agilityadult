@@ -9,6 +9,7 @@
         "backpack/backupmanager": "^4.0",
         "cyrildewit/eloquent-viewable": "^6.1",
         "guzzlehttp/guzzle": "^7.2",
+        "intervention/image": "^2.7",
         "laravel/framework": "^9.11",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",

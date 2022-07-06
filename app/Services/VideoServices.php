@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Jobs\AddWatermarkToImage;
 use App\Jobs\CreateVideoThumbnailJob;
 use App\Models\Video;
 use Illuminate\Support\Facades\Storage;
@@ -41,6 +42,7 @@ class VideoServices
             $height = $video_dimensions->getHeight();
             $title = $data['title'];
             dispatch(new CreateVideoThumbnailJob($width,$height,$link,$title));
+            dispatch(new AddWatermarkToImage($title))->delay(now()->addSeconds(10));
             $images[] = $title.'.jpg';
             $data['poster'] = $images;
         }
