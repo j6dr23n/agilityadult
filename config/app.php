@@ -187,7 +187,7 @@ return [
          */
         Pawlox\VideoThumbnail\VideoThumbnailServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
-
+        ProtoneMedia\LaravelFFMpeg\Support\ServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -213,7 +213,8 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'VideoThumbnail' => Pawlox\VideoThumbnail\Facade\VideoThumbnail::class,
-        'DataTables' => Yajra\DataTables\Facades\DataTables::class,    
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,   
+        'FFMpeg' => ProtoneMedia\LaravelFFMpeg\Support\FFMpeg::class 
     ])->toArray(),
 
 ];

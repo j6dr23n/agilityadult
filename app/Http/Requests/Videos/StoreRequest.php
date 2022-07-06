@@ -26,6 +26,7 @@ class StoreRequest extends FormRequest
         return [
             'title' => 'string|required|max:255|unique:videos',
             'tags' => 'string|required|min:10',
+            'video' => 'required',
             'poster' => 'array|nullable',
             'embed_link' => 'url|nullable',
             'link' => 'url|nullable',

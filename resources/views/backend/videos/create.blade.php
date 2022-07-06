@@ -79,14 +79,9 @@
                                                                 <textarea class="form-control" name="tags" placeholder="Myanmar,Onlyfan,Exantria,Chaung Yite,Thai" rows="3">{{ old('tags') }}</textarea>
                                                             </div>
                                                             <div class="form-group">
-                                                                <label class="form-label text-dark">Video URL</label>
-                                                                <input type="url" name="embed_link" class="form-control"
-                                                                    placeholder="Link From Backblaze-(Friendly URL)" value="{{ old('embed_link') }}">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label class="form-label text-dark">Link</label>
-                                                                <input type="url" name="link" class="form-control"
-                                                                    placeholder="Download link" value="{{ old('link') }}">
+                                                                <label class="form-label text-dark">Video</label>
+                                                                <input type="file" name="video"
+                                                                    class="form-control" id="formFile" accept="video/*"/>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label class="form-label text-dark">Poster</label>

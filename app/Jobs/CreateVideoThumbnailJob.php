@@ -14,7 +14,8 @@ class CreateVideoThumbnailJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $link,$width,$height,$title;
+    public $link;
+    public $title;
 
     /**
      * Create a new job instance.
@@ -22,10 +23,8 @@ class CreateVideoThumbnailJob implements ShouldQueue
      * @return void
      */
 
-    public function __construct(int $width,int $height,string $link,string $title)
+    public function __construct(string $link, string $title)
     {
-        $this->width = $width;
-        $this->height =$height;
         $this->link = $link;
         $this->title = $title;
     }
@@ -37,13 +36,25 @@ class CreateVideoThumbnailJob implements ShouldQueue
      */
     public function handle()
     {
+        $ffprobe = \FFMpeg\FFProbe::create([
+            'ffmpeg.binaries'  => "/usr/bin/ffmpeg",
+            'ffprobe.binaries' => "/usr/bin/ffprobe"
+        ]);
+        $video_dimensions = $ffprobe
+                ->streams($this->link)   // extracts streams informations
+                ->videos()                      // filters video streams
+                ->first()                       // returns the first video stream
+                ->getDimensions();              // returns a FFMpeg\Coordinate\Dimension object
+        $width = $video_dimensions->getWidth();
+        $height = $video_dimensions->getHeight();
+
         VideoThumbnail::createThumbnail(
             $this->link,
             storage_path('app/public/videos/images'),
             $this->title.'.jpg',
             3,
-            $this->width,
-            $this->height
+            $width,
+            $height
         );
     }
 }
