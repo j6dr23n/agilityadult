@@ -27,7 +27,7 @@ class VideoServices
         }
 
         if (array_key_exists('link', $data) === false) {
-            $videoFileName = Cookie::get('fileName');
+            $videoFileName = Cookie::get('fileName-'.auth()->id());
             $data['embed_link'] = 'https://videos.agilityadult.com/file/agadult-v2/'.date('d-m-Y').'/'.$videoFileName;
             if (array_key_exists('poster', $data) === false) {
                 $images[] = $data['title'].'.jpg';
@@ -91,7 +91,7 @@ class VideoServices
             $fileName = str_replace('.'.$extension, '', $file->getClientOriginalName()); //file name without extenstion
             $fileName .= '_' . md5(time()) . '.' . $extension; // a unique file name
             $fileName = str_replace(' ','',$fileName);
-            Cookie::queue('fileName',$fileName,10);
+            Cookie::queue('fileName-'.auth()->id(),$fileName,10);
     
             $disk = Storage::disk(config('filesystems.public'));
             $path = $disk->putFileAs('videos/tempo', $file, $fileName);

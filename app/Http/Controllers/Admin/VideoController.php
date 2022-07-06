@@ -73,7 +73,7 @@ class VideoController extends Controller
 
         $data = $request->validated();
         $action->store($data);
-
+ 
         return redirect()->route('videos.index')->with('success', 'Video Created!!!');
     }
 

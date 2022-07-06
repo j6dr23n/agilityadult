@@ -36,7 +36,7 @@ class UploadVideoToB2 implements ShouldQueue
         $token = $this->getTokenB2();
         $this->uploadVideoB2($token);
         Storage::disk('local')->delete('/videos/tempo/'.$this->title);
-        Storage::disk('local')->delete('videos/watermarked/'.$this->title);
+        Storage::disk('local')->delete('/videos/watermarked/'.$this->title);
     }
 
     public function failed(Throwable $exception)
@@ -47,7 +47,7 @@ class UploadVideoToB2 implements ShouldQueue
     protected function getTokenB2()
     {
         $apiUrl = "https://api003.backblazeb2.com";
-        $authToken = "4_003ea52174924fc0000000008_01a57215_6c66af_acct_c_wGA61i2rX6RgdB9qD7vmJwB_s=";
+        $authToken = $this->getAuthTokenB2();
 
         $api_url = $apiUrl; // From b2_authorize_account call
         $auth_token = $authToken; // From b2_authorize_account call
@@ -75,6 +75,31 @@ class UploadVideoToB2 implements ShouldQueue
         $token = [$upload_url,$upload_auth_token];
 
         return $token;
+    }
+
+    protected function getAuthTokenB2()
+    {
+        $application_key_id = env('B2_APP_KEY_ID'); // Obtained from your B2 account page
+        $application_key = env('B2_APP_KEY'); // Obtained from your B2 account page
+        $credentials = base64_encode($application_key_id . ":" . $application_key);
+        $url = "https://api.backblazeb2.com/b2api/v2/b2_authorize_account";
+
+        $session = curl_init($url);
+
+        // Add headers
+        $headers = array();
+        $headers[] = "Accept: application/json";
+        $headers[] = "Authorization: Basic " . $credentials;
+        curl_setopt($session, CURLOPT_HTTPHEADER, $headers);  // Add headers
+
+        curl_setopt($session, CURLOPT_HTTPGET, true);  // HTTP GET
+        curl_setopt($session, CURLOPT_RETURNTRANSFER, true); // Receive server response
+        $server_output = curl_exec($session);
+        curl_close ($session);
+        $results = json_decode($server_output, true);
+        $auth_token = $results['authorizationToken'];
+
+        return $auth_token;
     }
 
     protected function uploadVideoB2($token)
