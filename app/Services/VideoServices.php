@@ -33,7 +33,7 @@ class VideoServices
                 $images[] = $data['title'].'.jpg';
             }
             Bus::chain([
-                new AddWatermarkToVideo($videoFileName),
+                // new AddWatermarkToVideo($videoFileName),
                 new UploadVideoToB2($videoFileName),
                 new CreateVideoThumbnailJob($data['embed_link'], $data['title']),
             ])->dispatch();

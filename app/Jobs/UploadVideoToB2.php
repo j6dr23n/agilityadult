@@ -36,7 +36,6 @@ class UploadVideoToB2 implements ShouldQueue
         $token = $this->getTokenB2();
         $this->uploadVideoB2($token);
         Storage::disk('local')->delete('/videos/tempo/'.$this->title);
-        Storage::disk('local')->delete('/videos/watermarked/'.$this->title);
     }
 
     public function failed(Throwable $exception)
@@ -105,7 +104,7 @@ class UploadVideoToB2 implements ShouldQueue
     protected function uploadVideoB2($token)
     {
         $file_name = date('d-m-Y').'/'.$this->title;
-        $my_file = storage_path('app/videos/watermarked/'.$this->title);
+        $my_file = storage_path('app/videos/tempo/'.$this->title);
         $handle = fopen($my_file, 'r');
         $read_file = fread($handle, filesize($my_file));
 
