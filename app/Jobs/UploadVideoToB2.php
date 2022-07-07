@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -16,6 +17,7 @@ class UploadVideoToB2 implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public $title;
+    public $timeout = 2900;
     /**
      * Create a new job instance.
      *
@@ -38,7 +40,7 @@ class UploadVideoToB2 implements ShouldQueue
         Storage::disk('local')->delete('/videos/tempo/'.$this->title);
     }
 
-    public function failed(Throwable $exception)
+    public function failed(Exception $exception)
     {
         dd($exception);
     }
