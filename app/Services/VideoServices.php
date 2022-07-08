@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Jobs\AddWatermarkToVideo;
 use App\Jobs\CreateVideoThumbnailJob;
+use App\Jobs\SendTeleBot;
 use App\Jobs\UploadVideoToB2;
 use App\Models\Video;
 use Illuminate\Http\Request;
@@ -27,6 +28,7 @@ class VideoServices
         }
 
         if (array_key_exists('link', $data) === false) {
+            $data['title'] = str_replace(' ','',$data['title']);
             $videoFileName = Cookie::get('fileName-'.auth()->id());
             $data['embed_link'] = 'https://videos.agilityadult.com/file/agadult-v2/'.date('d-m-Y').'/'.$videoFileName;
             if (array_key_exists('poster', $data) === false) {
@@ -36,6 +38,7 @@ class VideoServices
                 // new AddWatermarkToVideo($videoFileName),
                 new UploadVideoToB2($videoFileName),
                 new CreateVideoThumbnailJob($data['embed_link'], $data['title']),
+                new SendTeleBot($data['title']),
             ])->dispatch();
         }
         $data['poster'] = $images;
@@ -91,7 +94,7 @@ class VideoServices
             $fileName = str_replace('.'.$extension, '', $file->getClientOriginalName()); //file name without extenstion
             $fileName .= '_' . md5(time()) . '.' . $extension; // a unique file name
             $fileName = str_replace(' ','',$fileName);
-            Cookie::queue('fileName-'.auth()->id(),$fileName,10);
+            Cookie::queue('fileName-'.auth()->id(),$fileName,1);
     
             $disk = Storage::disk(config('filesystems.public'));
             $path = $disk->putFileAs('videos/tempo', $file, $fileName);
