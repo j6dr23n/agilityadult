@@ -12,7 +12,7 @@ class GirlPolicy
 
     public function before(User $user)
     {
-        if($user->isAdmin()){
+        if ($user->isAdmin()) {
             return true;
         }
     }

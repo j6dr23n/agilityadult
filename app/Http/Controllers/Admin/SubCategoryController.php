@@ -9,13 +9,13 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class SubCategoryController extends Controller
-{    
+{
     public function create($id)
     {
-        $category = DB::table('categories')->where('id',$id)->first();
+        $category = DB::table('categories')->where('id', $id)->first();
         $categories = DB::table('categories')->oldest()->get();
 
-        return view('backend.categories.sub_cat.create', compact('category','categories'));
+        return view('backend.categories.sub_cat.create', compact('category', 'categories'));
     }
 
     public function store(Request $request)
@@ -43,7 +43,7 @@ class SubCategoryController extends Controller
     {
         $data = $request->all();
         if ($request->file('poster')) {
-            $subCategory->poster = str_replace('/storage','',$subCategory->poster);
+            $subCategory->poster = str_replace('/storage', '', $subCategory->poster);
             Storage::disk('public')->delete($subCategory->poster);
 
             $poster = $request->file('poster');
@@ -59,11 +59,11 @@ class SubCategoryController extends Controller
 
     public function destroy(SubCategory $subCategory)
     {
-        $subCategory->poster = str_replace('/storage','',$subCategory->poster);
+        $subCategory->poster = str_replace('/storage', '', $subCategory->poster);
         Storage::disk('public')->delete($subCategory->poster);
 
         $subCategory->delete();
 
-        return redirect(route('categories.index'))->with('success','Sub Category Deleted!!!');
+        return redirect(route('categories.index'))->with('success', 'Sub Category Deleted!!!');
     }
 }

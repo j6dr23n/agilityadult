@@ -19,11 +19,11 @@ class MangaFactory extends Factory
         return [
             'title' => $this->faker->title(),
             'slug' => $this->faker->slug(),
-            'genres' =>$this->faker->word(6),
+            'genres' => $this->faker->word(6),
             'tags' => $this->faker->word(8),
             'info' => $this->faker->sentence(12),
-            'poster' => $this->faker->imageUrl(250,550),
-            'status' => $this->faker->randomElement(['Ongoing','Finished'])
+            'poster' => $this->faker->imageUrl(250, 550),
+            'status' => $this->faker->randomElement(['Ongoing', 'Finished']),
         ];
     }
 }

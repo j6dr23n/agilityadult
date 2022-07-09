@@ -21,28 +21,30 @@ class VideoController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->ajax()){
+        if ($request->ajax()) {
             $videos = Video::latest()->get();
-            $videos->each(function($videos){
-                $videos->title = Str::limit($videos->title,30);
-                $videos->tags = Str::limit($videos->tags,30);
+            $videos->each(function ($videos) {
+                $videos->title = Str::limit($videos->title, 30);
+                $videos->tags = Str::limit($videos->tags, 30);
                 $videos->created_diff = $videos->created_at->diffForHumans();
                 $videos->views_count = views($videos)->count();
-            }); 
-            
+            });
+
             return datatables()->of($videos)
-                ->addColumn('poster',function($data){
+                ->addColumn('poster', function ($data) {
                     $button = '<img src="'.asset('storage/videos/images/'.$data->poster[0]).'" style="max-width:100%;height:100%;">';
+
                     return $button;
                 })
-                ->addColumn('action',function ($data){
+                ->addColumn('action', function ($data) {
                     $button = '<a title="View" href="/view/'.$data->slug.'" class="btn btn-info btn-sm br-5 me-2"><i class="fas fa-eye"></i></a>';
                     $button .= '&nbsp;&nbsp;';
                     $button .= '<a title="Edit" href="videos/'.$data->id.'/edit" class="btn btn-warning btn-sm br-5 me-2"><i class="fas fa-edit"></i></a>';
                     $button .= '&nbsp;&nbsp;';
                     $button .= '<a title="Delete" data-id="'.$data->id.'" class="delete-btn btn btn-danger btn-sm br-5 me-2"><i class="fas fa-trash-alt"></i></a>';
+
                     return $button;
-                })->rawColumns(['action','poster'])->make(true);
+                })->rawColumns(['action', 'poster'])->make(true);
         }
         $videos = Video::latest()->get();
 
@@ -56,8 +58,8 @@ class VideoController extends Controller
      */
     public function create()
     {
-        $this->authorize('create',Video::class);
-        
+        $this->authorize('create', Video::class);
+
         return view('backend.videos.create');
     }
 
@@ -67,21 +69,21 @@ class VideoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRequest $request,VideoServices $action)
+    public function store(StoreRequest $request, VideoServices $action)
     {
-        $this->authorize('create',Video::class);
+        $this->authorize('create', Video::class);
 
         $data = $request->validated();
         $action->store($data);
- 
+
         return redirect()->route('videos.index')->with('success', 'Video Created!!!');
     }
 
-    public function uploadLargeFiles(Request $request,VideoServices $action)
+    public function uploadLargeFiles(Request $request, VideoServices $action)
     {
         $action->uploadLargeFiles($request);
 
-        return back()->with('success','Uploaded!!!');
+        return back()->with('success', 'Uploaded!!!');
     }
 
     /**
@@ -93,8 +95,8 @@ class VideoController extends Controller
     public function show(Video $video)
     {
         views($video)->cooldown($minutes = 3)->record();
-        
-        if(Auth::check() === false && $video->type === 'premium'){
+
+        if (Auth::check() === false && $video->type === 'premium') {
             return redirect(route('pages.index'))->with('error', 'Premium user only!!!');
         }
 
@@ -112,7 +114,7 @@ class VideoController extends Controller
      */
     public function edit(Video $video)
     {
-        $this->authorize('update',$video);
+        $this->authorize('update', $video);
 
         return view('backend.videos.edit', compact('video'));
     }
@@ -124,12 +126,12 @@ class VideoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRequest $request,Video $video, VideoServices $action)
+    public function update(UpdateRequest $request, Video $video, VideoServices $action)
     {
-        $this->authorize('update',$video);
-        
+        $this->authorize('update', $video);
+
         $data = $request->validated();
-        $action->update($data,$video);
+        $action->update($data, $video);
 
         return redirect()->route('videos.index')->with('success', 'Video Updated!!!');
     }
@@ -140,9 +142,9 @@ class VideoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Video $video,VideoServices $action): JsonResponse
+    public function destroy(Video $video, VideoServices $action): JsonResponse
     {
-        $this->authorize('delete',$video);
+        $this->authorize('delete', $video);
 
         $delete = $action->destroy($video);
 
@@ -150,11 +152,10 @@ class VideoController extends Controller
             return response()->json([
                 'status' => 'success',
             ]);
-        } else
-        {
+        } else {
             return response()->json([
                 'status' => 'error',
-                'message' => __("Couldn't Delete. Please Try Again!")
+                'message' => __("Couldn't Delete. Please Try Again!"),
             ], 500);
         }
     }

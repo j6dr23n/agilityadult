@@ -17,10 +17,10 @@ class CheckIfAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check() &&  Auth::user()->role !== 'member' ) {
+        if (Auth::check() && Auth::user()->role !== 'member') {
             return $next($request);
         }
 
-        return redirect()->route('pages.index')->with('error','You can\'t access this page.');
+        return redirect()->route('pages.index')->with('error', 'You can\'t access this page.');
     }
 }

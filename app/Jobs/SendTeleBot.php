@@ -4,20 +4,20 @@ namespace App\Jobs;
 
 use Exception;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 use Telegram;
 use Telegram\Bot\FileUpload\InputFile;
-use Illuminate\Support\Facades\Log;
 
 class SendTeleBot implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public $title;
+
     /**
      * Create a new job instance.
      *
@@ -35,11 +35,11 @@ class SendTeleBot implements ShouldQueue
      */
     public function handle()
     {
-        $path = env('APP_URL')."storage/videos/images/";
+        $path = env('APP_URL').'storage/videos/images/';
         Telegram::sendPhoto([
-            'chat_id' => env('TELEGRAM_CHAT_ID',''),
-            'photo' => InputFile::createFromContents(\file_get_contents($path.$this->title.'.jpg'),$this->title.'.jpg'),
-            'caption' => 'New video has been uploaded!!!'
+            'chat_id' => env('TELEGRAM_CHAT_ID', ''),
+            'photo' => InputFile::createFromContents(\file_get_contents($path.$this->title.'.jpg'), $this->title.'.jpg'),
+            'caption' => 'New video has been uploaded!!!',
         ]);
     }
 

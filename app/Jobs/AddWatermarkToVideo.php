@@ -2,22 +2,22 @@
 
 namespace App\Jobs;
 
-use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
-use Throwable;
-use ProtoneMedia\LaravelFFMpeg\Filters\WatermarkFactory;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
+use ProtoneMedia\LaravelFFMpeg\Filters\WatermarkFactory;
+use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
+use Throwable;
 
 class AddWatermarkToVideo implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public $title;
+
     /**
      * Create a new job instance.
      *

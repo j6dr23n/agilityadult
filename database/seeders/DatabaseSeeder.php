@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
 use App\Models\Girl;
 use App\Models\Manga;
 use App\Models\SubCategory;

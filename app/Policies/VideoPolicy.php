@@ -12,7 +12,7 @@ class VideoPolicy
 
     public function before(User $user)
     {
-        if($user->isAdmin()){
+        if ($user->isAdmin()) {
             return true;
         }
     }
@@ -60,7 +60,7 @@ class VideoPolicy
      */
     public function update(User $user, Video $video)
     {
-        return $user->role !== 'member' ? true : false; 
+        return $user->role !== 'member' ? true : false;
     }
 
     /**

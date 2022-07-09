@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Carbon\Carbon;
 
 class User extends Authenticatable
 {
@@ -24,7 +23,7 @@ class User extends Authenticatable
         'password',
         'info',
         'expiry_date',
-        'role'
+        'role',
     ];
 
     /**
@@ -53,6 +52,7 @@ class User extends Authenticatable
         } else {
             $remaining_days = 0;
         }
+
         return $remaining_days;
     }
 

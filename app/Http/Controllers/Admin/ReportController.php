@@ -15,6 +15,7 @@ class ReportController extends Controller
 
         return view('backend.reports.index', compact('reports'));
     }
+
     public function store(ReportRequest $request)
     {
         $data = $request->validated();
@@ -32,17 +33,16 @@ class ReportController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'ph_number' => $data['ph_number'],
-            'info' => $data['info']
+            'info' => $data['info'],
         ]);
 
-        return $report ;
+        return $report;
     }
-
 
     private function getReport()
     {
         $report = DB::table('reports')->join('users', 'users.id', '=', 'reports.user_id')->join('videos', 'videos.id', '=', 'reports.video_id')->select('reports.*', 'users.id as userID', 'videos.slug as videoSLug')->paginate(15);
-        
+
         return $report;
     }
 }

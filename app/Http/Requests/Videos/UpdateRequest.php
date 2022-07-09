@@ -31,7 +31,7 @@ class UpdateRequest extends FormRequest
             'embed_link' => 'url|nullable',
             'link' => 'url|nullable',
             'type' => 'string|required',
-            'status' => 'required'
+            'status' => 'required',
         ];
     }
 }

@@ -12,7 +12,7 @@ class MangaServices
     public function store($data): Manga
     {
         $data['slug'] = Str::slug($data['title']);
-        
+
         $poster = $data['poster'];
         $fileName = time().'-'.$poster->getClientOriginalName();
         $fileName = str_replace(' ', '', $fileName);
@@ -44,7 +44,7 @@ class MangaServices
     {
         $mangaName = str_replace(' ', '', $manga->title);
         Storage::disk('public')->delete('manga/'.$manga->poster);
-        File::deleteDirectory(public_path()."/storage/manga/".$mangaName);
+        File::deleteDirectory(public_path().'/storage/manga/'.$mangaName);
 
         return $manga->delete();
     }

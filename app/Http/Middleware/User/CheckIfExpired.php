@@ -22,7 +22,7 @@ class CheckIfExpired
             Auth::logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
-        
+
             return redirect(route('pages.index'))->with('error', 'Your account is expired,Buy more plan!!!');
         }
 

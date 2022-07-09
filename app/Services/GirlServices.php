@@ -3,15 +3,12 @@
 namespace App\Services;
 
 use App\Models\Girl;
-use App\Models\Manga;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
-class GirlServices 
+class GirlServices
 {
     public function store($data): Girl
-    {   
+    {
         foreach ($data['images'] as $item) {
             $fileName = time().'-'.$item->getClientOriginalName();
             $fileName = str_replace(' ', '', $fileName);
@@ -24,7 +21,7 @@ class GirlServices
         return $girl;
     }
 
-    public function update($data,$girl): bool
+    public function update($data, $girl): bool
     {
         if (array_key_exists('images', $data)) {
             if (is_array($girl->images)) {
@@ -40,9 +37,9 @@ class GirlServices
             }
             $data['images'] = $images;
         }
-        
+
         $girl = $girl->fill($data)->save();
 
         return $girl;
     }
-} 
+}

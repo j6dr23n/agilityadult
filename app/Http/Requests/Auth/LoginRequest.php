@@ -48,21 +48,21 @@ class LoginRequest extends FormRequest
 
         if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
-            
-            return redirect()->back()->with('error','Your creditionals does not match our records!!!');
+
+            return redirect()->back()->with('error', 'Your creditionals does not match our records!!!');
         }
 
-        if(auth()->user()->expiry_date <= Carbon::today()){
+        if (auth()->user()->expiry_date <= Carbon::today()) {
             Auth::guard('web')->logout();
 
             Auth::logout();
 
-            return redirect()->back()->with('error','Your account is expired,Buy more plan!!!'); 
+            return redirect()->back()->with('error', 'Your account is expired,Buy more plan!!!');
         }
 
         RateLimiter::clear($this->throttleKey());
-        
-        return redirect()->back()->with('success','Successfully Login');
+
+        return redirect()->back()->with('success', 'Successfully Login');
     }
 
     /**

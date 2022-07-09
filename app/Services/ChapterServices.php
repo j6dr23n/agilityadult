@@ -28,9 +28,9 @@ class ChapterServices
         $pdfName = $pdfName[7];
         if (array_key_exists('path', $data)) {
             Storage::disk('public')->delete(str_replace('/storage', '', $chapter->pdfPath));
-            File::deleteDirectory(public_path()."/storage/manga/".$mangaName."/chapter/".$chapter->chapter_no);
+            File::deleteDirectory(public_path().'/storage/manga/'.$mangaName.'/chapter/'.$chapter->chapter_no);
 
-            $value = $this->pdfToImage($data,$mangaName);
+            $value = $this->pdfToImage($data, $mangaName);
             $data['path'] = $value['path'];
             $data['pdfPath'] = $value['pdfPath'];
         }
@@ -38,9 +38,9 @@ class ChapterServices
         return $chapter->fill($data)->save();
     }
 
-    protected function pdfToImage($data,$mangaName = null): array
+    protected function pdfToImage($data, $mangaName = null): array
     {
-        $value = array();
+        $value = [];
         $manga = Manga::where('id', $data['manga_id'])->firstOrFail();
         $mangaName = str_replace(' ', '', $manga->title);
 
@@ -53,8 +53,8 @@ class ChapterServices
         $img->readImage(public_path('/storage/manga/'.$mangaName.'/pdf/'.$fileName));
         // $path = public_path()."/storage/manga/".$mangaName.'/images/'.$pdfName;
         // File::makeDirectory($path, $mode = 0777, true, true);
-        File::makeDirectory(public_path()."/storage/manga/".$mangaName."/chapter/".$data['chapter_no'], $mode = 0777, true, true);
-        $saveImagePath = public_path()."/storage/manga/".$mangaName."/chapter/".$data['chapter_no']."/image.jpg";
+        File::makeDirectory(public_path().'/storage/manga/'.$mangaName.'/chapter/'.$data['chapter_no'], $mode = 0777, true, true);
+        $saveImagePath = public_path().'/storage/manga/'.$mangaName.'/chapter/'.$data['chapter_no'].'/image.jpg';
         $img->setImageResolution(1080, 1080);
         $img->writeImages($saveImagePath, true);
 
@@ -68,8 +68,8 @@ class ChapterServices
         $manga = Manga::where('id', $chapter->manga_id)->firstOrFail();
         $mangaName = str_replace(' ', '', $manga->title);
         Storage::disk('public')->delete(str_replace('/storage', '', $chapter->pdfPath));
-        File::deleteDirectory(public_path()."/storage/manga/".$mangaName."/chapter/".$chapter->chapter_no);
-        
+        File::deleteDirectory(public_path().'/storage/manga/'.$mangaName.'/chapter/'.$chapter->chapter_no);
+
         return $chapter->delete();
     }
 }
