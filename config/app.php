@@ -188,6 +188,7 @@ return [
         Pawlox\VideoThumbnail\VideoThumbnailServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
         ProtoneMedia\LaravelFFMpeg\Support\ServiceProvider::class,
+        Arcanedev\LogViewer\LogViewerServiceProvider::class,
         /*
          * Application Service Providers...
          */

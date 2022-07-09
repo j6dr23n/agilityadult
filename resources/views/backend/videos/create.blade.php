@@ -63,11 +63,17 @@
                                     <div class="panel-body tabs-menu-body main-content-body-right border-top-0 border">
                                         <div class="tab-content">
                                             <div class="tab-pane active" id="tab1">
+                                                <div class="card m-0">
+                                                    <div class="card-body mx-auto p-0">
+                                                        <a class="btn ripple btn-secondary" data-bs-target="#scrollmodal"
+                                                            data-bs-toggle="modal" href="#">View Tutorials</a>
+                                                    </div>
+                                                </div>
                                                 <form action="{{ route('videos.store') }}" method="POST"
                                                     enctype="multipart/form-data">
                                                     @csrf
-                                                    <div class="card ">
-                                                        <div class="card-body">
+                                                    <div class="card">
+                                                        <div class="card-body p-0 m-0">
                                                             @foreach ($errors->all() as $message)
                                                                 <p style="color:red;">{{ $message }}</p>
                                                             @endforeach
@@ -82,7 +88,8 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <label class="form-label text-dark">Video</label>
-                                                                <input type="file" class="form-control" id="browseFile" accept="video/*">
+                                                                <input type="file" class="form-control" id="browseFile"
+                                                                    accept="video/*">
                                                             </div>
                                                             <div style="display: none" class="progress mt-3"
                                                                 style="height: 25px">
@@ -264,6 +271,29 @@
         <!-- Container closed -->
     </div>
     <!-- main content end-->
+
+    <!-- Scroll with content modal -->
+    <div class="modal fade" id="scrollmodal">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content modal-content-demo">
+                <div class="modal-header">
+                    <h6 class="modal-title">How to upload Video.</h6><button aria-label="Close" class="btn-close"
+                        data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <ol>
+                        <li>အရင်ဆုံး video အရင်တင်ပါ</li>
+                        <li>video တင်ပြီးပါက alert box လေးပေါ်လာပါလိမ့်မည်</li>
+                        <li>ထိုအချိန်မှသာ title,tags,status & published ကိုရွေးပြီး submit နှိပ်ပါ</li>
+                    </ol>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Scroll with content modal -->
 @endsection
 
 @section('extra-js')
@@ -291,7 +321,7 @@
             }, // CSRF token
             fileType: ['mp4'],
             chunkSize: 10 * 1024 *
-            1024, // default is 1*1024*1024, this should be less than your maximum limit in php.ini
+                1024, // default is 1*1024*1024, this should be less than your maximum limit in php.ini
             headers: {
                 'Accept': 'application/json'
             },

@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Jobs\AddWatermarkToVideo;
 use App\Jobs\CreateVideoThumbnailJob;
 use App\Jobs\SendTeleBot;
 use App\Jobs\UploadVideoToB2;
@@ -11,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
 use Pion\Laravel\ChunkUpload\Handler\HandlerFactory;
 use Pion\Laravel\ChunkUpload\Receiver\FileReceiver;
 
@@ -29,7 +29,9 @@ class VideoServices
 
         if (array_key_exists('link', $data) === false) {
             $data['title'] = str_replace(' ','',$data['title']);
-            $videoFileName = Cookie::get('fileName-'.auth()->id());
+            $videoFileName = Session::get('fileName-'.auth()->id());
+            Session::forget('fileName-'.auth()->id());
+            
             $data['embed_link'] = 'https://videos.agilityadult.com/file/agadult-v2/'.date('d-m-Y').'/'.$videoFileName;
             if (array_key_exists('poster', $data) === false) {
                 $images[] = $data['title'].'.jpg';
@@ -94,7 +96,7 @@ class VideoServices
             $fileName = str_replace('.'.$extension, '', $file->getClientOriginalName()); //file name without extenstion
             $fileName .= '_' . md5(time()) . '.' . $extension; // a unique file name
             $fileName = str_replace(' ','',$fileName);
-            Cookie::queue('fileName-'.auth()->id(),$fileName,1);
+            Session::put('fileName-'.auth()->id(),$fileName);
     
             $disk = Storage::disk(config('filesystems.public'));
             $path = $disk->putFileAs('videos/tempo', $file, $fileName);
