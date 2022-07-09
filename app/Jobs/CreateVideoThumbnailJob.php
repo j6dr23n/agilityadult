@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -9,6 +10,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Pawlox\VideoThumbnail\Facade\VideoThumbnail;
+use Illuminate\Support\Facades\Log;
 
 class CreateVideoThumbnailJob implements ShouldQueue
 {
@@ -56,5 +58,10 @@ class CreateVideoThumbnailJob implements ShouldQueue
             $width,
             $height
         );
+    }
+
+    public function failed(Exception $exception)
+    {
+        Log::error($exception);
     }
 }

@@ -11,6 +11,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class AddWatermarkToVideo implements ShouldQueue
 {
@@ -55,6 +56,6 @@ class AddWatermarkToVideo implements ShouldQueue
     public function failed(Throwable $exception)
     {
         FFMpeg::cleanupTemporaryFiles();
-        dd($exception);
+        Log::error($exception);
     }
 }

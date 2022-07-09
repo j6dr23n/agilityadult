@@ -10,7 +10,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Storage;
-use Throwable;
+use Illuminate\Support\Facades\Log;
 
 class UploadVideoToB2 implements ShouldQueue
 {
@@ -42,7 +42,8 @@ class UploadVideoToB2 implements ShouldQueue
 
     public function failed(Exception $exception)
     {
-        dd($exception);
+        Storage::disk('local')->delete('/videos/tempo/'.$this->title); 
+        Log::error($exception);
     }
 
     protected function getTokenB2()

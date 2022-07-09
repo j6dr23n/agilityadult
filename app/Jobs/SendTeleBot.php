@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -10,6 +11,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Telegram;
 use Telegram\Bot\FileUpload\InputFile;
+use Illuminate\Support\Facades\Log;
 
 class SendTeleBot implements ShouldQueue
 {
@@ -39,5 +41,10 @@ class SendTeleBot implements ShouldQueue
             'photo' => InputFile::createFromContents(\file_get_contents($path.$this->title.'.jpg'),$this->title.'.jpg'),
             'caption' => 'New video has been uploaded!!!'
         ]);
+    }
+
+    public function failed(Exception $exception)
+    {
+        Log::error($exception);
     }
 }
