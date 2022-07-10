@@ -27,7 +27,7 @@ class VideoServices
         }
 
         if (array_key_exists('link', $data) === false) {
-            $data['title'] = str_replace(' ', '', $data['title']);
+            $name = str_replace(' ', '', $data['title']);
             $videoFileName = Session::get('fileName-'.auth()->id());
             Session::forget('fileName-'.auth()->id());
 
