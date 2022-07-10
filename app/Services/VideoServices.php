@@ -28,19 +28,19 @@ class VideoServices
         }
 
         if (array_key_exists('link', $data) === false) {
-            $data['title'] = str_replace(' ','',$data['title']);
+            $name = str_replace(' ','',$data['title']);
             $videoFileName = Session::get('fileName-'.auth()->id());
             Session::forget('fileName-'.auth()->id());
             
             $data['embed_link'] = 'https://videos.agilityadult.com/file/agadult-v2/'.date('d-m-Y').'/'.$videoFileName;
             if (array_key_exists('poster', $data) === false) {
-                $images[] = $data['title'].'.jpg';
+                $images[] = $name.'.jpg';
             }
             Bus::chain([
                 // new AddWatermarkToVideo($videoFileName),
                 new UploadVideoToB2($videoFileName),
-                new CreateVideoThumbnailJob($data['embed_link'], $data['title']),
-                new SendTeleBot($data['title']),
+                new CreateVideoThumbnailJob($data['embed_link'], $name),
+                new SendTeleBot($name),
             ])->dispatch();
         }
         $data['poster'] = $images;
