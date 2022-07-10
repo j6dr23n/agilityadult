@@ -4,19 +4,19 @@ namespace App\Jobs;
 
 use Exception;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Pawlox\VideoThumbnail\Facade\VideoThumbnail;
 use Illuminate\Support\Facades\Log;
+use Pawlox\VideoThumbnail\Facade\VideoThumbnail;
 
 class CreateVideoThumbnailJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public $link;
+
     public $title;
 
     /**
@@ -24,7 +24,6 @@ class CreateVideoThumbnailJob implements ShouldQueue
      *
      * @return void
      */
-
     public function __construct(string $link, string $title)
     {
         $this->link = $link;
@@ -39,8 +38,8 @@ class CreateVideoThumbnailJob implements ShouldQueue
     public function handle()
     {
         $ffprobe = \FFMpeg\FFProbe::create([
-            'ffmpeg.binaries'  => "/usr/bin/ffmpeg",
-            'ffprobe.binaries' => "/usr/bin/ffprobe"
+            'ffmpeg.binaries' => '/usr/bin/ffmpeg',
+            'ffprobe.binaries' => '/usr/bin/ffprobe',
         ]);
         $video_dimensions = $ffprobe
                 ->streams($this->link)   // extracts streams informations

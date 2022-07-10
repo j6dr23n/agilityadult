@@ -14,9 +14,9 @@ class PageController extends Controller
     public function index(Request $request)
     {
         $title = null;
-        if(Auth::check()) {
+        if (Auth::check()) {
             $videos = Video::where('status', 'published')->latest()->get();
-        }else{
+        } else {
             $videos = Video::where('status', 'published')->latest()->limit(40)->get();
         }
         $videos = $videos->paginate(20);
@@ -38,7 +38,7 @@ class PageController extends Controller
     {
         $girls = Girl::latest()->paginate(12);
 
-        return view('frontend.girls.index',compact('girls'));
+        return view('frontend.girls.index', compact('girls'));
     }
 
     public function profile_update(Request $request, $id)
@@ -63,13 +63,13 @@ class PageController extends Controller
             $sub_cat = DB::table('sub_categories')->where('category_id', $request->c)->paginate(20);
             $sub_cat->appends(request()->query());
         }
-        
-        return view('frontend.pages.categories', compact('categories', 'sub_cat','cat_title'));
+
+        return view('frontend.pages.categories', compact('categories', 'sub_cat', 'cat_title'));
     }
 
     public function search($name)
     {
-        $name = str_replace('International ','',$name);
+        $name = str_replace('International ', '', $name);
         $title = $name;
         $videos = Video::where('title', 'like', '%'.$name.'%')
         ->orWhere('tags', 'like', '%'.$name.'%')
@@ -80,11 +80,11 @@ class PageController extends Controller
 
     public function searchInput(Request $request)
     {
-        if (!Auth::check()) {
+        if (! Auth::check()) {
             return back()->with('error', 'Login to search...');
         }
         $request->validate([
-            'search' => 'string|required'
+            'search' => 'string|required',
         ]);
 
         $data = $request->all();

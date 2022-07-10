@@ -30,7 +30,7 @@ class UpdateRequest extends FormRequest
             'info' => 'string|required',
             'poster' => 'image',
             'type' => 'string|required',
-            'status' => 'required'
+            'status' => 'required',
         ];
     }
 }

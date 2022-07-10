@@ -10,10 +10,10 @@ class Girl extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','slug','link','images','info','status'];
+    protected $fillable = ['name', 'slug', 'link', 'images', 'info', 'status'];
 
     protected $casts = [
-        'images' => 'array'
+        'images' => 'array',
     ];
 
     public static function boot()
@@ -24,7 +24,7 @@ class Girl extends Model
         static::creating(function ($girl) {
 
             // produce a slug based on the activity name
-            $slug = Str::slug($girl->name) . '-' .now()->format('Y-m-d');
+            $slug = Str::slug($girl->name).'-'.now()->format('Y-m-d');
 
             // check to see if any other slugs exist that are the same & count them
             $count = static::whereRaw("slug RLIKE '^{$slug}(-[0-9]+)?$'")->count();

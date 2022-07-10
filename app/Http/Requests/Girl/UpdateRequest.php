@@ -28,7 +28,7 @@ class UpdateRequest extends FormRequest
             'link' => 'string|required',
             'info' => 'required',
             'images' => 'nullable',
-            'status' => 'string|required'
+            'status' => 'string|required',
         ];
     }
 }

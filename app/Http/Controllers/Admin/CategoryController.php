@@ -13,7 +13,7 @@ class CategoryController extends Controller
     {
         $categories = DB::table('categories')->oldest()->paginate(20);
 
-        return view('backend.categories.index',compact('categories'));
+        return view('backend.categories.index', compact('categories'));
     }
 
     public function create()
@@ -27,35 +27,35 @@ class CategoryController extends Controller
 
         Category::create($data);
 
-        return redirect(route('categories.index'))->with('success','Category Created!!!');
+        return redirect(route('categories.index'))->with('success', 'Category Created!!!');
     }
 
     public function edit(Category $category)
     {
-        return view('backend.categories.edit',compact('category'));
+        return view('backend.categories.edit', compact('category'));
     }
 
-    public function update(Request $request,Category $category)
+    public function update(Request $request, Category $category)
     {
         $data = $request->all();
 
         $category->fill($data)->save();
 
-        return redirect(route('categories.index'))->with('success','Category Updated!!!');
+        return redirect(route('categories.index'))->with('success', 'Category Updated!!!');
     }
 
     public function show($id)
     {
-        $category = DB::table('categories')->where('id',$id)->first();
-        $sub_cat = DB::table('sub_categories')->where('category_id',$id)->latest()->paginate(15);
+        $category = DB::table('categories')->where('id', $id)->first();
+        $sub_cat = DB::table('sub_categories')->where('category_id', $id)->latest()->paginate(15);
 
-        return view('backend.categories.sub_cat.show',compact('category','sub_cat'));
+        return view('backend.categories.sub_cat.show', compact('category', 'sub_cat'));
     }
 
     public function destroy(Category $category)
     {
         $category->delete();
 
-        return redirect(route('categories.index'))->with('success','Category Deleted!!!');
+        return redirect(route('categories.index'))->with('success', 'Category Deleted!!!');
     }
 }

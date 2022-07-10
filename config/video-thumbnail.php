@@ -12,7 +12,7 @@ return [
     */
 
     'binaries' => [
-        'ffmpeg'  => env('FFMPEG', '/usr/bin/ffmpeg'),
-        'ffprobe' => env('FFPROBE', '/usr/bin/ffprobe')
-    ]
+        'ffmpeg' => env('FFMPEG', '/usr/bin/ffmpeg'),
+        'ffprobe' => env('FFPROBE', '/usr/bin/ffprobe'),
+    ],
 ];

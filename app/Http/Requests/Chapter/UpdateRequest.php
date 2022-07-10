@@ -26,7 +26,7 @@ class UpdateRequest extends FormRequest
         return [
             'manga_id' => 'int|required',
             'chapter_no' => 'int|required',
-            'path' => 'mimes:pdf|nullable'
+            'path' => 'mimes:pdf|nullable',
         ];
     }
 }

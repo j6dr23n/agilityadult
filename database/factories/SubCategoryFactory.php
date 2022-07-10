@@ -20,7 +20,7 @@ class SubCategoryFactory extends Factory
         return [
             'title' => $this->faker->title(),
             'category_id' => Category::factory(),
-            'poster' => $this->faker->imageUrl(300,240)
+            'poster' => $this->faker->imageUrl(300, 240),
         ];
     }
 }

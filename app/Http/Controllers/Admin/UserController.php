@@ -16,11 +16,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        $this->authorize('viewAny',User::class);
-        
+        $this->authorize('viewAny', User::class);
+
         $users = DB::table('users')->latest()->get();
-        
-        return view('backend.users.index',compact('users'));
+
+        return view('backend.users.index', compact('users'));
     }
 
     /**
@@ -30,7 +30,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $this->authorize('create',User::class);
+        $this->authorize('create', User::class);
 
         return view('backend.users.create');
     }
@@ -43,14 +43,14 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize('create',User::class);
+        $this->authorize('create', User::class);
 
         $data = $request->all();
         $data['password'] = bcrypt($request->password);
 
         User::create($data);
 
-        return redirect()->route('users.index')->with('success','User Created!!!');
+        return redirect()->route('users.index')->with('success', 'User Created!!!');
     }
 
     /**
@@ -61,9 +61,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $this->authorize('update',$user);
+        $this->authorize('update', $user);
 
-        return view('backend.users.edit',compact('user'));
+        return view('backend.users.edit', compact('user'));
     }
 
     /**
@@ -73,18 +73,18 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,User $user)
+    public function update(Request $request, User $user)
     {
-        $this->authorize('update',$user);
+        $this->authorize('update', $user);
 
         $data = $request->all();
-        if($request->has('password')){
+        if ($request->has('password')) {
             $data['password'] = bcrypt($request->password);
         }
 
         $user->fill($data)->save();
 
-        return redirect()->route('users.index')->with('success','User Updated!!!');
+        return redirect()->route('users.index')->with('success', 'User Updated!!!');
     }
 
     /**
@@ -95,19 +95,18 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $this->authorize('delete',$user);
+        $this->authorize('delete', $user);
 
         $delete = $user->delete();
-        
+
         if ($delete) {
             return response()->json([
                 'status' => 'success',
             ]);
-        } else
-        {
+        } else {
             return response()->json([
                 'status' => 'error',
-                'message' => __("Couldn't Delete. Please Try Again!")
+                'message' => __("Couldn't Delete. Please Try Again!"),
             ], 500);
         }
     }

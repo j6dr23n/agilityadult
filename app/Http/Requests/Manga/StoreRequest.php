@@ -30,7 +30,7 @@ class StoreRequest extends FormRequest
             'info' => 'string|required',
             'poster' => 'image|required',
             'type' => 'string|required',
-            'status' => 'required'
+            'status' => 'required',
         ];
     }
 }

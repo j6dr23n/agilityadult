@@ -22,7 +22,7 @@ class GirlFactory extends Factory
             'link' => $this->faker->url(),
             'images' => $this->faker->imageUrl(),
             'info' => $this->faker->text(),
-            'status' => $this->faker->randomElement(['published','draft'])
+            'status' => $this->faker->randomElement(['published', 'draft']),
         ];
     }
 }

@@ -26,7 +26,7 @@ class StoreRequest extends FormRequest
         return [
             'manga_id' => 'int|required',
             'chapter_no' => 'int|required',
-            'path' => 'mimes:pdf|required'
+            'path' => 'mimes:pdf|required',
         ];
     }
 }

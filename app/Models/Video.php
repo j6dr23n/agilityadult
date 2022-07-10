@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use CyrildeWit\EloquentViewable\InteractsWithViews;
-use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use Illuminate\Support\Str;
 
 class Video extends Model implements Viewable
@@ -15,7 +15,7 @@ class Video extends Model implements Viewable
     protected $guarded = [];
 
     protected $casts = [
-        'poster' => 'array'
+        'poster' => 'array',
     ];
 
     public static function boot()
@@ -26,7 +26,7 @@ class Video extends Model implements Viewable
         static::creating(function ($video) {
 
             // produce a slug based on the activity title
-            $slug = Str::slug($video->title) . '-' .now()->format('Y-m-d');
+            $slug = Str::slug($video->title).'-'.now()->format('Y-m-d');
 
             // check to see if any other slugs exist that are the same & count them
             $count = static::whereRaw("slug RLIKE '^{$slug}(-[0-9]+)?$'")->count();
