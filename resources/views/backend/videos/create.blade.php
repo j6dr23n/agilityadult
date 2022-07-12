@@ -285,6 +285,7 @@
                         <li>အရင်ဆုံး video အရင်တင်ပါ</li>
                         <li>video တင်ပြီးပါက alert box လေးပေါ်လာပါလိမ့်မည်</li>
                         <li>ထိုအချိန်မှသာ title,tags,status & published ကိုရွေးပြီး submit နှိပ်ပါ</li>
+                        <li>Note - Tab 2ခုဖွင့်၍တင်မရပါ</li>
                     </ol>
                 </div>
                 <div class="modal-footer">

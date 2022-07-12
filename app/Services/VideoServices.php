@@ -43,6 +43,7 @@ class VideoServices
             ])->dispatch();
         }
         $data['poster'] = $images;
+        $data['user_id'] = auth()->id();
         $video = Video::create($data);
 
         return $video;

@@ -22,7 +22,11 @@ class VideoController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $videos = Video::latest()->get();
+            if(auth()->user()->role === 'admin'){
+                $videos = Video::latest()->get();
+            }else{
+                $videos = Video::where('user_id',auth()->id())->latest()->get();
+            }
             $videos->each(function ($videos) {
                 $videos->title = Str::limit($videos->title, 30);
                 $videos->tags = Str::limit($videos->tags, 30);

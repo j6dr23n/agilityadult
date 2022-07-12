@@ -48,7 +48,7 @@ class VideoPolicy
      */
     public function create(User $user)
     {
-        return $user->role !== 'member' ? true : false;
+        return $user->role === 'uploader' ? true : false;
     }
 
     /**
@@ -60,7 +60,7 @@ class VideoPolicy
      */
     public function update(User $user, Video $video)
     {
-        return $user->role !== 'member' ? true : false;
+        return $video->user_id === $user->id ? true : false;
     }
 
     /**
@@ -72,7 +72,7 @@ class VideoPolicy
      */
     public function delete(User $user, Video $video)
     {
-        return $user->role !== 'member' ? true : false;
+        return $video->user_id === $user->id ? true : false;
     }
 
     /**
