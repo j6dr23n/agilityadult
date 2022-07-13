@@ -36,21 +36,41 @@
                                                 <i class="fe fe-video tx-15 text-white"></i>
                                             </div>
                                         </div>
-                                        <div class="col-9 py-0">
-                                            <div class="pt-4 pb-3">
-                                                <div class="d-flex">
-                                                    <h6 class="mb-2 tx-12">Total Videos</h6>
-                                                    <span
-                                                        class="badge bg-success-transparent text-success font-weight-semibold ms-auto rounded-pill lh-maincard px-2 my-auto"></span>
-                                                </div>
-                                                <div class="pb-0 mt-0">
+                                        @if (auth()->user()->role === 'uploader')
+                                            <div class="col-9 py-0">
+                                                <div class="pt-4 pb-3">
                                                     <div class="d-flex">
-                                                        <h4 class="tx-18 font-weight-semibold mb-0">{{ $videos->count() }}
-                                                        </h4>
+                                                        <h6 class="mb-2 tx-12">This Month Uploaded Videos</h6>
+                                                        <span
+                                                            class="badge bg-success-transparent text-success font-weight-semibold ms-auto rounded-pill lh-maincard px-2 my-auto"></span>
+                                                    </div>
+                                                    <div class="pb-0 mt-0">
+                                                        <div class="d-flex">
+                                                            <h4 class="tx-18 font-weight-semibold mb-0">
+                                                                {{ $videos->count() }}
+                                                            </h4>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        @else
+                                            <div class="col-9 py-0">
+                                                <div class="pt-4 pb-3">
+                                                    <div class="d-flex">
+                                                        <h6 class="mb-2 tx-12">Total Videos</h6>
+                                                        <span
+                                                            class="badge bg-success-transparent text-success font-weight-semibold ms-auto rounded-pill lh-maincard px-2 my-auto"></span>
+                                                    </div>
+                                                    <div class="pb-0 mt-0">
+                                                        <div class="d-flex">
+                                                            <h4 class="tx-18 font-weight-semibold mb-0">
+                                                                {{ $videos->count() }}
+                                                            </h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xxl-6">
@@ -61,72 +81,102 @@
                                                 <i class="fas fa-images tx-15 text-white"></i>
                                             </div>
                                         </div>
-                                        <div class="col-9">
-                                            <div class="pt-4 pb-3">
-                                                <div class="d-flex">
-                                                    <h6 class="mb-2 tx-12">Total Photos</h6>
-                                                    <span
-                                                        class="badge bg-success-transparent text-success font-weight-semibold ms-auto rounded-pill lh-maincard px-2 my-auto"></span>
-                                                </div>
-                                                <div class="pb-0 mt-0">
+                                        @if (auth()->user()->role === 'uploader')
+                                            <div class="col-9">
+                                                <div class="pt-4 pb-3">
                                                     <div class="d-flex">
-                                                        <h4 class="tx-18 font-weight-semibold mb-0">{{ $photos->count() }}</h4>
+                                                        <h6 class="mb-2 tx-12">Today Uploaded Video</h6>
+                                                        <span
+                                                            class="badge bg-success-transparent text-success font-weight-semibold ms-auto rounded-pill lh-maincard px-2 my-auto"></span>
+                                                    </div>
+                                                    <div class="pb-0 mt-0">
+                                                        <div class="d-flex">
+                                                            <h4 class="tx-18 font-weight-semibold mb-0">
+                                                                {{ $tdy_videos->count() }}
+                                                            </h4>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xxl-6">
-                                    <div class="row border-end bd-md-e-0 bd-xs-e-0 bd-lg-e-0 bd-xl-e-0  p-3">
-                                        <div class="col-3 d-flex align-items-center justify-content-center">
-                                            <div
-                                                class="circle-icon bg-warning text-center align-self-center overflow-hidden shadow">
-                                                <i class="fas fa-users tx-15 text-white"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-9">
-                                            <div class="pt-4 pb-3">
-                                                <div class="d-flex">
-                                                    <h6 class="mb-2 tx-12">Total Users</h6>
-                                                    <span
-                                                        class="badge bg-danger-transparent text-danger font-weight-semibold ms-auto rounded-pill lh-maincard px-2 my-auto"></span>
-                                                </div>
-                                                <div class="pb-0 mt-0">
+                                        @else
+                                            <div class="col-9">
+                                                <div class="pt-4 pb-3">
                                                     <div class="d-flex">
-                                                        <h4 class="tx-18 font-weight-semibold mb-0">{{ $users->count() }}
-                                                        </h4>
+                                                        <h6 class="mb-2 tx-12">Total Photos</h6>
+                                                        <span
+                                                            class="badge bg-success-transparent text-success font-weight-semibold ms-auto rounded-pill lh-maincard px-2 my-auto"></span>
+                                                    </div>
+                                                    <div class="pb-0 mt-0">
+                                                        <div class="d-flex">
+                                                            <h4 class="tx-18 font-weight-semibold mb-0">
+                                                                {{ $photos->count() }}
+                                                            </h4>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        @endif
                                     </div>
                                 </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xxl-6">
-                                    <div class="row  p-3">
-                                        <div class="col-3 d-flex align-items-center justify-content-center">
-                                            <div
-                                                class="circle-icon bg-info text-center align-self-center overflow-hidden shadow">
-                                                <i class="fas fa-dollar-sign tx-15 text-white"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-9">
-                                            <div class="pt-4 pb-3">
-                                                <div class="d-flex	">
-                                                    <h6 class="mb-2 tx-12">Total Earnings</h6>
-                                                    <span
-                                                        class="badge bg-success-transparent text-success font-weight-semibold ms-auto rounded-pill lh-maincard px-2 my-auto"></span>
+                                @if (auth()->user()->role === 'admin')
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xxl-6">
+                                        <div class="row border-end bd-md-e-0 bd-xs-e-0 bd-lg-e-0 bd-xl-e-0  p-3">
+                                            <div class="col-3 d-flex align-items-center justify-content-center">
+                                                <div
+                                                    class="circle-icon bg-warning text-center align-self-center overflow-hidden shadow">
+                                                    <i class="fas fa-users tx-15 text-white"></i>
                                                 </div>
-                                                <div class="pb-0 mt-0">
+                                            </div>
+
+                                            <div class="col-9">
+                                                <div class="pt-4 pb-3">
                                                     <div class="d-flex">
-                                                        <h4 class="tx-18 font-weight-semibold mb-0">
-                                                            {{ number_format($members->count() * 4000) }} mmk</h4>
+                                                        <h6 class="mb-2 tx-12">Total Users</h6>
+                                                        <span
+                                                            class="badge bg-danger-transparent text-danger font-weight-semibold ms-auto rounded-pill lh-maincard px-2 my-auto"></span>
+                                                    </div>
+                                                    <div class="pb-0 mt-0">
+                                                        <div class="d-flex">
+                                                            <h4 class="tx-18 font-weight-semibold mb-0">
+                                                                {{ $users->count() }}
+                                                            </h4>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
-                                </div>
+                                @endif
+                                @if (auth()->user()->role === 'admin')
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xxl-6">
+                                        <div class="row  p-3">
+                                            <div class="col-3 d-flex align-items-center justify-content-center">
+                                                <div
+                                                    class="circle-icon bg-info text-center align-self-center overflow-hidden shadow">
+                                                    <i class="fas fa-dollar-sign tx-15 text-white"></i>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-9">
+                                                <div class="pt-4 pb-3">
+                                                    <div class="d-flex	">
+                                                        <h6 class="mb-2 tx-12">Total Earnings</h6>
+                                                        <span
+                                                            class="badge bg-success-transparent text-success font-weight-semibold ms-auto rounded-pill lh-maincard px-2 my-auto"></span>
+                                                    </div>
+                                                    <div class="pb-0 mt-0">
+                                                        <div class="d-flex">
+                                                            <h4 class="tx-18 font-weight-semibold mb-0">
+                                                                {{ number_format($members->count() * 4000) }} mmk</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -203,8 +253,8 @@
                                             <tr>
                                                 <td class="text-center">
                                                     {{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</td>
-                                                <td><img src="{{ '/storage/videos/images/' . $image[0] }}" alt=""
-                                                        width="100%" height="70px"></td>
+                                                <td><img src="{{ '/storage/videos/images/' . $image[0] }}"
+                                                        alt="" width="100%" height="70px"></td>
                                                 <td>{{ $item->title }}</td>
                                                 <td>{{ Str::limit($item->tags, 40) }}</td>
                                                 <td>{{ Str::limit($item->embed_link, 40) }}</td>

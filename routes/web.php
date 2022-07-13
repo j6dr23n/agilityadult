@@ -55,6 +55,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('manga', MangaController::class);
         Route::resource('girls', GirlController::class);
         Route::resource('chapter', ChapterController::class)->except('create');
+        Route::get('working-days',[AdminPageController::class,'working_days'])->name('pages.working-day');
         Route::post('/upload-advanced', [VideoController::class, 'uploadLargeFiles'])->name('files.upload.large');
         Route::get('/chapter/{id}/create', [ChapterController::class, 'create'])->name('chapter.create');
         Route::get('/sub-categories/{id}/create', [SubCategoryController::class, 'create'])->name('sub-categories.create');
