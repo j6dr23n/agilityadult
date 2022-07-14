@@ -43,7 +43,6 @@ class UploadVideoToB2 implements ShouldQueue
 
     public function failed(Exception $exception)
     {
-        Storage::disk('local')->delete('/videos/tempo/'.$this->title);
         Log::error($exception);
     }
 

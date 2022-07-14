@@ -14,10 +14,9 @@ class PageController extends Controller
     public function index(Request $request)
     {
         $title = null;
+        $videos = Video::where('status', 'published')->where('type','free')->latest()->get();
         if (Auth::check()) {
             $videos = Video::where('status', 'published')->latest()->get();
-        } else {
-            $videos = Video::where('status', 'published')->latest()->limit(40)->get();
         }
         $videos = $videos->paginate(20);
 
@@ -73,6 +72,7 @@ class PageController extends Controller
         $title = $name;
         $videos = Video::where('title', 'like', '%'.$name.'%')
         ->orWhere('tags', 'like', '%'.$name.'%')
+        ->where('status', 'published')
         ->latest()->paginate(20);
 
         return view('frontend.index', compact('videos', 'title'));
@@ -92,6 +92,7 @@ class PageController extends Controller
         $title = $data['search'];
         $videos = Video::where('title', 'like', '%'.$data['search'].'%')
         ->orWhere('tags', 'like', '%'.$data['search'].'%')
+        ->where('status', 'published')
         ->latest()->paginate(20);
 
         return view('frontend.index', compact('videos', 'title'));

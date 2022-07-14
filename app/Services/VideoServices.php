@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Jobs\CreateVideoThumbnailJob;
 use App\Jobs\SendTeleBot;
 use App\Jobs\UploadVideoToB2;
+use App\Jobs\uploadVideoToDD;
 use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Bus;
@@ -17,6 +18,8 @@ class VideoServices
 {
     public function store($data): Video
     {
+        $data['user_id'] = auth()->id();
+        $name = str_replace(' ','',$data['title']);
         if (array_key_exists('poster', $data)) {
             foreach ($data['poster'] as $item) {
                 $fileName = time().'-'.$item->getClientOriginalName();
@@ -26,12 +29,22 @@ class VideoServices
             }
         }
 
-        if (array_key_exists('link', $data) === false) {
-            $name = str_replace(' ', '', $data['title']);
+        if ($data['type'] === 'free') {
+            $videoName = Session::get('fileName-'.auth()->id());
+            Session::forget('fileName-'.auth()->id());
+            $data['poster'] = [asset('storage/video-processing.jpg')];
+            $video = Video::create($data);
+
+            dispatch(new uploadVideoToDD($videoName,$video->id));
+
+            return $video;
+        }
+
+        if ($data['type'] === 'premium') {
             $videoFileName = Session::get('fileName-'.auth()->id());
             Session::forget('fileName-'.auth()->id());
 
-            $data['embed_link'] = 'https://videos.agilityadult.com/file/agadult-v2/'.date('d-m-Y').'/'.$videoFileName;
+            $data['embed_link'] && $data['link'] = 'https://videos.agilityadult.com/file/agadult-v2/'.date('d-m-Y').'/'.$videoFileName;
             if (array_key_exists('poster', $data) === false) {
                 $images[] = $name.'.jpg';
             }
@@ -41,13 +54,14 @@ class VideoServices
                 new CreateVideoThumbnailJob($data['embed_link'], $name),
                 new SendTeleBot($name),
             ])->dispatch();
-        }
-        $data['poster'] = $images;
-        $data['user_id'] = auth()->id();
-        $video = Video::create($data);
 
-        return $video;
+            $data['poster'] = $images;
+            $video = Video::create($data);
+
+            return $video;
+        }
     }
+
 
     public function update($data, $video): bool
     {

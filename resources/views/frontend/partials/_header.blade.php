@@ -42,6 +42,28 @@
                                 <div class="hs-mega-menu w-100" aria-labelledby="homeMegaMenu">
                                 </div>
                             </li>
+
+                            @if (Auth::check() !== true)
+                                <li class="hs-has-mega-menu navbar-nav-item">
+                                    <a id="homeMegaMenu"
+                                        class="hs-mega-menu-invoker py-xl-3d line-height-lg nav-link font-primary"
+                                        href="{{ route('pages.plan') }}" aria-haspopup="true"
+                                        aria-expanded="false">VIP</a>
+
+                                    <div class="hs-mega-menu w-100" aria-labelledby="homeMegaMenu">
+                                    </div>
+                                </li>
+
+                                <li class="hs-has-mega-menu navbar-nav-item">
+                                    <a id="homeMegaMenu"
+                                        class="hs-mega-menu-invoker py-xl-3d line-height-lg nav-link font-primary"
+                                        data-toggle="modal" data-target="#loginModal">Login</a>
+
+                                    <div class="hs-mega-menu w-100" aria-labelledby="homeMegaMenu">
+                                    </div>
+                                </li>
+                            @endif
+
                             <li class="hs-has-mega-menu navbar-nav-item">
                                 <a id="homeMegaMenu"
                                     class="hs-mega-menu-invoker py-xl-3d line-height-lg nav-link font-secondary"
@@ -60,27 +82,6 @@
                                 <div class="hs-mega-menu w-100" aria-labelledby="homeMegaMenu">
                                 </div>
                             </li>
-
-                            @if (Auth::check() !== true)
-                                <li class="hs-has-mega-menu navbar-nav-item">
-                                    <a id="homeMegaMenu"
-                                        class="hs-mega-menu-invoker py-xl-3d line-height-lg nav-link font-primary"
-                                        href="{{ route('pages.plan') }}" aria-haspopup="true"
-                                        aria-expanded="false">Plans</a>
-
-                                    <div class="hs-mega-menu w-100" aria-labelledby="homeMegaMenu">
-                                    </div>
-                                </li>
-
-                                <li class="hs-has-mega-menu navbar-nav-item">
-                                    <a id="homeMegaMenu"
-                                        class="hs-mega-menu-invoker py-xl-3d line-height-lg nav-link font-primary"
-                                        data-toggle="modal" data-target="#loginModal">Login</a>
-
-                                    <div class="hs-mega-menu w-100" aria-labelledby="homeMegaMenu">
-                                    </div>
-                                </li>
-                            @endif
 
                             <li class="hs-has-mega-menu navbar-nav-item">
                                 <a id="homeMegaMenu"

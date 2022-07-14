@@ -31,9 +31,15 @@
                                                                 <a class="d-block position-relative stretched-link"
                                                                     href="{{ route('videos.show', $item->slug) }}">
                                                                     <x-guest.notify-badge :item="$item" />
-                                                                    <img class="img-fluid poster-image"
-                                                                        src="{{ '/storage/videos/images/' . $item->poster[0] }}"
-                                                                        alt="Image-Description">
+                                                                    @if ($item->type === 'premium')
+                                                                        <img class="img-fluid poster-image"
+                                                                            src="{{ '/storage/videos/images/' . $item->poster[0] }}"
+                                                                            alt="Image-Description">
+                                                                    @else
+                                                                        <img class="img-fluid poster-image"
+                                                                            src="{{ $item->poster[0] }}"
+                                                                            alt="Image-Description">
+                                                                    @endif
                                                                     <x-guest.image-overlay :item="$item" />
                                                                 </a>
                                                             </div>

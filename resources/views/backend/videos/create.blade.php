@@ -138,7 +138,7 @@
                                                         </div>
                                                         <div class="card-footer ">
                                                             <button type="submit"
-                                                                class="btn btn-primary float-end">Submit</button>
+                                                                class="btn btn-primary float-end vd-btn">Submit</button>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -342,7 +342,8 @@
         });
 
         resumable.on('fileSuccess', function(file, response) { // trigger when file upload complete
-            alert('video upload successed');
+            alert("Video upload Successfully");
+            $('.vd-btn').prop('disabled', false);
         });
 
         resumable.on('fileError', function(file, response) { // trigger when there is any error
@@ -356,12 +357,14 @@
             progress.find('.progress-bar').css('width', '0%');
             progress.find('.progress-bar').html('0%');
             progress.find('.progress-bar').removeClass('bg-success');
+            $('.vd-btn').prop('disabled', true);
             progress.show();
         }
 
         function updateProgress(value) {
-            progress.find('.progress-bar').css('width', `${value}%`)
-            progress.find('.progress-bar').html(`${value}%`)
+            progress.find('.progress-bar').css('width', `${value}%`);
+            progress.find('.progress-bar').html(`${value}%`);
+            $('.vd-btn').prop('disabled', true);
         }
 
         function hideProgress() {

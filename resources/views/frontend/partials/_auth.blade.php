@@ -16,7 +16,7 @@
 
                     <div id="login">
                         <div class="text-center mb-7">
-                            <h3 class="mb-0">Sign In to Agility Adult-</h3>
+                            <h3 class="mb-0">VIP Customer Login.</h3>
                             <p>Login to watch all videos and leaks.</p>
                         </div>
 

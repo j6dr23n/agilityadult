@@ -3,6 +3,18 @@
 @section('extra-css')
     <link href="https://vjs.zencdn.net/7.19.2/video-js.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+    <style>
+        /* Then style the iframe to fit in the container div with full height and width */
+        .responsive-iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>  
 @endsection
 @section('content')
     <main>
@@ -21,7 +33,7 @@
                 @endforeach
                 <div class="row mb-4">
                     <div class="col-md-8 col-xl-9 mb-4">
-                        <div class="position-relative min-h-270rem mb-2d mr-xl-3">
+                        <div class="position-relative min-h-270rem mb-2d mr-xl-3" style="border:2px solid white">
                             @if (is_array($video->poster) && count($video->poster) > 1)
                                 <!-- Swiper -->
                                 <h4 class="text-center text-white font-bold">Images</h4>
@@ -41,7 +53,7 @@
                                     <div class="swiper-pagination"></div>
                                 </div>
                             @endif
-                            @if ($video->embed_link !== null)
+                            @if ($video->embed_link !== null && $video->type === 'premium')
                                 <video id="my-video" class="video-js vjs-16-9 vjs-big-play-centered" controls
                                     preload="auto" poster="{{ '/storage/videos/images/' . $video->poster[0] }}"
                                     data-setup='{"fluid": true}'>
@@ -54,11 +66,15 @@
                                     </p>
                                 </video>
                             @endif
+                            @if ($video->embed_link !== null && $video->type === 'free')
+                                <iframe class="responsive-iframe" src="{{ $video->embed_link }}" frameborder="1"
+                                    allowFullScreen></iframe>
+                            @endif
                         </div>
                         <div class="mr-xl-3">
                             <div class="mb-2">
                                 <h5 class="font-size-21 font-weight-medium text-white">{{ $video->title }}
-                                    @if (auth()->user()->role !== 'member')
+                                    @if (Auth::check() && auth()->user()->role !== 'member')
                                         <a href="{{ route('videos.edit', $video->id) }}"
                                             class="btn btn-xs btn-warning bt-pill btn-icon">
                                             <i class="fas fa-edit"></i>

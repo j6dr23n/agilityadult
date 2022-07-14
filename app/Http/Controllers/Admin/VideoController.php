@@ -36,7 +36,11 @@ class VideoController extends Controller
 
             return datatables()->of($videos)
                 ->addColumn('poster', function ($data) {
-                    $button = '<img src="'.asset('storage/videos/images/'.$data->poster[0]).'" style="max-width:100%;height:100%;">';
+                    if($data->type === 'premium'){
+                        $button = '<img src="'.asset('storage/videos/images/'.$data->poster[0]).'" style="max-width:100%;height:100%;">';
+                    }else{
+                        $button = '<img src="'.$data->poster[0].'" style="max-width:100%;height:100%;">';
+                    }
 
                     return $button;
                 })
@@ -101,7 +105,7 @@ class VideoController extends Controller
         views($video)->cooldown($minutes = 3)->record();
 
         if (Auth::check() === false && $video->type === 'premium') {
-            return redirect(route('pages.index'))->with('error', 'Premium user only!!!');
+            return redirect(route('pages.index'))->with('error', 'VIP Customer Only!!!');
         }
 
         $videos = Video::inRandomOrder()->take(4)->get();
