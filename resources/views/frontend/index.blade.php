@@ -31,13 +31,13 @@
                                                                 <a class="d-block position-relative stretched-link"
                                                                     href="{{ route('videos.show', $item->slug) }}">
                                                                     <x-guest.notify-badge :item="$item" />
-                                                                    @if ($item->type === 'premium')
+                                                                    @if (str_contains($item->poster[0],'dood'))
                                                                         <img class="img-fluid poster-image"
-                                                                            src="{{ '/storage/videos/images/' . $item->poster[0] }}"
+                                                                            src="{{ $item->poster[0] }}"
                                                                             alt="Image-Description">
                                                                     @else
                                                                         <img class="img-fluid poster-image"
-                                                                            src="{{ $item->poster[0] }}"
+                                                                            src="{{ '/storage/videos/images/' . $item->poster[0] }}"
                                                                             alt="Image-Description">
                                                                     @endif
                                                                     <x-guest.image-overlay :item="$item" />

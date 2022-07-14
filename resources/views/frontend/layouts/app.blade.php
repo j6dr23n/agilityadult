@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<!-- Mirrored from demo2.madrasthemes.com/vodi-html/html-demo/home/home-v10.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 04 Jun 2022 10:25:36 GMT -->
-
 <head>
-
     <title>Agility Adult-</title>
 
     <meta charset="utf-8">
@@ -37,8 +33,7 @@
     <script src="https://kit.fontawesome.com/4835d1ece4.js" crossorigin="anonymous"></script>
     @if (Auth::check() === false)
         <!-- Adsterra popunder ads start-->
-        <script type='text/javascript' src='//pl17468322.profitablecpmgate.com/9f/b4/f4/9fb4f48cd15b31fac4a8e21b29299738.js'>
-        </script>
+        <script type='text/javascript' src='//silldisappoint.com/9f/b4/f4/9fb4f48cd15b31fac4a8e21b29299738.js'></script>
         <!-- Adsterra popunder ads end-->
     @endif
     @yield('extra-css')
