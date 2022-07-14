@@ -103,14 +103,14 @@
                                 @endforeach
                             </div>
                             <hr>
-                            @if ($video->embed_link !== null)
+                            @if (Auth::check() && $video->embed_link !== null)
                                 <a class="btn btn-info btn-block" href="{{ $video->link }}">
                                     <span class="btn-label">
                                         <i class="fa-solid fa-download"></i>
                                     </span>
                                     Download Link
                                 </a>
-                            @else
+                            @elseif(Auth::check() && $video->embed_link === null)
                                 <a class="btn btn-info btn-block" href="{{ $video->link }}">
                                     <span class="btn-label">
                                         <i class="fa-solid fa-folder-open"></i>

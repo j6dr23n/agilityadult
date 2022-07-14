@@ -88,7 +88,7 @@
                         </table>
                     </div>
                     <div class="text-center space-1">
-                        <a href=""
+                        <a href="https://t.me/jionsix"
                             class="btn btn-primary btn-pill text-lh-1dot25 py-3d font-secondary font-weight-medium font-size-18-r px-md-7d px-6">
                             အကောင့်ဝယ်ယူရန်
 

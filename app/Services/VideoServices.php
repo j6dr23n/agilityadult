@@ -10,6 +10,7 @@ use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Pion\Laravel\ChunkUpload\Handler\HandlerFactory;
 use Pion\Laravel\ChunkUpload\Receiver\FileReceiver;
@@ -19,7 +20,7 @@ class VideoServices
     public function store($data): Video
     {
         $data['user_id'] = auth()->id();
-        $name = str_replace(' ','',$data['title']);
+        $name = Str::slug($data['title']);
         if (array_key_exists('poster', $data)) {
             foreach ($data['poster'] as $item) {
                 $fileName = time().'-'.$item->getClientOriginalName();
@@ -47,17 +48,18 @@ class VideoServices
             $data['embed_link'] = 'https://videos.agilityadult.com/file/agadult-v2/'.date('d-m-Y').'/'.$videoFileName;
             $data['link'] = 'https://videos.agilityadult.com/file/agadult-v2/'.date('d-m-Y').'/'.$videoFileName;
             if (array_key_exists('poster', $data) === false) {
-                $images[] = $name.'.jpg';
+                $images = [asset('storage/video-processing.jpg')];
             }
-            Bus::chain([
-                // new AddWatermarkToVideo($videoFileName),
-                new UploadVideoToB2($videoFileName),
-                new CreateVideoThumbnailJob($data['embed_link'], $name),
-                new SendTeleBot($name),
-            ])->dispatch();
 
             $data['poster'] = $images;
             $video = Video::create($data);
+
+            Bus::chain([
+                // new AddWatermarkToVideo($videoFileName),
+                new UploadVideoToB2($videoFileName),
+                new CreateVideoThumbnailJob($data['embed_link'], $name,$video->id),
+                new SendTeleBot($name),
+            ])->dispatch();
 
             return $video;
         }

@@ -35,6 +35,10 @@
                                                                         <img class="img-fluid poster-image"
                                                                             src="{{ $item->poster[0] }}"
                                                                             alt="Image-Description">
+                                                                    @elseif(str_contains($item->poster[0],'processing'))
+                                                                        <img class="img-fluid poster-image"
+                                                                            src="{{ $item->poster[0] }}"
+                                                                            alt="Image-Description">
                                                                     @else
                                                                         <img class="img-fluid poster-image"
                                                                             src="{{ '/storage/videos/images/' . $item->poster[0] }}"
