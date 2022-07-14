@@ -44,7 +44,8 @@ class VideoServices
             $videoFileName = Session::get('fileName-'.auth()->id());
             Session::forget('fileName-'.auth()->id());
 
-            $data['embed_link'] && $data['link'] = 'https://videos.agilityadult.com/file/agadult-v2/'.date('d-m-Y').'/'.$videoFileName;
+            $data['embed_link'] = 'https://videos.agilityadult.com/file/agadult-v2/'.date('d-m-Y').'/'.$videoFileName;
+            $data['link'] = 'https://videos.agilityadult.com/file/agadult-v2/'.date('d-m-Y').'/'.$videoFileName;
             if (array_key_exists('poster', $data) === false) {
                 $images[] = $name.'.jpg';
             }
