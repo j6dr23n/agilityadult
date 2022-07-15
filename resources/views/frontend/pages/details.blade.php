@@ -21,7 +21,7 @@
                 @endforeach
                 <div class="row mb-4">
                     <div class="col-md-8 col-xl-9 mb-4">
-                        <div class="position-relative min-h-270rem mb-2d mr-xl-3" style="border:2px solid white">
+                        <div class="position-relative mb-2d mr-xl-3" style="border:2px solid white;">
                             @if (is_array($video->poster) && count($video->poster) > 1)
                                 <!-- Swiper -->
                                 <h4 class="text-center text-white font-bold">Images</h4>

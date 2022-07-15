@@ -42,8 +42,8 @@
                                                     @php
                                                         $item->views_count = views($item)->count();
                                                     @endphp
-                                                    <div class="col-md-3 px-2">
-                                                        <div class="product mb-4">
+                                                    <div class="col-md-3 px-2 text-center">
+                                                        <div class="product mb-4 p-2" style="border:3px solid black;">
                                                             <div class="product-image mb-2" style="height: 270px;">
                                                                 <a class="d-block position-relative stretched-link"
                                                                     href="{{ route('videos.show', $item->slug) }}">
@@ -78,7 +78,7 @@
                                                     </div>
                                                     @if($loop->remaining === 15 && Auth::check() === false)
                                                         <div class="col-md-3 px-2">
-                                                            <div class="product mb-4">
+                                                            <div class="product mb-4" style="border:1px solid white">
                                                                 <!-- adsterra ads native start -->
                                                                 <script type="text/javascript">
                                                                     atOptions = {
@@ -96,7 +96,7 @@
                                                     @endif
                                                     @if($loop->remaining === 10 && Auth::check() === false)
                                                         <div class="col-md-3 px-2">
-                                                            <div class="product mb-4">
+                                                            <div class="product mb-4" style="border:1px solid white">
                                                                 <!-- adsterra ads native start -->
                                                                 <script type="text/javascript">
                                                                     atOptions = {
@@ -114,7 +114,7 @@
                                                     @endif
                                                     @if($loop->remaining === 5 && Auth::check() === false)
                                                         <div class="col-md-3 px-2">
-                                                            <div class="product mb-4">
+                                                            <div class="product mb-4" style="border:1px solid white">
                                                                 <!-- adsterra ads native start -->
                                                                 <script type="text/javascript">
                                                                     atOptions = {
@@ -132,7 +132,7 @@
                                                     @endif
                                                     @if($loop->remaining === 0 && Auth::check() === false)
                                                         <div class="col-md-3 px-2">
-                                                            <div class="product mb-4">
+                                                            <div class="product mb-4" style="border:1px solid white">
                                                                 <!-- adsterra ads native start -->
                                                                 <script type="text/javascript">
                                                                     atOptions = {

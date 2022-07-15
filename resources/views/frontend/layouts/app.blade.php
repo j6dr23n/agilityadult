@@ -27,25 +27,15 @@
 
     <!-- toastr css -->
     <link rel="stylesheet" type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-        
+        href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"> 
     <!-- font awesome kit code -->
     <script src="https://kit.fontawesome.com/4835d1ece4.js" crossorigin="anonymous"></script>
-    @if (Auth::check() === false)
-        <!-- Adsterra popunder ads start-->
-        <script type='text/javascript' src='//silldisappoint.com/9f/b4/f4/9fb4f48cd15b31fac4a8e21b29299738.js'></script>
-        <!-- Adsterra popunder ads end-->
-    @endif
     @yield('extra-css')
 
 </head>
 
 <body>
     @if (Auth::check() === false)
-        <!-- JuicyAds PopUnders v3 Start -->
-        <script type="text/javascript"
-            src="https://js.juicyads.com/jp.php?c=34c41313s264u4q2w264438434&u=http%3A%2F%2Fwww.juicyads.rocks"></script>
-        <!-- JuicyAds PopUnders v3 End -->
         <!-- Adsterra social bar ads start -->
         <script type='text/javascript' src='//pl17468342.profitablecpmgate.com/82/97/33/8297335b81e6b59ecc0594d1d33e0e68.js'></script>
         <!-- Adsterra social bar ads end -->
