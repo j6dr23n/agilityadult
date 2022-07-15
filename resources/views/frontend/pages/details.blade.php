@@ -2,19 +2,7 @@
 
 @section('extra-css')
     <link href="https://vjs.zencdn.net/7.19.2/video-js.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
-    <style>
-        /* Then style the iframe to fit in the container div with full height and width */
-        .responsive-iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-        }
-    </style>  
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" /> 
 @endsection
 @section('content')
     <main>
@@ -67,8 +55,9 @@
                                 </video>
                             @endif
                             @if ($video->embed_link !== null && $video->type === 'free')
-                                <iframe class="responsive-iframe" src="{{ $video->embed_link }}" frameborder="1"
-                                    allowFullScreen></iframe>
+                                <iframe width="100%" height="480" src="{{ $video->embed_link }}" scrolling="no" frameborder="1" allowfullscreen="true"></iframe>
+                                <!-- <iframe width="600" height="480" src="{{ $video->embed_link }}" frameborder="1"
+                                    allowFullScreen></iframe> -->
                             @endif
                         </div>
                         <div class="mr-xl-3">
@@ -117,6 +106,21 @@
                                     </span>
                                     Folder Link
                                 </a>
+                            @elseif(Auth::check() === false) 
+                                <h5 class="font-size-19 font-weight-medium text-white text-center mb-2">Advertisments
+                                </h5>
+                                <!-- adsterra ads native start -->
+                                <script type="text/javascript">
+                                    atOptions = {
+                                        'key' : 'ce6eb5a7d8a9e4cd6486f5b6a97f4cef',
+                                        'format' : 'iframe',
+                                        'height' : 250,
+                                        'width' : 300,
+                                        'params' : {}
+                                    };
+                                    document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://silldisappoint.com/ce6eb5a7d8a9e4cd6486f5b6a97f4cef/invoke.js"></scr' + 'ipt>');
+                                </script>
+                                <!-- adsterra ads native end -->
                             @endif
                             <hr>
                             <h5 class="text-center text-white font-bold">Report For Content Remove</h5>
@@ -167,6 +171,20 @@
                                     </div>
                                 </div>
                             @endforeach
+                            @if(Auth::check() === false) 
+                            <!-- adsterra ads native start -->
+                            <script type="text/javascript">
+                                atOptions = {
+                                    'key' : 'ce6eb5a7d8a9e4cd6486f5b6a97f4cef',
+                                    'format' : 'iframe',
+                                    'height' : 250,
+                                    'width' : 300,
+                                    'params' : {}
+                                };
+                                document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://silldisappoint.com/ce6eb5a7d8a9e4cd6486f5b6a97f4cef/invoke.js"></scr' + 'ipt>');
+                            </script>
+                            <!-- adsterra ads native end -->
+                        @endif
                         </div>
                     </div>
                 </div>

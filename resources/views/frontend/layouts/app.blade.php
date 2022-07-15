@@ -37,6 +37,7 @@
         <!-- Adsterra popunder ads end-->
     @endif
     @yield('extra-css')
+
 </head>
 
 <body>
@@ -52,13 +53,25 @@
 
     @include('frontend.partials._header')
 
+    @if(Auth::check() == false)
+        <!-- JuicyAds v3.0 -->
+        <script type="text/javascript" data-cfasync="false" async src="https://poweredby.jads.co/js/jads.js"></script>
+        <ins id="988186" data-width="100%" data-height="90"></ins>
+        <script type="text/javascript" data-cfasync="false" async>(adsbyjuicy = window.adsbyjuicy || []).push({'adzone':988186});</script>
+        <!--JuicyAds END-->
+    @endif
 
     @yield('content')
 
-
+    @if(Auth::check() == false)
+        <!-- JuicyAds v3.0 -->
+        <script type="text/javascript" data-cfasync="false" async src="https://poweredby.jads.co/js/jads.js"></script>
+        <ins id="988186" data-width="100%" data-height="90"></ins>
+        <script type="text/javascript" data-cfasync="false" async>(adsbyjuicy = window.adsbyjuicy || []).push({'adzone':988186});</script>
+        <!--JuicyAds END-->
+    @endif
+    
     @include('frontend.partials._footer')
-
-
 
     @include('frontend.partials._auth')
 
@@ -106,8 +119,40 @@
     <script src="{{ asset('frontend/assets/js/hs.slick-carousel.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/hs.fancybox.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/hs.select2.js') }}"></script>
-
     @include('backend.partials._toastr-script')
+    
+    <script>
+    checkAdblock();
+    
+    async function checkAdblock() {
+        let isBlocked = await this.hasAdblockByScript();
+        if (isBlocked) {
+            $('.product').hide();
+            $('.adblock').show();
+        }
+    }
+
+    async function hasAdblockByScript() {
+        let status = false;
+        let url = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
+        const config = {
+            method: "HEAD",
+            mode: "no-cors",
+        };
+        let request = new Request(url, config);
+        try {
+            let a = await fetch(request);
+
+            status = false;
+        } catch (error) {
+            status = true;
+            return status;
+        }
+
+        return status;
+    }
+    </script>
+
     <script>
         $(document).on('ready', function () {
             // initialization of header
