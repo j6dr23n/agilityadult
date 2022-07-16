@@ -34,9 +34,16 @@ class VideoServices
             $videoName = Session::get('fileName-'.auth()->id());
             Session::forget('fileName-'.auth()->id());
             $data['poster'] = [asset('storage/video-processing.jpg')];
+            $data['link'] = 'https://videos.agilityadult.com/file/agadult-v2/'.date('d-m-Y').'/'.$videoName;
             $video = Video::create($data);
 
             dispatch(new uploadVideoToDD($videoName,$video->id));
+            Bus::chain([
+                // new AddWatermarkToVideo($videoFileName),
+                new UploadVideoToB2($videoName),
+                new CreateVideoThumbnailJob($data['link'], $name,$video->id),
+                new SendTeleBot($data['title'],$name,$video->slug),
+            ])->dispatch();
 
             return $video;
         }
@@ -58,7 +65,7 @@ class VideoServices
                 // new AddWatermarkToVideo($videoFileName),
                 new UploadVideoToB2($videoFileName),
                 new CreateVideoThumbnailJob($data['embed_link'], $name,$video->id),
-                new SendTeleBot($name),
+                new SendTeleBot($data['title'],$name,$video->slug),
             ])->dispatch();
 
             return $video;

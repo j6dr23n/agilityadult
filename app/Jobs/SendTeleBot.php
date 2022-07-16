@@ -18,14 +18,20 @@ class SendTeleBot implements ShouldQueue
 
     public $title;
 
+    public $name;
+
+    public $slug;
+
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($title)
+    public function __construct($title,$name,$slug)
     {
         $this->title = $title;
+        $this->name = $name;
+        $this->slug = $slug;
     }
 
     /**
@@ -38,8 +44,10 @@ class SendTeleBot implements ShouldQueue
         $path = env('APP_URL').'storage/videos/images/';
         Telegram::sendPhoto([
             'chat_id' => env('TELEGRAM_CHAT_ID', ''),
-            'photo' => InputFile::createFromContents(\file_get_contents($path.$this->title.'.jpg'), $this->title.'.jpg'),
-            'caption' => 'New video has been uploaded!!!',
+            'photo' => InputFile::createFromContents(\file_get_contents($path.$this->name.'.jpg'), $this->name.'.jpg'),
+            'caption' => $this->title.'
+
+Watch - '.env('APP_URL').'view/'.$this->slug,
         ]);
     }
 

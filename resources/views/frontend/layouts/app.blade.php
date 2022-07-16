@@ -35,11 +35,6 @@
 </head>
 
 <body>
-    @if (Auth::check() === false)
-        <!-- Adsterra social bar ads start -->
-        <script type='text/javascript' src='//pl17468342.profitablecpmgate.com/82/97/33/8297335b81e6b59ecc0594d1d33e0e68.js'></script>
-        <!-- Adsterra social bar ads end -->
-    @endif
 
     @include('frontend.partials._header')
 

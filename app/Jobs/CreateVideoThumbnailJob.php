@@ -63,8 +63,10 @@ class CreateVideoThumbnailJob implements ShouldQueue
         );
 
         $video = Video::find($this->vid);
-        $video->poster = [$this->title.'.jpg'];
-        $video->save();
+        if($video->type !== 'free'){
+            $video->poster = [$this->title.'.jpg'];
+            $video->save();
+        }
 
         Log::info($video);
     }

@@ -2,7 +2,7 @@
 
 @section('extra-css')
     <link href="https://vjs.zencdn.net/7.19.2/video-js.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" /> 
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
 @endsection
 @section('content')
     <main>
@@ -41,6 +41,7 @@
                                     <div class="swiper-pagination"></div>
                                 </div>
                             @endif
+
                             @if ($video->embed_link !== null && $video->type === 'premium')
                                 <video id="my-video" class="video-js vjs-16-9 vjs-big-play-centered" controls
                                     preload="auto" poster="{{ '/storage/videos/images/' . $video->poster[0] }}"
@@ -54,10 +55,23 @@
                                     </p>
                                 </video>
                             @endif
-                            @if ($video->embed_link !== null && $video->type === 'free')
-                                <iframe width="100%" height="480" src="{{ $video->embed_link }}" scrolling="no" frameborder="1" allowfullscreen="true"></iframe>
-                                <!-- <iframe width="600" height="480" src="{{ $video->embed_link }}" frameborder="1"
-                                    allowFullScreen></iframe> -->
+
+                            
+                            @if($video->type === 'free' && Auth::check())
+                                <video id="my-video" class="video-js vjs-16-9 vjs-big-play-centered" controls
+                                    preload="auto" poster="{{ $video->poster[0] }}"
+                                    data-setup='{"fluid": true}'>
+                                    <source src="{{ $video->link }}" type="video/mp4" />
+                                    <p class="vjs-no-js">
+                                        To view this video please enable JavaScript, and consider upgrading to a
+                                        web browser that
+                                        <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5
+                                            video</a>
+                                    </p>
+                                </video>
+                            @elseif ($video->embed_link !== null && $video->type === 'free')
+                                <iframe width="100%" height="480" src="{{ $video->embed_link }}" scrolling="no"
+                                    frameborder="1" allowfullscreen="true"></iframe>
                             @endif
                         </div>
                         <div class="mr-xl-3">
@@ -106,19 +120,20 @@
                                     </span>
                                     Folder Link
                                 </a>
-                            @elseif(Auth::check() === false) 
+                            @elseif(Auth::check() === false)
                                 <h5 class="font-size-19 font-weight-medium text-white text-center mb-2">Advertisments
                                 </h5>
                                 <!-- adsterra ads native start -->
                                 <script type="text/javascript">
                                     atOptions = {
-                                        'key' : 'ce6eb5a7d8a9e4cd6486f5b6a97f4cef',
-                                        'format' : 'iframe',
-                                        'height' : 250,
-                                        'width' : 300,
-                                        'params' : {}
+                                        'key': 'ce6eb5a7d8a9e4cd6486f5b6a97f4cef',
+                                        'format': 'iframe',
+                                        'height': 250,
+                                        'width': 300,
+                                        'params': {}
                                     };
-                                    document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://silldisappoint.com/ce6eb5a7d8a9e4cd6486f5b6a97f4cef/invoke.js"></scr' + 'ipt>');
+                                    document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') +
+                                        '://silldisappoint.com/ce6eb5a7d8a9e4cd6486f5b6a97f4cef/invoke.js"></scr' + 'ipt>');
                                 </script>
                                 <!-- adsterra ads native end -->
                             @endif
@@ -171,20 +186,21 @@
                                     </div>
                                 </div>
                             @endforeach
-                            @if(Auth::check() === false) 
-                            <!-- adsterra ads native start -->
-                            <script type="text/javascript">
-                                atOptions = {
-                                    'key' : 'ce6eb5a7d8a9e4cd6486f5b6a97f4cef',
-                                    'format' : 'iframe',
-                                    'height' : 250,
-                                    'width' : 300,
-                                    'params' : {}
-                                };
-                                document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://silldisappoint.com/ce6eb5a7d8a9e4cd6486f5b6a97f4cef/invoke.js"></scr' + 'ipt>');
-                            </script>
-                            <!-- adsterra ads native end -->
-                        @endif
+                            @if (Auth::check() === false)
+                                <!-- adsterra ads native start -->
+                                <script type="text/javascript">
+                                    atOptions = {
+                                        'key': 'ce6eb5a7d8a9e4cd6486f5b6a97f4cef',
+                                        'format': 'iframe',
+                                        'height': 250,
+                                        'width': 300,
+                                        'params': {}
+                                    };
+                                    document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') +
+                                        '://silldisappoint.com/ce6eb5a7d8a9e4cd6486f5b6a97f4cef/invoke.js"></scr' + 'ipt>');
+                                </script>
+                                <!-- adsterra ads native end -->
+                            @endif
                         </div>
                     </div>
                 </div>

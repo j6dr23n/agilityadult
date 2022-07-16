@@ -45,7 +45,6 @@ class uploadVideoToDD implements ShouldQueue
         $video = Video::find($this->vid);
         $video->poster = [$results['result'][0]['single_img']];
         $video->embed_link = $results['result'][0]['protected_embed'];
-        $video->link = $results['result'][0]['download_url'];
         $video->save();
 
         Log::info($video);
