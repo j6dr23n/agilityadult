@@ -10,6 +10,7 @@ use App\Services\VideoServices;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Str;
 
 class VideoController extends Controller
@@ -104,6 +105,11 @@ class VideoController extends Controller
     {
         views($video)->cooldown($minutes = 3)->record();
 
+        $download_link = null;
+        if(Auth::check() === false){
+            $download_link = Crypt::encryptString($video->link);
+        }
+
         if (Auth::check() === false && $video->type === 'premium') {
             return redirect(route('pages.index'))->with('error', 'VIP Customer Only!!!');
         }
@@ -111,7 +117,7 @@ class VideoController extends Controller
         $videos = Video::inRandomOrder()->take(4)->get();
         $totalViews = views($video)->count();
 
-        return view('frontend.pages.details', compact('video', 'videos', 'totalViews'));
+        return view('frontend.pages.details', compact('video', 'videos', 'totalViews','download_link'));
     }
 
     /**
