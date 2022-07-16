@@ -56,11 +56,10 @@
                                 </video>
                             @endif
 
-                            
-                            @if($video->type === 'free' && Auth::check())
+
+                            @if ($video->type === 'free' && Auth::check())
                                 <video id="my-video" class="video-js vjs-16-9 vjs-big-play-centered" controls
-                                    preload="auto" poster="{{ $video->poster[0] }}"
-                                    data-setup='{"fluid": true}'>
+                                    preload="auto" poster="{{ $video->poster[0] }}" data-setup='{"fluid": true}'>
                                     <source src="{{ $video->link }}" type="video/mp4" />
                                     <p class="vjs-no-js">
                                         To view this video please enable JavaScript, and consider upgrading to a
@@ -113,6 +112,17 @@
                                     </span>
                                     Download Link
                                 </a>
+                            @elseif(Auth::check() === false && $video->type === 'free')
+                                <form action="{{ route('pages.ads') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="download_link" value="{{ $download_link }}">
+                                    <button type="submit" class="btn btn-info btn-block">
+                                        <span class="btn-label">
+                                            <i class="fa-solid fa-download"></i>
+                                        </span>
+                                        Download Link
+                                    </button>
+                                </form>
                             @elseif(Auth::check() && $video->embed_link === null)
                                 <a class="btn btn-info btn-block" href="{{ $video->link }}">
                                     <span class="btn-label">
@@ -120,7 +130,9 @@
                                     </span>
                                     Folder Link
                                 </a>
-                            @elseif(Auth::check() === false)
+                            @endif
+                            @if (Auth::check() === false)
+                                <hr>
                                 <h5 class="font-size-19 font-weight-medium text-white text-center mb-2">Advertisments
                                 </h5>
                                 <!-- adsterra ads native start -->
@@ -136,16 +148,19 @@
                                         '://silldisappoint.com/ce6eb5a7d8a9e4cd6486f5b6a97f4cef/invoke.js"></scr' + 'ipt>');
                                 </script>
                                 <!-- adsterra ads native end -->
+                            @else
+                                <hr>
+                                <h5 class="text-center text-white font-bold">Report For Content Remove</h5>
+                                <a class="btn btn-danger btn-block mt-2 text-white" data-toggle="modal"
+                                    data-target="#reportForm">
+                                    <span class="btn-label">
+                                        <i class="fa-solid fa-exclamation"></i>
+                                    </span>
+                                    Report
+                                </a>
                             @endif
-                            <hr>
-                            <h5 class="text-center text-white font-bold">Report For Content Remove</h5>
-                            <a class="btn btn-danger btn-block mt-2 text-white" data-toggle="modal"
-                                data-target="#reportForm">
-                                <span class="btn-label">
-                                    <i class="fa-solid fa-exclamation"></i>
-                                </span>
-                                Report
-                            </a>
+
+
                             <nav class="js-scroll-nav">
                                 <div class="space-1 position-relative d-flex">
                                     <a class="nav-link mx-auto px-6 py-2d font-size-14 h-w-primary z-index-2 border border-gray-3900 rounded-pill bg-gray-4500"

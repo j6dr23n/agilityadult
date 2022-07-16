@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 
 class PageController extends Controller
@@ -96,5 +97,15 @@ class PageController extends Controller
         ->latest()->paginate(20);
 
         return view('frontend.index', compact('videos', 'title'));
+    }
+
+    public function ads(Request $request)
+    {
+        $request->validate([
+            'download_link' => 'string|required'
+        ]);
+        $download_link = Crypt::decryptString($request->download_link);
+        
+        return view('frontend.pages.ads-page',compact('download_link'));
     }
 }

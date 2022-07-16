@@ -39,6 +39,7 @@ Route::resource('/manga', PagesMangaController::class)->names([
 Route::get('/manga/{manga:slug}/chapter/{chapter:chapter_no}', [PagesMangaController::class, 'show_chapter'])->name('pages.chapter.show');
 
 Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('login');
+Route::post('ads',[PageController::class,'ads'])->name('pages.ads');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [PageController::class, 'profile'])->name('pages.profile');
