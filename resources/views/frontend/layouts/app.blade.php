@@ -30,6 +30,15 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"> 
     <!-- font awesome kit code -->
     <script src="https://kit.fontawesome.com/4835d1ece4.js" crossorigin="anonymous"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WM2E83Y478"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-WM2E83Y478');
+    </script>
     @yield('extra-css')
 
 </head>

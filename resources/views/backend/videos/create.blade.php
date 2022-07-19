@@ -347,6 +347,7 @@
         });
 
         resumable.on('fileError', function(file, response) { // trigger when there is any error
+            alert(response);
             console.log(response);
         });
 
