@@ -1,5 +1,25 @@
 @extends('frontend.layouts.app')
 
+@section('meta-tags')
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Best Adult Entertainment Website In Myanmar">
+    <meta name="description" content="Adult Entertainment Website">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current(); }}">
+    <meta property="og:title" content="Best Adult Entertainment Website In Myanmar">
+    <meta property="og:description" content="Best Adult Entertainment Website In Myanmar">
+    <meta property="og:image" content="{{ asset('logo/agadult.png') }}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ url()->current(); }}">
+    <meta property="twitter:title" content="Best Adult Entertainment Website In Myanmar">
+    <meta property="twitter:description" content="Best Adult Entertainment Website In Myanmar">
+    <meta property="twitter:image" content="{{ asset('logo/agadult.png') }}">
+@endsection
+
 @section('extra-css')
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/custom.css') }}">
 @endsection

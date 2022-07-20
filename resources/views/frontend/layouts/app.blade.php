@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Agility Adult-</title>
+    <title>Agility Adult - @yield('title')</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <meta name="juicyads-site-verification" content="dc4b97330a9d341f9822a7b4c1791df1">
     
+    @yield('meta-tags')
     <link rel="shortcut icon" href="{{ asset('backend/assets/img/brand/favicon.png') }}">
 
     <link

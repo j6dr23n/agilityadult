@@ -1,5 +1,26 @@
 @extends('frontend.layouts.app')
 
+@section('title',$video->title )
+@section('meta-tags')
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="{{ $video->title }}">
+    <meta name="description" content="{{ $video->title }}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current(); }}">
+    <meta property="og:title" content="{{ $video->title }}">
+    <meta property="og:description" content="{{ $video->title }}">
+    <meta property="og:image" content="{{ $video->poster[0] }}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ url()->current(); }}">
+    <meta property="twitter:title" content="{{ $video->title }}">
+    <meta property="twitter:description" content="{{ $video->title }}">
+    <meta property="twitter:image" content="{{ $video->poster[0] }}">
+@endsection
+
 @section('extra-css')
     <link href="https://vjs.zencdn.net/7.19.2/video-js.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
