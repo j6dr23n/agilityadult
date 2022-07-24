@@ -5,7 +5,6 @@ namespace App\Jobs;
 use App\Models\Video;
 use Exception;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -16,8 +15,10 @@ class uploadVideoToDD implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $videoName,$vid;
-    
+    public $videoName;
+
+    public $vid;
+
     public $timeout = 2900;
 
     /**
@@ -25,7 +26,7 @@ class uploadVideoToDD implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($videoName,$vid)
+    public function __construct($videoName, $vid)
     {
         $this->videoName = $videoName;
         $this->vid = $vid;
@@ -48,14 +49,14 @@ class uploadVideoToDD implements ShouldQueue
         $video->save();
 
         Log::info($video);
-        Log::info($results); 
+        Log::info($results);
     }
 
     public function failed(Exception $exception)
     {
         Log::error($exception);
     }
-    
+
     protected function getUploadUrl()
     {
         $dd_api_key = env('DOOD_API_KEY');
@@ -81,13 +82,12 @@ class uploadVideoToDD implements ShouldQueue
         $type = pathinfo($my_file, PATHINFO_EXTENSION);
 
         $ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $upload_url . '?' . $dd_api_key);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-		curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_URL, $upload_url.'?'.$dd_api_key);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, 1);
 
-
-        $posts = array('api_key' => "$dd_api_key",
-        'file' => curl_file_create($my_file, $type, $file_name));
+        $posts = ['api_key' => "$dd_api_key",
+            'file' => curl_file_create($my_file, $type, $file_name), ];
 
         // Add read file as post field
         curl_setopt($ch, CURLOPT_POSTFIELDS, $posts);

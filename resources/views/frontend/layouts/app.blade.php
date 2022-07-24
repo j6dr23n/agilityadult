@@ -16,7 +16,7 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('frontend/assets/vendor/font-awesome/css/all.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/assets/vendor/hs-mega-menu/dist/hs-mega-menu.min.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('frontend/assets/vendor/hs-mega-menu/dist/hs-mega-menu.min.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('frontend/assets/vendor/dzsparallaxer/dzsparallaxer.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/vendor/cubeportfolio/css/cubeportfolio.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/vendor/aos/dist/aos.css') }}">
@@ -95,7 +95,7 @@
     <script src="{{ asset('frontend/assets/vendor/hs-header/dist/hs-header.min.js') }}"></script>
     <script src="{{ asset('frontend/assets/vendor/hs-go-to/dist/hs-go-to.min.js') }}"></script>
     <script src="{{ asset('frontend/assets/vendor/hs-unfold/dist/hs-unfold.min.js') }}"></script>
-    <script src="{{ asset('frontend/assets/vendor/hs-mega-menu/dist/hs-mega-menu.min.js') }}"></script>
+    {{-- <script src="{{ asset('frontend/assets/vendor/hs-mega-menu/dist/hs-mega-menu.min.js') }}"></script> --}}
     <script src="{{ asset('frontend/assets/vendor/hs-show-animation/dist/hs-show-animation.min.js') }}"></script>
     <script src="{{ asset('frontend/assets/vendor/hs-sticky-block/dist/hs-sticky-block.min.js') }}"></script>
     <script src="{{ asset('frontend/assets/vendor/hs-counter/dist/hs-counter.min.js') }}"></script>
@@ -120,14 +120,15 @@
     checkAdblock();
     
     async function checkAdblock() {
-        let isBlocked = await this.hasAdblockByScript();
+        let isBlocked = await this.CheckAdBlockByScript();
         if (isBlocked) {
             $('.product').hide();
+            $('.video-detail').hide();
             $('.adblock').show();
         }
     }
 
-    async function hasAdblockByScript() {
+    async function CheckAdBlockByScript() {
         let status = false;
         let url = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
         const config = {
@@ -153,12 +154,12 @@
             // initialization of header
             var header = new HSHeader($('#header')).init();
 
-            // initialization of mega menu
-            var megaMenu = new HSMegaMenu($('.js-mega-menu'), {
-                desktop: {
-                    position: 'left'
-                }
-            }).init();
+            // // initialization of mega menu
+            // var megaMenu = new HSMegaMenu($('.js-mega-menu'), {
+            //     desktop: {
+            //         position: 'left'
+            //     }
+            // }).init();
 
             // initialization of fancybox
             $('.js-fancybox').each(function () {

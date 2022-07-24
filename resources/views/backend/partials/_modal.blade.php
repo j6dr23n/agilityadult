@@ -1,4 +1,4 @@
-<!-- Message Modal -->
+{{-- <!-- Message Modal -->
 <div class="modal fade" id="chatmodel" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-right chatbox" role="document">
         <div class="modal-content chat border-0">
@@ -7,7 +7,7 @@
                 <div class="action-header clearfix">
                     <div class="float-start hidden-xs d-flex ms-2">
                         <div class="img_cont me-3">
-                            <img src="assets/img/faces/6.jpg" class="rounded-circle user_img" alt="img">
+                            <img src="" class="rounded-circle user_img" alt="img">
                         </div>
                         <div class="align-items-center mt-0">
                             <h4 class="text-white mb-0 font-weight-semibold">Daneil Scott</h4>
@@ -240,4 +240,4 @@
             </div><!-- modal-body -->
         </div>
     </div><!-- modal-dialog -->
-</div><!-- modal -->
+</div><!-- modal --> --}}

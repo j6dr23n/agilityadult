@@ -42,21 +42,7 @@
                                         <div class="border-bottom border-gray-3800 mb-3 pb-5">                      
                                             <div class="row mx-n2">
                                                 <div class="col-md-12 px-2">
-                                                    <div class="adblock mb-4 text-center" style="display:none;">
-                                                        <div class="product-image mb-2" style="height: 270px;">
-                                                            <a class="d-block position-relative stretched-link"
-                                                                href="">
-                                                                <img class="img-fluid poster-image"
-                                                                        src="{{ asset('frontend/adblock.png') }}"
-                                                                        alt="Disalbe your adblock.">
-                                                            </a>
-                                                        </div>
-                                                        <h6
-                                                            class="font-size-1 font-weight-bold mb-0 mt-2 product-title d-inline-block">
-                                                            <a href=""
-                                                                class="text-white">Please disable your adblock.</a>
-                                                        </h6>
-                                                    </div>
+                                                    @include('frontend.partials._adblock')
                                                 </div>
                                                 @foreach ($videos as $item)
                                                     @php

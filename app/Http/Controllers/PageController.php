@@ -15,7 +15,7 @@ class PageController extends Controller
     public function index(Request $request)
     {
         $title = null;
-        $videos = Video::where('status', 'published')->where('type','free')->latest()->get();
+        $videos = Video::where('status', 'published')->where('type', 'free')->latest()->get();
         if (Auth::check()) {
             $videos = Video::where('status', 'published')->latest()->get();
         }
@@ -102,10 +102,10 @@ class PageController extends Controller
     public function ads(Request $request)
     {
         $request->validate([
-            'download_link' => 'string|required'
+            'download_link' => 'string|required',
         ]);
         $download_link = Crypt::decryptString($request->download_link);
-        
-        return view('frontend.pages.ads-page',compact('download_link'));
+
+        return view('frontend.pages.ads-page', compact('download_link'));
     }
 }

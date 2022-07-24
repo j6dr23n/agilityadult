@@ -35,7 +35,7 @@ class GenerateSitemap extends Command
                 if ($url->segment(1) === 'agadult') {
                     return;
                 }
-        
+
                 return $url;
             })
             ->writeToFile(public_path('sitemap.xml'));

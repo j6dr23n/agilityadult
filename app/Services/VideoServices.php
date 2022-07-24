@@ -10,8 +10,8 @@ use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Pion\Laravel\ChunkUpload\Handler\HandlerFactory;
 use Pion\Laravel\ChunkUpload\Receiver\FileReceiver;
 
@@ -37,12 +37,12 @@ class VideoServices
             $data['link'] = 'https://videos.agilityadult.com/file/agadult-v2/'.date('d-m-Y').'/'.$videoName;
             $video = Video::create($data);
 
-            dispatch(new uploadVideoToDD($videoName,$video->id));
+            dispatch(new uploadVideoToDD($videoName, $video->id));
             Bus::chain([
                 // new AddWatermarkToVideo($videoFileName),
                 new UploadVideoToB2($videoName),
-                new CreateVideoThumbnailJob($data['link'], $name,$video->id),
-                new SendTeleBot($data['title'],$name,$video->slug),
+                new CreateVideoThumbnailJob($data['link'], $name, $video->id),
+                new SendTeleBot($data['title'], $name, $video->slug),
             ])->dispatch();
 
             return $video;
@@ -64,14 +64,13 @@ class VideoServices
             Bus::chain([
                 // new AddWatermarkToVideo($videoFileName),
                 new UploadVideoToB2($videoFileName),
-                new CreateVideoThumbnailJob($data['embed_link'], $name,$video->id),
-                new SendTeleBot($data['title'],$name,$video->slug),
+                new CreateVideoThumbnailJob($data['embed_link'], $name, $video->id),
+                new SendTeleBot($data['title'], $name, $video->slug),
             ])->dispatch();
 
             return $video;
         }
     }
-
 
     public function update($data, $video): bool
     {

@@ -100,10 +100,6 @@
 @endsection
 
 @section('extra-js')
-
-    <!-- Internal Form-editor js -->
-    <script src="{{ asset('backend/assets/js/form-editor-2.js') }}"></script>
     <!-- Internal input tags -->
     <script src="{{ asset('backend/assets/plugins/inputtags/inputtags.js') }}"></script>
-    <script src="{{ asset('assets/plugins/select2/js/select2.min.js') }}""></script>
 @endsection

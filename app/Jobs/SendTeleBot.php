@@ -27,7 +27,7 @@ class SendTeleBot implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($title,$name,$slug)
+    public function __construct($title, $name, $slug)
     {
         $this->title = $title;
         $this->name = $name;

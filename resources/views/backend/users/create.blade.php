@@ -95,15 +95,10 @@
 @endsection
 
 @section('extra-js')
-    <!--Internal  Datepicker js -->
-    <script src="{{ asset('backend/assets/plugins/jquery-ui/ui/widgets/datepicker.js') }}"></script>
 
     <!--Internal  jquery.maskedinput js -->
     <script src="{{ asset('backend/assets/plugins/jquery.maskedinput/jquery.maskedinput.js') }}"></script> 
 
     <!--Internal  spectrum-colorpicker js -->
     <script src="{{ asset('backend/assets/plugins/spectrum-colorpicker/spectrum.js') }}"></script>
-
-    <!-- Internal form-elements js -->
-    <script src="{{ asset('backend/assets/js/form-elements.js') }}"></script>
 @endsection

@@ -2,8 +2,8 @@
 
 namespace App\Jobs;
 
-use Exception;
 use App\Models\Video;
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -27,7 +27,7 @@ class CreateVideoThumbnailJob implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(string $link, string $title,int $vid)
+    public function __construct(string $link, string $title, int $vid)
     {
         $this->link = $link;
         $this->title = $title;
@@ -63,7 +63,7 @@ class CreateVideoThumbnailJob implements ShouldQueue
         );
 
         $video = Video::find($this->vid);
-        if($video->type !== 'free'){
+        if ($video->type !== 'free') {
             $video->poster = [$this->title.'.jpg'];
             $video->save();
         }

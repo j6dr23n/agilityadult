@@ -97,7 +97,8 @@
     <script src="{{ asset('backend/assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
 
     <!-- IONICONS JS -->
-    <script src="{{ asset('backend/assets/plugins/ionicons/ionicons.js') }}"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
     <!-- MOMENT JS -->
     <script src="{{ asset('backend/assets/plugins/moment/moment.js') }}"></script>
@@ -166,9 +167,6 @@
 
     <!-- exported JS -->
     <script src="{{ asset('backend/assets/js/exported.js') }}"></script>
-
-    <!-- SWITCHER JS -->
-    <script src="{{ asset('backend/assets/switcher/js/switcher.js') }}"></script>
 
     @yield('extra-js')
 

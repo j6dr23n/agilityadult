@@ -235,13 +235,12 @@
                                 <table class="table  table-bordered text-nowrap mb-0" id="example2">
                                     <thead>
                                         <tr>
-                                            <th class="text-center">Created Date</th>
                                             <th>poster</th>
                                             <th>Title </th>
                                             <th>Tags</th>
-                                            <th>Embed Link</th>
-                                            <th>Link</th>
+                                            <th>Type</th>
                                             <th>Status</th>
+                                            <th class="text-center">Created Date</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -251,17 +250,29 @@
                                                 $image = json_decode($item->poster);
                                             @endphp
                                             <tr>
-                                                <td class="text-center">
-                                                    {{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</td>
-                                                <td><img src="{{ '/storage/videos/images/' . $image[0] }}"
-                                                        alt="" width="100%" height="70px"></td>
+                                                <td>
+                                                    @if (str_contains($image[0], 'dood'))
+                                                        <img width="100px" height="70px" src="{{ $image[0] }}"
+                                                            alt="Poster">
+                                                    @elseif(str_contains($image[0], 'processing'))
+                                                        <img width="100px" height="70px" src="{{ $image[0] }}"
+                                                            alt="Poster">
+                                                    @else
+                                                        <img width="100px" height="70px" 
+                                                            src="{{ '/storage/videos/images/' . $image[0] }}"
+                                                            alt="Poster">
+                                                    @endif
+                                                </td>
                                                 <td>{{ $item->title }}</td>
                                                 <td>{{ Str::limit($item->tags, 40) }}</td>
-                                                <td>{{ Str::limit($item->embed_link, 40) }}</td>
-                                                <td>{{ Str::limit($item->link, 40) }}</td>
+                                                <td><span
+                                                        class="badge badge-{{ $item->type == 'premium' ? 'warning' : 'success' }}-transparent">{{ $item->type }}</span>
+                                                </td>
                                                 <td><span
                                                         class="badge badge-{{ $item->status == 'draft' ? 'warning' : 'success' }}-transparent">{{ $item->status }}</span>
                                                 </td>
+                                                <td class="text-center">
+                                                    {{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</td>
                                                 <td class="">
                                                     <a class="btn btn-success btn-sm br-5 me-2"
                                                         href="{{ route('videos.edit', $item->id) }}">

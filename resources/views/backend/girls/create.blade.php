@@ -97,10 +97,7 @@
     <script src="{{ asset('backend/assets/plugins/jquery.maskedinput/jquery.maskedinput.js') }}"></script>
 
     <!--Internal  spectrum-colorpicker js -->
-    <script src="{{ asset('backend/assets/plugins/spectrum-colorpicker/spectrum.js') }}"></script>
-
-    <!-- Internal form-elements js -->
-    <script src="{{ asset('backend/assets/js/form-elements.js') }}"></script>
+    <script src="{{ asset('backend/assets/plugins/spectrum-colorpicker/spectrum.js') }}"></script>>
 
     <!-- INTERNAL Summernote Editor js -->
     <script src="{{ asset('backend/assets/plugins/summernote-editor/summernote1.js') }}"></script>

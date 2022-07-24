@@ -18,16 +18,7 @@
 
         <!-- container -->
         <div class="main-container container-fluid">
-
-
-            <!-- breadcrumb -->
-            <div class="breadcrumb-header justify-content-end">
-                <div class="left-content mt-2">
-                    <a class="btn ripple btn-primary" href="{{ route('users.create') }}"><i
-                            class="fe fe-plus me-2"></i>Add New User</a>
-                </div>
-            </div>
-            <!-- /breadcrumb -->
+            <br>
 
             <!--Row-->
             <!-- Row -->

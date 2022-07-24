@@ -23,10 +23,10 @@ class VideoController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            if(auth()->user()->role === 'admin'){
+            if (auth()->user()->role === 'admin') {
                 $videos = Video::latest()->get();
-            }else{
-                $videos = Video::where('user_id',auth()->id())->latest()->get();
+            } else {
+                $videos = Video::where('user_id', auth()->id())->latest()->get();
             }
             $videos->each(function ($videos) {
                 $videos->title = Str::limit($videos->title, 30);
@@ -37,9 +37,9 @@ class VideoController extends Controller
 
             return datatables()->of($videos)
                 ->addColumn('poster', function ($data) {
-                    if($data->type === 'premium'){
+                    if ($data->type === 'premium') {
                         $button = '<img src="'.asset('storage/videos/images/'.$data->poster[0]).'" style="max-width:100%;height:100%;">';
-                    }else{
+                    } else {
                         $button = '<img src="'.$data->poster[0].'" style="max-width:100%;height:100%;">';
                     }
 
@@ -106,7 +106,7 @@ class VideoController extends Controller
         views($video)->cooldown($minutes = 3)->record();
 
         $download_link = null;
-        if(Auth::check() === false){
+        if (Auth::check() === false) {
             $download_link = Crypt::encryptString($video->link);
         }
 
@@ -117,7 +117,7 @@ class VideoController extends Controller
         $videos = Video::inRandomOrder()->take(4)->get();
         $totalViews = views($video)->count();
 
-        return view('frontend.pages.details', compact('video', 'videos', 'totalViews','download_link'));
+        return view('frontend.pages.details', compact('video', 'videos', 'totalViews', 'download_link'));
     }
 
     /**

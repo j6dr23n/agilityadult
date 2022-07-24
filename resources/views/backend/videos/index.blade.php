@@ -153,32 +153,7 @@
     <script src="{{ asset('backend/assets/plugins/select2/js/select2.full.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 
-    <script src="https://vjs.zencdn.net/7.19.2/video.min.js"></script>
-    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
-
     @include('backend.partials._toastr-script')
-
-    <!-- Initialize Swiper -->
-    <script>
-        var swiper = new Swiper(".mySwiper", {
-            autoHeight: true,
-            pagination: {
-                el: ".swiper-pagination",
-                type: "progressbar",
-            },
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
-        });
-    </script>
-
-    <script>
-        const player = videojs('my-video', {
-            responsive: true,
-            fluid: true,
-        });
-    </script>
     <script>
         $(function(e) {
             var s = $("#videos-datatable").DataTable({

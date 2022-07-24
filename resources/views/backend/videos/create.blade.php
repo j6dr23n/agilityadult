@@ -1,10 +1,6 @@
 @extends('backend.layouts.app')
 
 @section('extra-css')
-    <!--Internal  Quill css -->
-    <link href="{{ asset('backend/assets/plugins/quill/quill.snow.css') }}" rel="stylesheet">
-    <link href="{{ asset('backend/assets/plugins/quill/quill.bubble.css') }}" rel="stylesheet">
-
     <!-- Internal Summernote css-->
     <link rel="stylesheet" href="{{ asset('backend/assets/plugins/summernote/summernote-bs4.css') }}">
 
@@ -298,17 +294,11 @@
 @endsection
 
 @section('extra-js')
-    <!--Internal quill js -->
-    <script src="{{ asset('backend/assets/plugins/quill/quill.min.js') }}"></script>
-
     <!-- Internal Summernote js-->
     <script src="{{ asset('backend/assets/plugins/summernote/summernote-bs4.js') }}"></script>
 
-    <!-- Internal Form-editor js -->
-    <script src="{{ asset('backend/assets/js/form-editor-2.js') }}"></script>
     <!-- Internal input tags -->
     <script src="{{ asset('backend/assets/plugins/inputtags/inputtags.js') }}"></script>
-    <script src="{{ asset('assets/plugins/select2/js/select2.min.js') }}""></script>
 
     <!-- Resumable js -->
     <script src="https://cdn.jsdelivr.net/npm/resumablejs@1.1.0/resumable.min.js"></script>

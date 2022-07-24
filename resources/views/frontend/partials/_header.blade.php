@@ -38,9 +38,6 @@
                                     class="hs-mega-menu-invoker py-xl-3d line-height-lg nav-link font-secondary"
                                     href="{{ route('pages.index') }}" aria-haspopup="true"
                                     aria-expanded="false">Home</a>
-
-                                <div class="hs-mega-menu w-100" aria-labelledby="homeMegaMenu">
-                                </div>
                             </li>
 
                             @if (Auth::check() !== true)
@@ -49,18 +46,12 @@
                                         class="hs-mega-menu-invoker py-xl-3d line-height-lg nav-link font-primary"
                                         href="{{ route('pages.plan') }}" aria-haspopup="true"
                                         aria-expanded="false">VIP</a>
-
-                                    <div class="hs-mega-menu w-100" aria-labelledby="homeMegaMenu">
-                                    </div>
                                 </li>
 
                                 <li class="hs-has-mega-menu navbar-nav-item">
                                     <a id="homeMegaMenu"
                                         class="hs-mega-menu-invoker py-xl-3d line-height-lg nav-link font-primary"
                                         data-toggle="modal" data-target="#loginModal">Login</a>
-
-                                    <div class="hs-mega-menu w-100" aria-labelledby="homeMegaMenu">
-                                    </div>
                                 </li>
                             @endif
 
@@ -69,18 +60,12 @@
                                     class="hs-mega-menu-invoker py-xl-3d line-height-lg nav-link font-secondary"
                                     href="{{ route('pages.categories') }}" aria-haspopup="true"
                                     aria-expanded="false">Categories</a>
-
-                                <div class="hs-mega-menu w-100" aria-labelledby="homeMegaMenu">
-                                </div>
                             </li>
                             <li class="hs-has-mega-menu navbar-nav-item">
                                 <a id="homeMegaMenu"
                                     class="hs-mega-menu-invoker py-xl-3d line-height-lg nav-link font-secondary"
                                     href="{{ route('pages.girls') }}" aria-haspopup="true"
                                     aria-expanded="false">Chat & Date Girls</a>
-
-                                <div class="hs-mega-menu w-100" aria-labelledby="homeMegaMenu">
-                                </div>
                             </li>
 
                             <li class="hs-has-mega-menu navbar-nav-item">
@@ -88,9 +73,6 @@
                                     class="hs-mega-menu-invoker py-xl-3d line-height-lg nav-link font-secondary"
                                     href="{{ route('pages.search', 'myanmar') }}" aria-haspopup="true"
                                     aria-expanded="false">Myanmar</a>
-
-                                <div class="hs-mega-menu w-100" aria-labelledby="homeMegaMenu">
-                                </div>
                             </li>
 
                             <li class="hs-has-mega-menu navbar-nav-item">
@@ -98,10 +80,6 @@
                                     class="hs-mega-menu-invoker py-xl-3d line-height-lg nav-link font-secondary"
                                     href="{{ route('pages.search', 'exantria') }}" aria-haspopup="true"
                                     aria-expanded="false">Exantria</a>
-
-                                <div class="hs-mega-menu w-100" aria-labelledby="homeMegaMenu">
-                                </div>
-
                             </li>
 
                             <li class="hs-has-mega-menu navbar-nav-item">
@@ -109,10 +87,6 @@
                                     class="hs-mega-menu-invoker py-xl-3d line-height-lg nav-link font-secondary"
                                     href="{{ route('pages.search', 'onlyfan') }}" aria-haspopup="true"
                                     aria-expanded="false">Onlyfan</a>
-
-                                <div class="hs-mega-menu w-100" aria-labelledby="homeMegaMenu">
-                                </div>
-
                             </li>
 
                             <li class="hs-has-mega-menu navbar-nav-item">
@@ -120,10 +94,6 @@
                                     class="hs-mega-menu-invoker py-xl-3d line-height-lg nav-link font-secondary"
                                     href="{{ route('pages.search', 'hentai') }}" aria-haspopup="true"
                                     aria-expanded="false">Hentai</a>
-
-                                <div class="hs-mega-menu w-100" aria-labelledby="homeMegaMenu">
-                                </div>
-
                             </li>
 
                             <li class="hs-has-mega-menu navbar-nav-item">
@@ -131,10 +101,6 @@
                                     class="hs-mega-menu-invoker py-xl-3d line-height-lg nav-link font-secondary"
                                     href="{{ route('pages.manga.index') }}" aria-haspopup="true"
                                     aria-expanded="false">Manga</a>
-
-                                <div class="hs-mega-menu w-100" aria-labelledby="homeMegaMenu">
-                                </div>
-
                             </li>
                         </ul>
                     </div>
