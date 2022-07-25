@@ -48,6 +48,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('reports', ReportController::class);
 
     Route::prefix('agadult')->middleware(['admin', 'optimizeImages'])->group(function () {
+        Route::get('log-viewer', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
         Route::get('dashboard', [AdminPageController::class, 'index'])->name('admin.index');
         Route::resource('videos', VideoController::class)->except('show');
         Route::resource('users', UserController::class);
