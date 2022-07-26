@@ -24,5 +24,19 @@ class DatabaseSeeder extends Seeder
         User::factory(10)->create();
         Manga::factory(20)->create();
         Girl::factory(20)->create();
+        User::create([
+            'name' => 'Admin',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('password'),
+            'expiry_date' => '2025-09-12',
+            'role' => 'admin'
+        ]);
+        User::create([
+            'name' => 'User',
+            'email' => 'user@gmail.com',
+            'password' => bcrypt('password'),
+            'expiry_date' => '2025-09-12',
+            'role' => 'member'
+        ]);
     }
 }

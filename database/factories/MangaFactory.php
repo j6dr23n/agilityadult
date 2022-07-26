@@ -23,6 +23,7 @@ class MangaFactory extends Factory
             'tags' => $this->faker->word(8),
             'info' => $this->faker->sentence(12),
             'poster' => $this->faker->imageUrl(250, 550),
+            'type' => $this->faker->randomElement(['free','premium']),
             'status' => $this->faker->randomElement(['Ongoing', 'Finished']),
         ];
     }

@@ -19,11 +19,11 @@ class VideoFactory extends Factory
         return [
             'title' => $this->faker->title(),
             'slug' => $this->faker->slug(),
-            'poster' => $this->faker->imageUrl(480, 270),
-            'embed_link' => $this->faker->url(),
-            'link' => $this->faker->url(),
-            'download_link' => $this->faker->url(),
+            'poster' => [asset('storage/video-processing.jpg')],
+            'embed_link' => 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4',
+            'link' => 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4',
             'tags' => $this->faker->word(6),
+            'type' => $this->faker->randomElement(['free','premium']),
             'status' => $this->faker->randomElement(['draft', 'published']),
         ];
     }

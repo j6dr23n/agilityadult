@@ -1,64 +1,113 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Agility Adult
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+### Adult Entertainment video platform for *__[agility organization].__*  
+Demo - __https://agilityadult.com/__ 
 
-## About Laravel
+----
+## Infromation 
+ A [Laravel] 9.21.x with [vodi](frontend) & [nowa] html template project.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+| **Agility Adult Features**  |
+| :------------ |
+|Built on [Laravel](http://laravel.com/) 9.12.x|
+|Uses [MySQL](https://github.com/mysql) Database|
+|Uses [Artisan](https://laravel.com/docs/9.x/artisan) to manage database migration, schema creations, and create/publish page controller templates|
+|Dependencies are managed with [COMPOSER](https://getcomposer.org/)|
+|CRUD (Create, Read, Update, Delete) Management|
+|Free and premium feature|
+|User Login with remember password|
+|Job, queues for video uploading to bucket and doodstream with api.|
+|Thumbnail creation with [Video Thumbnail]|
+|Chunk file uplaod with [Laravel chunk upload]|
+|Daily Log viewer with [Log Viewer]|
+|Backup with [Spatie backup] and [Laravel backup manager]|
+|Role Management (member,uploader,admin) for authorization|
+----
+## **Installation**
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+**A tutorial for installing this project in ur local machine.**
+### **Prerequisites**
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+* [Backblaze API] Token for upload video to buckets for premium feature.
+* [Doodstream API] for free feature.
+* [Telegram Bot SDK] for send notification to telegram channel. 
+* To run this project, you must have PHP **8.1** installed.
+* You should setup a host on your web server for your local domain. For this you could also configure Laravel Homestead or Valet. 
 
-## Learning Laravel
+### **Step 1 - Cloning repo and installing requirements**
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Begin by cloning this repository to your machine, and installing all Composer & NPM dependencies.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```bash
+cp .env.example .env
+php artisan key:generate
+git clone https://github.com/j6dr23n/agilityadult.git
+cd agilityadult && composer install && npm install
+npm run dev
+```
+### **Step 2 - View the project in the browser**
+1. From the projects root folder run `php artisan serve`
+2. Open your web browser and go to `http://localhost`
+----
+## **Installation with [Laravel Sail](https://laravel.com/docs/9.x/sail)**
+1. Ensure u must install docker on your local machine.  
+2. Go to your project root folder and then type the following commands.  
+3. [Configure a bash alias](https://laravel.com/docs/9.x/sail#configuring-a-bash-alias)
+```bash
+cp docker-compose.yml.example docker-compose.yml
+sail up
+sail artisan migrate --seed
+```
+----
+## **Authetication for administration**
+1. Go to `http://localhost` and click Login in menu.
+3. First login with admin account and go to this url for administration `http://localhost/agadult/dashboard` 
+### **Admin account**
+* email = `admin@gmail.com`
+* password = `password`
+### **User account**
+* email = `user@gmail.com` 
+* spassword = `password`
+----
+## **Demo View**
+### Admin panel dashboard preview
 
-## Laravel Sponsors
+![](https://i.postimg.cc/8PvzcCzf/Screen-Shot-2022-07-26-at-17-08-45.png)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### Free Feature preview
 
-### Premium Partners
+![](https://i.postimg.cc/BQhfq9xP/Screen-Shot-2022-07-26-at-17-09-40.png)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+### Premium Feature preview
 
-## Contributing
+![](https://i.postimg.cc/pdCDSCNv/Screen-Shot-2022-07-26-at-17-09-15.png)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+----
 
-## Code of Conduct
+### **CHANGELOG**
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Please see [CHANGELOG] for more information what has changed recently. 
 
-## Security Vulnerabilities
+----
+### **License**
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+The Agility Adult is open-sourced software licensed under the  [MIT license](http://opensource.org/licenses/MIT)
 
-## License
+----
+### __Enjoy adult video platform__
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+[agility organization]: https://www.facebook.com/agilitygaming.org
+[Laravel]: laravel.com/docs
+[vodi]: https://demo2.madrasthemes.com/vodi-html/html-demo/home/index.html
+[nowa]: https://spruko.com/demo/nowa/Nowa/HTML/index.html
+[Laravel chunk upload]: https://github.com/pionl/laravel-chunk-upload
+[Log Viewer]: https://github.com/rap2hpoutre/laravel-log-viewer
+[Video Thumnail]: https://github.com/pawlox/video-thumbnail
+[Spatie backup]: https://spatie.be/docs/laravel-backup/v8/introduction
+[Laravel backup manager]: https://github.com/Laravel-Backpack/BackupManager
+
+[Doodstream API]: https://doodstream.com/api-docs
+[Backblaze API]: https://www.backblaze.com/b2/docs/
+[Telegram Bot SDK]: https://github.com/irazasyed/telegram-bot-sdk.git
+
+[CHANGELOG]: CHANGELOG.md
