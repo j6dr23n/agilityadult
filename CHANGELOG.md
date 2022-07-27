@@ -14,6 +14,10 @@ All notable changes to this project will be documented in this file.
 
 ### Removed
 - Remove [Old Log Viewer] for errror on file permission.
+## [1.0.1-alpha] - 2022-07-27
+
+### Fixed
+- change log file permission on config/logging.php
 
 
 [Old Log Viewer]: https://github.com/ARCANEDEV/LogViewer
