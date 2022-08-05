@@ -36,7 +36,6 @@ class VideoServices
             $data['poster'] = [asset('storage/video-processing.jpg')];
             $data['link'] = 'https://videos.agilityadult.com/file/agadult-v2/'.date('d-m-Y').'/'.$videoName;
             $video = Video::create($data);
-
             dispatch(new uploadVideoToDD($videoName, $video->id));
             Bus::chain([
                 // new AddWatermarkToVideo($videoFileName),
@@ -116,9 +115,8 @@ class VideoServices
         if ($fileReceived->isFinished()) { // file uploading is complete / all chunks are uploaded
             $file = $fileReceived->getFile(); // get file
             $extension = $file->getClientOriginalExtension();
-            $fileName = str_replace('.'.$extension, '', $file->getClientOriginalName()); //file name without extenstion
-            $fileName .= '_'.md5(time()).'.'.$extension; // a unique file name
-            $fileName = str_replace(' ', '', $fileName);
+            $fileName = substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,10);
+            $fileName .= '_'.md5(time()).'.'.$extension; // add timestamp to file name
             Session::put('fileName-'.auth()->id(), $fileName);
 
             $disk = Storage::disk(config('filesystems.public'));

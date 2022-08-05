@@ -19,6 +19,11 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - change log file permission on config/logging.php
 
+## [1.0.2-alpha] - 2022-08-05
+
+### Fixed
+- video file name changed to random string in videoservice
+
 
 [Old Log Viewer]: https://github.com/ARCANEDEV/LogViewer
 [New Log Viewer]: https://github.com/rap2hpoutre/laravel-log-viewer
